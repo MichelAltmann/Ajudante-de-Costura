@@ -1,26 +1,27 @@
 package com.example.ajudantedecostura;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ajudantedecostura.databinding.ActivityMainBinding;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ajudantedecostura.databinding.ActivityLoginBinding;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         EditText txtLogin = binding.txtLogin;
@@ -38,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
                             BigInteger senhaCadastrada = new BigInteger(1, md.digest(txtSenha.getText().toString().getBytes()));
 
-                            Toast.makeText(MainActivity.this, "" + senhaCadastrada, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "" + senhaCadastrada, Toast.LENGTH_SHORT).show();
                             if (binding.cbManterLogado.isChecked()) {
+                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                startActivity(intent);
                                 //banco de dados e salvar login para conectar com o servidor
                             }
                         } catch (NoSuchAlgorithmException e) {
