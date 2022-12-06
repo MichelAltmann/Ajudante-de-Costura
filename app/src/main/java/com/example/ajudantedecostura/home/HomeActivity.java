@@ -1,4 +1,4 @@
-package com.example.ajudantedecostura;
+package com.example.ajudantedecostura.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -6,10 +6,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 
 import com.example.ajudantedecostura.databinding.ActivityHomeBinding;
+import com.example.ajudantedecostura.home.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ajudantedecostura.databinding.ActivityLoginBinding;
+import com.example.ajudantedecostura.home.HomeActivity;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -24,10 +25,10 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        EditText txtLogin = binding.txtLogin;
-        EditText txtSenha = binding.txtSenha;
+        EditText txtLogin = binding.activityLoginTxtLogin;
+        EditText txtSenha = binding.activityLoginTxtSenha;
 
-        binding.btnEntrar.setOnClickListener(new View.OnClickListener() {
+        binding.activityLoginBtnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!txtLogin.getText().toString().equals("")) {
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                             BigInteger senhaCadastrada = new BigInteger(1, md.digest(txtSenha.getText().toString().getBytes()));
 
                             Toast.makeText(LoginActivity.this, "" + senhaCadastrada, Toast.LENGTH_SHORT).show();
-                            if (binding.cbManterLogado.isChecked()) {
+                            if (binding.activityLoginCheckboxManterlogado.isChecked()) {
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                 startActivity(intent);
                                 //banco de dados e salvar login para conectar com o servidor

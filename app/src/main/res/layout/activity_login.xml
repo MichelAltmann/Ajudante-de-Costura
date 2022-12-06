@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="@+id/agulhaSvg" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txtLogin"
+        android:id="@+id/activity_login_txt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txtSenha"
+        android:id="@+id/activity_login_txt_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -57,18 +57,18 @@
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtLogin" />
+        app:layout_constraintTop_toBottomOf="@id/activity_login_txt_login" />
 
     <CheckBox
-        android:id="@+id/cbManterLogado"
+        android:id="@+id/activity_login_checkbox_manterlogado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lembrar de mim"
-        app:layout_constraintStart_toStartOf="@id/txtSenha"
-        app:layout_constraintTop_toBottomOf="@id/txtSenha" />
+        app:layout_constraintStart_toStartOf="@id/activity_login_txt_senha"
+        app:layout_constraintTop_toBottomOf="@id/activity_login_txt_senha" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnEntrar"
+        android:id="@+id/activity_login_btn_entrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -80,8 +80,45 @@
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cbManterLogado"
+        app:layout_constraintTop_toBottomOf="@id/activity_login_checkbox_manterlogado"
         app:strokeWidth="1dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_login_text_ou"
+        app:layout_constraintTop_toBottomOf="@id/activity_login_btn_entrar"
+        app:layout_constraintEnd_toEndOf="@id/activity_login_btn_entrar"
+        app:layout_constraintStart_toStartOf="@id/activity_login_btn_entrar"
+        android:text="ou"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_login_btn_cadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:backgroundTint="#9DE8B2"
+        android:padding="10dp"
+        android:text="Cadastrar"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_login_text_ou"
+        app:strokeWidth="1dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_login_text_esqueceu_senha"
+        app:layout_constraintTop_toBottomOf="@id/activity_login_btn_cadastrar"
+        app:layout_constraintEnd_toEndOf="@id/activity_login_btn_cadastrar"
+        app:layout_constraintStart_toStartOf="@id/activity_login_btn_cadastrar"
+        android:layout_marginTop="16dp"
+        android:text="Esqueceu sua senha?"
+        android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

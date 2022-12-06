@@ -1,4 +1,4 @@
-package com.example.ajudantedecostura;
+package com.example.ajudantedecostura.home.adapters.fragments;
 
 import android.os.Bundle;
 
@@ -8,15 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ajudantedecostura.databinding.FragmentListaPedidosBinding;
+import com.example.ajudantedecostura.databinding.FragmentListaClientesBinding;
 
-public class ListaPedidosFragment extends Fragment {
+public class ListaClientesFragment extends Fragment {
 
-    FragmentListaPedidosBinding binding;
+    FragmentListaClientesBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        binding = FragmentListaPedidosBinding.inflate(inflater, container, false);
+        binding = FragmentListaClientesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 }
