@@ -20,7 +20,7 @@ import java.util.List;
 public class ListaClientesFragment extends Fragment {
 
     FragmentListaClientesBinding binding;
-    Integer[] lista = {1,2,3,4,5,6};
+    String[] lista = {"Pedro Müller","Michel Altmann","Lucas Santos","Guilherme Neis","Lucas Meyer","Alan Werner"};
     ListaClientesAdapter adapter = new ListaClientesAdapter(lista);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {

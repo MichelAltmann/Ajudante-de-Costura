@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.ViewHolder> {
 
-    private Integer[] lista;
+    private String[] lista;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
     private RecyclerClientesItemBinding binding;
@@ -23,7 +23,7 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         }
     }
 
-    public ListaClientesAdapter(Integer[] pegaLista) {
+    public ListaClientesAdapter(String[] pegaLista) {
         this.lista = pegaLista;
     }
 

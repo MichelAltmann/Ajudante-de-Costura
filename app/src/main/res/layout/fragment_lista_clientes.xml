@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.fragments.ListaClientesFragment">
+    tools:context=".home.fragments.ListaClientesFragment"
+    android:padding="16dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_lista_clientes_recyclerview"
@@ -12,6 +13,5 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recycler_clientes_item" />
-
 
 </LinearLayout>
