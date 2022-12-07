@@ -38,4 +38,14 @@
 
     </com.google.android.material.tabs.TabLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_home_fab_adiciona"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tabLayout"
+        android:layout_margin="16dp"
+        android:backgroundTint="#ffc3cc"
+        app:borderWidth="0dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.adapters.fragments.ListaPedidosFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.fragments.ListaPedidosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="VIADO" />
+        android:id="@+id/fragment_lista_pedidos_recyclerview"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/recycler_pedidos_item"/>
 
-</FrameLayout>
+</LinearLayout>

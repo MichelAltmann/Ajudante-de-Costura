@@ -1,4 +1,4 @@
-package com.example.ajudantedecostura.home.adapters.fragments;
+package com.example.ajudantedecostura.home.fragments;
 
 import android.os.Bundle;
 
