@@ -26,6 +26,10 @@ public class HomeActivity extends AppCompatActivity {
         TabLayout tabLayout = binding.tabLayout;
         ViewPager2 viewPager2 = binding.viewpager;
 
+        if (!getIntent().getExtras().isEmpty()){
+            binding.activityHomeNomeCostureira.setText(getIntent().getStringExtra("nome"));
+        }
+
         binding.viewpager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager2, ((tab, position) -> {
             tab.setText(name[position]);

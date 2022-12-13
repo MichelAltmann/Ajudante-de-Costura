@@ -3,7 +3,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".home.adapters.ListaPedidosAdapter">
+    tools:context=".home.adapters.ListaPedidosAdapter"
+    android:padding="16dp">
 
     <androidx.cardview.widget.CardView
         app:layout_constraintTop_toTopOf="parent"
@@ -13,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
-        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="#ffffc3">
 
         <androidx.constraintlayout.widget.ConstraintLayout

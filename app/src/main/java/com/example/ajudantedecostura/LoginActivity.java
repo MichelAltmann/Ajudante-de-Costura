@@ -28,9 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText txtLogin = binding.activityLoginTxtLogin;
         EditText txtSenha = binding.activityLoginTxtSenha;
 
-        binding.activityLoginBtnEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.activityLoginBtnEntrar.setOnClickListener(v -> {
                 if (!txtLogin.getText().toString().equals("")) {
                     if (!txtSenha.getText().toString().equals("")) {
                         try {
@@ -43,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "" + senhaCadastrada, Toast.LENGTH_SHORT).show();
                             if (binding.activityLoginCheckboxManterlogado.isChecked()) {
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                intent.putExtra("nome", loginCadastrado);
                                 startActivity(intent);
                                 //banco de dados e salvar login para conectar com o servidor
                             }
@@ -57,8 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                     txtLogin.setError("Erro: Informe o Email ou CPF.");
                     txtLogin.requestFocus();
                 }
-            }
-        });
+            });
 
     }
 
