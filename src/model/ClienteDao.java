@@ -30,7 +30,19 @@ public class ClienteDao {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
                 //SQL statement
-                String sql = "insert into pessoa (cpf, nome, email, telefone, dataNascimento, cep, estado, cidade, rua, numero, tipo, idCostureira) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = "insert into pessoa (cpf, "
+                        + "nome, "
+                        + "email, "
+                        + "telefone, "
+                        + "dataNascimento, "
+                        + "cep, "
+                        + "estado, "
+                        + "cidade, "
+                        + "rua, "
+                        + "numero, "
+                        + "tipo, "
+                        + "idCostureira) "
+                        + "values (?,?,?,?,?,?,?,?,?,?,?,?)";
                 //Prepara o Statement
                 stmt = con.prepareStatement(sql);
                 //Insere os dados no Statement
@@ -50,6 +62,7 @@ public class ClienteDao {
                 stmt.execute();
                 //Realiza o commit
                 con.commit();
+                //Deu tudo certo retorna -1
                 return -1;
             } catch (SQLException e) {
                 try {
@@ -112,5 +125,5 @@ public class ClienteDao {
             return null;
         }
     }
-
+    
 }

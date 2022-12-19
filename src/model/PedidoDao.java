@@ -99,4 +99,105 @@ public class PedidoDao {
 
     }
 
+    public int PedidoCadastrar(Pedido pedido) {
+        PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
+        PreparedStatement stmt = null;
+        try {
+            try {
+                //Desliga o autocommit
+                con.setAutoCommit(false);
+                //SQL statement
+                String sql = "insert into pedidos (idPedido, "
+                        + "prioridade, "
+                        + "titulo, "
+                        + "descricao, "
+                        + "dataEntrega, "
+                        + "dataCriacao, "
+                        + "imagem, "
+                        + "idPessoa, "
+                        + "preco, "
+                        + "pescoco, "
+                        + "busto, "
+                        + "ombro, "
+                        + "bico, "
+                        + "cintura, "
+                        + "quadris, "
+                        + "manga, "
+                        + "punho, "
+                        + "larguraBraco, "
+                        + "larguraCoxa, "
+                        + "larguraCostas, "
+                        + "alturaFrente, "
+                        + "alturaCostas, "
+                        + "alturaBusto, "
+                        + "alturaQuadris, "
+                        + "alturaGancho, "
+                        + "alturaJoelho, "
+                        + "comprimentoCalca, "
+                        + "comprimentoBlusa, "
+                        + "comprimentoSaia)"
+                        + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                //Preparando o Statement
+                stmt = con.prepareStatement(sql);
+                //Inserindo os dados no statement
+                stmt.setInt(1, pedido.getIdPedido());
+                stmt.setInt(2, pedido.getPrioridade());
+                stmt.setString(3, pedido.getTitulo());
+                stmt.setString(4, pedido.getDescricao());
+                stmt.setDate(5, (Date) pedido.getDataEntrega());
+                stmt.setDate(6, (Date) pedido.getDataCriacao());
+                stmt.setBytes(7, pedido.getImagem());
+                stmt.setInt(8, pedido.getCliente().getIdPessoa());
+                stmt.setFloat(9, pedido.CalculaPrecoPedido());
+                stmt.setFloat(10, pedido.getMedidas().getPescoco());
+                stmt.setFloat(11, pedido.getMedidas().getBusto());
+                stmt.setFloat(12, pedido.getMedidas().getOmbro());
+                stmt.setFloat(13, pedido.getMedidas().getBico());
+                stmt.setFloat(14, pedido.getMedidas().getCintura());
+                stmt.setFloat(15, pedido.getMedidas().getQuadris());
+                stmt.setFloat(16, pedido.getMedidas().getManga());
+                stmt.setFloat(17, pedido.getMedidas().getPunho());
+                stmt.setFloat(18, pedido.getMedidas().getLarguraBraco());
+                stmt.setFloat(19, pedido.getMedidas().getLarguraCoxa());
+                stmt.setFloat(20, pedido.getMedidas().getAlturaFrente());
+                stmt.setFloat(21, pedido.getMedidas().getAlturaCostas());
+                stmt.setFloat(22, pedido.getMedidas().getAlturaBusto());
+                stmt.setFloat(23, pedido.getMedidas().getAlturaQuadris());
+                stmt.setFloat(24, pedido.getMedidas().getAlturaGancho());
+                stmt.setFloat(25, pedido.getMedidas().getAlturaJoelho());
+                stmt.setFloat(26, pedido.getMedidas().getComprimentoCalca());
+                stmt.setFloat(27, pedido.getMedidas().getComprimentoBlusa());
+                stmt.setFloat(28, pedido.getMedidas().getComprimentoSaia());
+                stmt.setFloat(29, pedido.getMedidas().getLarguraCostas());
+                //Executando o statement
+                stmt.execute();
+                //Realizando o commit
+                con.commit();
+                //Chamando PedidoMaterialDao para realizar a conexão dos dois no banco
+                pedidoMaterialDao.PedidoMaterialCadastrar(pedido);
+                //Deu tudo certo retornando -1
+                return -1;
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    e.printStackTrace();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException exc) {
+                exc.printStackTrace();
+                exc.getErrorCode();
+            }
+        }
+
+    }
+
 }
