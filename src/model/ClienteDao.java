@@ -9,22 +9,23 @@ import java.sql.*;
 import java.util.ArrayList;
 import modelDominio.Cliente;
 import modelDominio.Costureira;
+
 /**
  *
  * @author aluno
  */
 public class ClienteDao {
-    
+
     private Connection con;
 
     public ClienteDao() {
         this.con = Conector.getConnection();
     }
-    
-     public int ClienteCadastrar (Cliente cliente){
+
+    public int ClienteCadastrar(Cliente cliente) {
         PreparedStatement stmt = null;
-        
-        try{
+
+        try {
             try {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
@@ -51,11 +52,11 @@ public class ClienteDao {
                 con.commit();
                 return -1;
             } catch (SQLException e) {
-                try{
+                try {
                     con.rollback();
                     e.printStackTrace();
                     return e.getErrorCode();
-                } catch (SQLException ex){
+                } catch (SQLException ex) {
                     ex.printStackTrace();
                     return ex.getErrorCode();
                 }
@@ -65,42 +66,51 @@ public class ClienteDao {
                 stmt.close();
                 con.setAutoCommit(false);
                 con.close();
-            } catch (SQLException exc){
+            } catch (SQLException exc) {
                 exc.printStackTrace();
                 exc.getErrorCode();
             }
         }
     }
-     
+
 //     public int ClienteAlterar (Cliente cliente){;
 //         
 //     }
-     
-     public ArrayList<Cliente> ClienteCarregaLista (){
-         PreparedStatement stmt = null;
-         ArrayList<Cliente> listaClientes = new ArrayList<>();
-         
-         try{
-             //Escrevendo o comando SQL
-             String sql = "select * from pessoa join pedido on (pessoa.idPessoa = pedido.idPessoa)";
-             //Preparando o Statement
-             stmt = con.prepareStatement(sql);
-             //Pegando o resultado
-             ResultSet res = stmt.executeQuery();
-             
-             while(res.next()){
-                 Costureira costureira = new Costureira(res.getInt("idCostureira"));
-                 Cliente cliente = new Cliente(costureira, res.getInt("idPessoa"), res.getString("cpf"), res.getString("nome"), res.getString("email"), res.getString("telefone"), res.getDate("dataNascimento"), res.getInt("cep"), res.getString("estado"), res.getString("cidade"), res.getString("rua"), res.getInt("numero"));
-                 listaClientes.add(cliente);
-             }
-             return listaClientes;
-             
-         } catch (SQLException e){
-             e.printStackTrace();
-             return null;
-         }
-     }
+    public ArrayList<Cliente> ClienteCarregaLista() {
+        PreparedStatement stmt = null;
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
 
+        try {
+            //Escrevendo o comando SQL
+            String sql = "select * from pessoa join pedido on (pessoa.idPessoa = pedido.idPessoa)";
+            //Preparando o Statement
+            stmt = con.prepareStatement(sql);
+            //Pegando o resultado
+            ResultSet res = stmt.executeQuery();
 
-    
+            //Navegando nos resultados, criando  o objeto do Cliente e adicionando na lista
+            while (res.next()) {
+                Costureira costureira = new Costureira(res.getInt("idCostureira"));
+                Cliente cliente = new Cliente(costureira, res.getInt("idPessoa"),
+                        res.getString("cpf"),
+                        res.getString("nome"),
+                        res.getString("email"),
+                        res.getString("telefone"),
+                        res.getDate("dataNascimento"),
+                        res.getInt("cep"),
+                        res.getString("estado"),
+                        res.getString("cidade"),
+                        res.getString("rua"),
+                        res.getInt("numero"));
+                listaClientes.add(cliente);
+            }
+            //Deu tudo certo retornando a lista
+            return listaClientes;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
