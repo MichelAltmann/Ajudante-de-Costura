@@ -18,7 +18,7 @@ public class ConexaoController {
     private ObjectOutputStream out;
     private ObjectInputStream in;
     
-    private Administrador administrador;
+    public Administrador administrador;
     public ConexaoController(ObjectOutputStream out, ObjectInputStream in) {
         this.out = out;
         this.in = in;
@@ -28,7 +28,7 @@ public class ConexaoController {
         //Implementando a comunicacao com o servidor
         String msg;
         try{
-            out.writeObject("LoginAdministrador");
+            out.writeObject("AdministradorEfetuarLogin");
             msg = (String) in.readObject();
          
                 out.writeObject(administrador);

@@ -4,11 +4,13 @@
  */
 package modelDominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Pedro Müller
  */
-public class Administrador {
+public class Administrador implements Serializable {
     private String login;
     private String senha;
 
