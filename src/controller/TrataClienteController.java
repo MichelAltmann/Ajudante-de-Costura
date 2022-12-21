@@ -86,9 +86,9 @@ public class TrataClienteController extends Thread {
                         out.writeObject("Nok");
                     }
                 }
-
+                comando = (String) in.readObject();
             }
-            comando = (String) in.readObject();
+            
 
         } catch (Exception e) {
             e.printStackTrace();
