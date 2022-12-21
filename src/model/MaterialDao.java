@@ -21,7 +21,7 @@ public class MaterialDao {
         this.con = Conector.getConnection();
     }
 
-    public ArrayList<Material> MaterialCarregaListaDePedido(int idPedido) {
+    public ArrayList<Material> materialCarregaListaDePedido(int idPedido) {
         PreparedStatement stmt = null;
         ArrayList<Material> listaMateriais = new ArrayList<>();
 

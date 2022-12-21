@@ -25,7 +25,7 @@ public class PedidoDao {
         this.con = Conector.getConnection();
     }
 
-    public ArrayList<Pedido> PedidoCarregaLista() {
+    public ArrayList<Pedido> pedidoCarregaLista() {
         MaterialDao materialDao = new MaterialDao();
         PreparedStatement stmt = null;
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
@@ -54,7 +54,7 @@ public class PedidoDao {
                         res.getString("rua"),
                         res.getInt("numero"));
                 //Criando lista de Materiais
-                ArrayList<Material> listaMateriais = materialDao.MaterialCarregaListaDePedido(res.getInt("idPedido"));
+                ArrayList<Material> listaMateriais = materialDao.materialCarregaListaDePedido(res.getInt("idPedido"));
                 //Criando Medida
                 Medidas medidas = new Medidas(res.getFloat("pescoco"),
                         res.getFloat("ombro"),
@@ -99,7 +99,7 @@ public class PedidoDao {
 
     }
 
-    public int PedidoCadastrar(Pedido pedido) {
+    public int pedidoCadastrar(Pedido pedido) {
         PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
         PreparedStatement stmt = null;
         try {
@@ -174,7 +174,7 @@ public class PedidoDao {
                 //Realizando o commit
                 con.commit();
                 //Chamando PedidoMaterialDao para realizar a conexão dos dois no banco
-                pedidoMaterialDao.PedidoMaterialCadastrar(pedido);
+                pedidoMaterialDao.pedidoMaterialCadastrar(pedido);
                 //Deu tudo certo retornando -1
                 return -1;
             } catch (SQLException e) {

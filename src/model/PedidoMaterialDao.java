@@ -21,7 +21,7 @@ public class PedidoMaterialDao {
         this.con = Conector.getConnection();
     }
     
-    public int PedidoMaterialCadastrar(Pedido pedido){
+    public int pedidoMaterialCadastrar(Pedido pedido){
         PreparedStatement stmt = null;
         
         try {

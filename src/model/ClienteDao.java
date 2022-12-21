@@ -22,7 +22,7 @@ public class ClienteDao {
         this.con = Conector.getConnection();
     }
 
-    public int ClienteCadastrar(Cliente cliente) {
+    public int clienteCadastrar(Cliente cliente) {
         PreparedStatement stmt = null;
 
         try {
@@ -89,7 +89,7 @@ public class ClienteDao {
 //     public int ClienteAlterar (Cliente cliente){;
 //         
 //     }
-    public ArrayList<Cliente> ClienteCarregaLista() {
+    public ArrayList<Cliente> clienteCarregaLista() {
         PreparedStatement stmt = null;
         ArrayList<Cliente> listaClientes = new ArrayList<>();
 

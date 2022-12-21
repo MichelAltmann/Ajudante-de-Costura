@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import model.AdministradorDao;
 import model.CostureiraDao;
+import modelDominio.Administrador;
 import modelDominio.Costureira;
 
 /**
@@ -40,7 +42,27 @@ public class TrataClienteController extends Thread {
             while (!comando.equalsIgnoreCase("fim")) {
                 //Tratando comandos do cliente
                 System.out.println("Cliente: " + idUnico + " enviou o comando: " + comando);
-                if (comando.equalsIgnoreCase("CostureiraCadastrar")) {
+                
+                //Método que faz o login do Administrador
+                if (comando.equalsIgnoreCase("AdministradorEfetuarLogin")){
+                    AdministradorDao adminDao = new AdministradorDao();
+                    out.writeObject("Ok");
+                    Administrador adminLogado = (Administrador) in.readObject();
+                    adminLogado = adminDao.administradotEfetuarLogin(adminLogado);
+                    out.writeObject(adminLogado);
+                }
+                
+                //Método que faz o login da Costureira
+                else if (comando.equalsIgnoreCase("CostureiraEfetuarLogin")) {
+                    CostureiraDao costureiraDao = new CostureiraDao();
+                    out.writeObject("Ok");
+                    Costureira costureiraLogada = (Costureira) in.readObject();
+                    costureiraLogada = costureiraDao.costureiraEfetuarLogin(costureiraLogada);
+                    out.writeObject(costureiraLogada);
+                }
+                
+                //Método que realiza o cadastro da Costureira
+                else if (comando.equalsIgnoreCase("CostureiraCadastrar")) {
                     CostureiraDao costureiraDao = new CostureiraDao();
                     out.writeObject("Ok");
                     Costureira costureiraCadastrar = (Costureira) in.readObject();
@@ -51,12 +73,18 @@ public class TrataClienteController extends Thread {
                         out.writeObject("Nok");
                     }
 
-                } else if (comando.equalsIgnoreCase("CostureiraEfetuarLogin")) {
+                }
+                
+                //Método que ativa a costureira
+                else if (comando.equalsIgnoreCase("CostureiraAlterarAutorizacao")){
                     CostureiraDao costureiraDao = new CostureiraDao();
                     out.writeObject("Ok");
-                    Costureira costureiraLogada = (Costureira) in.readObject();
-                    costureiraLogada = costureiraDao.costureiraEfetuarLogin(costureiraLogada);
-                    out.writeObject(costureiraLogada);
+                    Costureira costureiraAtivar = (Costureira) in.readObject();
+                    if (costureiraDao.costureiraAlterarAutorizacao(costureiraAtivar) == -1){
+                        out.writeObject("Ok");
+                    } else {
+                        out.writeObject("Nok");
+                    }
                 }
 
             }

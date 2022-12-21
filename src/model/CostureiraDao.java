@@ -70,7 +70,7 @@ public class CostureiraDao {
 
     public Costureira costureiraEfetuarLogin(Costureira costureira) {
         PreparedStatement stmt = null;
-        Costureira costureiraSelecionada = null;
+        Costureira costureiraLogada = null;
 
         try {
             String sql = "select * from costureira"
@@ -85,7 +85,7 @@ public class CostureiraDao {
 
             //Se tem resultado
             if (res.next()) {
-                costureiraSelecionada = new Costureira(res.getString("senha"),
+                costureiraLogada = new Costureira(res.getString("senha"),
                         res.getBytes("imagem"),
                         res.getString("cpf"),
                         res.getString("nome"),
@@ -99,22 +99,22 @@ public class CostureiraDao {
                         res.getInt("numero"),
                         res.getInt("autorizacao"));
 
-                System.out.println(costureiraSelecionada.toString());
+                System.out.println(costureiraLogada.toString());
 
             }
             //Fechar a conexão e stmt
             res.close();
             stmt.close();
             con.close();
-            return costureiraSelecionada;
+            return costureiraLogada;
 
         } catch (Exception e) {
             e.printStackTrace();
-            return costureiraSelecionada;
+            return costureiraLogada;
         }
     }
 
-    public int CostureiraAlterar(Costureira costureira) {
+    public int costureiraAlterar(Costureira costureira) {
         PreparedStatement stmt = null;
 
         try {
@@ -164,7 +164,7 @@ public class CostureiraDao {
         }
     }
 
-    public int CostureiraAlterarAutorizacao(Costureira costureira) {
+    public int costureiraAlterarAutorizacao(Costureira costureira) {
         PreparedStatement stmt = null;
         try {
             try {
