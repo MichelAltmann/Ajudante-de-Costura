@@ -24,7 +24,8 @@ public class PedidoDao {
     public PedidoDao() {
         this.con = Conector.getConnection();
     }
-
+    
+    //Função que carrega a lista de pedidos
     public ArrayList<Pedido> pedidoCarregaLista() {
         MaterialDao materialDao = new MaterialDao();
         PreparedStatement stmt = null;
@@ -98,7 +99,8 @@ public class PedidoDao {
         }
 
     }
-
+    
+    //Função que cadastra pedidos
     public int pedidoCadastrar(Pedido pedido) {
         PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
         PreparedStatement stmt = null;

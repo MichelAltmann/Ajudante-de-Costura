@@ -22,14 +22,15 @@ public class ClienteDao {
         this.con = Conector.getConnection();
     }
 
+    //Função que cadastra clientes
     public int clienteCadastrar(Cliente cliente) {
         PreparedStatement stmt = null;
 
         try {
             try {
-                //Desliga o autocommit
+                //Desligando o autocommit
                 con.setAutoCommit(false);
-                //SQL statement
+                //Escrevendo o comando SQL
                 String sql = "insert into pessoa (cpf, "
                         + "nome, "
                         + "email, "
@@ -58,11 +59,11 @@ public class ClienteDao {
                 stmt.setInt(10, cliente.getNumero());
                 stmt.setInt(11, 1);
                 stmt.setInt(12, cliente.getCostureira().getIdPessoa());
-                //Executa o Statement
+                //Executando o Statement
                 stmt.execute();
-                //Realiza o commit
+                //Realizando o commit
                 con.commit();
-                //Deu tudo certo retorna -1
+                //Deu tudo certo retornando -1
                 return -1;
             } catch (SQLException e) {
                 try {
@@ -85,10 +86,70 @@ public class ClienteDao {
             }
         }
     }
+    
+    //Função que altera clientes
+    public int clienteAlterar(Cliente cliente) {;
+        PreparedStatement stmt = null;
+        try {
+            try {
+                //Desligando o autocommit
+                con.setAutoCommit(false);
+                //Escrevendo o comando SQL
+                String sql = "update cliente set cpf, "
+                        + "nome = ?, "
+                        + "email = ?, "
+                        + "telefone = ?, "
+                        + "dataNascimento = ?, "
+                        + "cep = ?, "
+                        + "estado = ?, "
+                        + "cidade = ?, "
+                        + "rua = ?, "
+                        + "numero = ?, "
+                        + "tipo = ?, "
+                        + "idCostureira = ? where idCliente = ? ";
+                //Preparando o Statement
+                stmt = con.prepareStatement(sql);
+                //Inserindo os dados no statement
+                stmt.setString(1, cliente.getCpf());
+                stmt.setString(2, cliente.getNome());
+                stmt.setString(3, cliente.getEmail());
+                stmt.setString(4, cliente.getTelefone());
+                stmt.setDate(5, (Date) cliente.getDataNascimento());
+                stmt.setInt(6, cliente.getCep());
+                stmt.setString(7, cliente.getEstado());
+                stmt.setString(8, cliente.getCidade());
+                stmt.setString(9, cliente.getRua());
+                stmt.setInt(10, cliente.getNumero());
+                stmt.setInt(11, 1);
+                stmt.setInt(12, cliente.getCostureira().getIdPessoa());
+                stmt.setInt(13, cliente.getIdPessoa());
+                //Executando o comando SQL
+                stmt.execute();
+                //Executando o commit
+                con.commit();
+                //Deu tudo certo retornando -1
+                return -1;
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException exc) {
+                exc.printStackTrace();
+                exc.getErrorCode();
+            }
+        }
+    }
 
-//     public int ClienteAlterar (Cliente cliente){;
-//         
-//     }
+    //Função que carrega a lista de clientes
     public ArrayList<Cliente> clienteCarregaLista() {
         PreparedStatement stmt = null;
         ArrayList<Cliente> listaClientes = new ArrayList<>();
@@ -125,5 +186,5 @@ public class ClienteDao {
             return null;
         }
     }
-    
+
 }

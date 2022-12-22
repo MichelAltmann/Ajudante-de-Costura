@@ -20,15 +20,19 @@ public class CostureiraDao {
         this.con = Conector.getConnection();
     }
 
+    //Função que cadastra costureiras
     public int costureiraCadastrar(Costureira costureira) {
         PreparedStatement stmt = null;
         try {
             try {
                 //Desligando o autocommit
                 con.setAutoCommit(false);
+                //Fazendo o comando SQL
                 String sql = "insert into pessoa (cpf, nome, email, telefone, dataNascimento, cep, estado, cidade, rua, numero, tipo, senha, imagem) "
                         + "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                //Preparando o statement
                 stmt = con.prepareStatement(sql);
+                //Inserindo os dados no statement
                 stmt.setString(1, costureira.getCpf());
                 stmt.setString(2, costureira.getNome());
                 stmt.setString(3, costureira.getEmail());
@@ -42,10 +46,11 @@ public class CostureiraDao {
                 stmt.setInt(11, 0);
                 stmt.setString(12, costureira.getSenha());
                 stmt.setBytes(13, costureira.getImagem());
-                //Executar o statemente
+                //Executando o statemente
                 stmt.execute();
-                //Executar o commit
+                //Executando o commit
                 con.commit();
+                //Deu tudo certo retornando -1
                 return -1;
             } catch (SQLException e) {
                 try {
@@ -68,6 +73,7 @@ public class CostureiraDao {
         }
     }
 
+    //Função que realiza o login de costureiras
     public Costureira costureiraEfetuarLogin(Costureira costureira) {
         PreparedStatement stmt = null;
         Costureira costureiraLogada = null;
@@ -114,6 +120,7 @@ public class CostureiraDao {
         }
     }
 
+    //Função que altera os dados de costureiras
     public int costureiraAlterar(Costureira costureira) {
         PreparedStatement stmt = null;
 
@@ -121,8 +128,22 @@ public class CostureiraDao {
             try {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
-                String sql = "update pessoa set cpf = ?, nome = ?, email = ?, telefone = ?, dataNascimento = ?, cep = ?, estado = ?, cidade = ?, rua = ?, numero = ?, senha = ?, imagem = ? where idPessoa = ? ";
+                //Escrevendo o comando SQL
+                String sql = "update pessoa set cpf = ?,"
+                        + " nome = ?,"
+                        + " email = ?,"
+                        + " telefone = ?,"
+                        + " dataNascimento = ?,"
+                        + " cep = ?,"
+                        + " estado = ?,"
+                        + " cidade = ?,"
+                        + " rua = ?,"
+                        + " numero = ?,"
+                        + " senha = ?,"
+                        + " imagem = ? where idPessoa = ?";
+                //Preparando o Statement
                 stmt = con.prepareStatement(sql);
+                //Inserindo os dados no statement
                 stmt.setString(1, costureira.getCpf());
                 stmt.setString(2, costureira.getNome());
                 stmt.setString(3, costureira.getEmail());
@@ -136,11 +157,11 @@ public class CostureiraDao {
                 stmt.setString(11, costureira.getSenha());
                 stmt.setBytes(12, costureira.getImagem());
                 stmt.setInt(13, costureira.getIdPessoa());
-                //Executar o comando SQL
+                //Executando o comando SQL
                 stmt.execute();
-                //Efetivar o commit
+                //Executando o commit
                 con.commit();
-
+                //Deu tudo certo retornando -1
                 return -1;
             } catch (SQLException e) {
                 try {
@@ -164,6 +185,7 @@ public class CostureiraDao {
         }
     }
 
+    //Função que altera a autorização das costureiras
     public int costureiraAlterarAutorizacao(Costureira costureira) {
         PreparedStatement stmt = null;
         try {

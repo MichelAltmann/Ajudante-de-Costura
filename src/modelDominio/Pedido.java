@@ -125,4 +125,11 @@ public class Pedido implements Serializable {
         }
         return precoPedido;
     }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "idPedido=" + idPedido + ", cliente=" + cliente + ", prioridade=" + prioridade + ", Titulo=" + Titulo + ", descricao=" + descricao + ", dataEntrega=" + dataEntrega + ", dataCriacao=" + dataCriacao + ", listaMateriais=" + listaMateriais + ", imagem=" + imagem + ", medidas=" + medidas + '}';
+    }
+    
+    
 }
