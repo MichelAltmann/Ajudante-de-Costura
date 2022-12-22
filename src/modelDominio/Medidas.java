@@ -216,4 +216,11 @@ public class Medidas implements Serializable {
         this.comprimentoSaia = comprimentoSaia;
     }
 
+    @Override
+    public String toString() {
+        return "Medidas{" + "pescoco=" + pescoco + ", ombro=" + ombro + ", busto=" + busto + ", bico=" + bico + ", cintura=" + cintura + ", quadris=" + quadris + ", manga=" + manga + ", punho=" + punho + ", larguraBraco=" + larguraBraco + ", larguraCoxa=" + larguraCoxa + ", larguraCostas=" + larguraCostas + ", alturaFrente=" + alturaFrente + ", alturaCostas=" + alturaCostas + ", alturaBusto=" + alturaBusto + ", alturaQuadris=" + alturaQuadris + ", alturaGancho=" + alturaGancho + ", alturaJoelho=" + alturaJoelho + ", comprimentoCalca=" + comprimentoCalca + ", comprimentoBlusa=" + comprimentoBlusa + ", comprimentoSaia=" + comprimentoSaia + '}';
+    }
+    
+    
+
 }

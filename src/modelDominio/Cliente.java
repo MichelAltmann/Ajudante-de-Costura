@@ -38,4 +38,11 @@ public class Cliente extends Pessoa implements Serializable {
         this.costureira = costureira;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" + "costureira=" + costureira + '}';
+    }
+    
+    
+
 }
