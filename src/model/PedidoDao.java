@@ -109,8 +109,7 @@ public class PedidoDao {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
                 //SQL statement
-                String sql = "insert into pedidos (idPedido, "
-                        + "prioridade, "
+                String sql = "insert into pedidos (prioridade, "
                         + "titulo, "
                         + "descricao, "
                         + "dataEntrega, "
@@ -138,44 +137,43 @@ public class PedidoDao {
                         + "comprimentoCalca, "
                         + "comprimentoBlusa, "
                         + "comprimentoSaia)"
-                        + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 //Preparando o Statement
                 stmt = con.prepareStatement(sql);
                 //Inserindo os dados no statement
-                stmt.setInt(1, pedido.getIdPedido());
-                stmt.setInt(2, pedido.getPrioridade());
-                stmt.setString(3, pedido.getTitulo());
-                stmt.setString(4, pedido.getDescricao());
-                stmt.setDate(5, (Date) pedido.getDataEntrega());
-                stmt.setDate(6, (Date) pedido.getDataCriacao());
-                stmt.setBytes(7, pedido.getImagem());
-                stmt.setInt(8, pedido.getCliente().getIdPessoa());
-                stmt.setFloat(9, pedido.CalculaPrecoPedido());
-                stmt.setFloat(10, pedido.getMedidas().getPescoco());
-                stmt.setFloat(11, pedido.getMedidas().getBusto());
-                stmt.setFloat(12, pedido.getMedidas().getOmbro());
-                stmt.setFloat(13, pedido.getMedidas().getBico());
-                stmt.setFloat(14, pedido.getMedidas().getCintura());
-                stmt.setFloat(15, pedido.getMedidas().getQuadris());
-                stmt.setFloat(16, pedido.getMedidas().getManga());
-                stmt.setFloat(17, pedido.getMedidas().getPunho());
-                stmt.setFloat(18, pedido.getMedidas().getLarguraBraco());
-                stmt.setFloat(19, pedido.getMedidas().getLarguraCoxa());
-                stmt.setFloat(20, pedido.getMedidas().getAlturaFrente());
-                stmt.setFloat(21, pedido.getMedidas().getAlturaCostas());
-                stmt.setFloat(22, pedido.getMedidas().getAlturaBusto());
-                stmt.setFloat(23, pedido.getMedidas().getAlturaQuadris());
-                stmt.setFloat(24, pedido.getMedidas().getAlturaGancho());
-                stmt.setFloat(25, pedido.getMedidas().getAlturaJoelho());
-                stmt.setFloat(26, pedido.getMedidas().getComprimentoCalca());
-                stmt.setFloat(27, pedido.getMedidas().getComprimentoBlusa());
-                stmt.setFloat(28, pedido.getMedidas().getComprimentoSaia());
-                stmt.setFloat(29, pedido.getMedidas().getLarguraCostas());
+                stmt.setInt(1, pedido.getPrioridade());
+                stmt.setString(2, pedido.getTitulo());
+                stmt.setString(3, pedido.getDescricao());
+                stmt.setDate(4, (Date) pedido.getDataEntrega());
+                stmt.setDate(5, (Date) pedido.getDataCriacao());
+                stmt.setBytes(6, pedido.getImagem());
+                stmt.setInt(7, pedido.getCliente().getIdPessoa());
+                stmt.setFloat(8, pedido.CalculaPrecoPedido());
+                stmt.setFloat(9, pedido.getMedidas().getPescoco());
+                stmt.setFloat(10, pedido.getMedidas().getBusto());
+                stmt.setFloat(11, pedido.getMedidas().getOmbro());
+                stmt.setFloat(12, pedido.getMedidas().getBico());
+                stmt.setFloat(13, pedido.getMedidas().getCintura());
+                stmt.setFloat(14, pedido.getMedidas().getQuadris());
+                stmt.setFloat(15, pedido.getMedidas().getManga());
+                stmt.setFloat(16, pedido.getMedidas().getPunho());
+                stmt.setFloat(17, pedido.getMedidas().getLarguraBraco());
+                stmt.setFloat(18, pedido.getMedidas().getLarguraCoxa());
+                stmt.setFloat(19, pedido.getMedidas().getAlturaFrente());
+                stmt.setFloat(20, pedido.getMedidas().getAlturaCostas());
+                stmt.setFloat(21, pedido.getMedidas().getAlturaBusto());
+                stmt.setFloat(22, pedido.getMedidas().getAlturaQuadris());
+                stmt.setFloat(23, pedido.getMedidas().getAlturaGancho());
+                stmt.setFloat(24, pedido.getMedidas().getAlturaJoelho());
+                stmt.setFloat(25, pedido.getMedidas().getComprimentoCalca());
+                stmt.setFloat(26, pedido.getMedidas().getComprimentoBlusa());
+                stmt.setFloat(27, pedido.getMedidas().getComprimentoSaia());
+                stmt.setFloat(28, pedido.getMedidas().getLarguraCostas());
                 //Executando o statement
                 stmt.execute();
                 //Realizando o commit
                 con.commit();
-                //Chamando PedidoMaterialDao para realizar a conexão dos dois no banco
+                //Chamando PedidoMaterialDao para realizar a conexão do Pedido com seus Materiais no banco
                 pedidoMaterialDao.pedidoMaterialCadastrar(pedido);
                 //Deu tudo certo retornando -1
                 return -1;
@@ -200,6 +198,105 @@ public class PedidoDao {
             }
         }
 
+    }
+    
+    //Função que altera pedido
+    public int pedidoAlterar(Pedido pedido){
+       PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
+        PreparedStatement stmt = null;
+        try {
+            try {
+                //Desliga o autocommit
+                con.setAutoCommit(false);
+                //SQL statement
+                String sql = "update pedidos set prioridade = ?, "
+                        + "titulo = ?, "
+                        + "descricao = ?, "
+                        + "dataEntrega = ?, "
+                        + "dataCriacao = ?, "
+                        + "imagem = ?, "
+                        + "idPessoa = ?, "
+                        + "preco = ?, "
+                        + "pescoco = ?, "
+                        + "busto = ?, "
+                        + "ombro = ?, "
+                        + "bico = ?, "
+                        + "cintura = ?, "
+                        + "quadris = ?, "
+                        + "manga = ?, "
+                        + "punho = ?, "
+                        + "larguraBraco = ?, "
+                        + "larguraCoxa = ?, "
+                        + "larguraCostas = ?, "
+                        + "alturaFrente = ?, "
+                        + "alturaCostas = ?, "
+                        + "alturaBusto = ?, "
+                        + "alturaQuadris = ?, "
+                        + "alturaGancho = ? , "
+                        + "alturaJoelho = ?, "
+                        + "comprimentoCalca = ?, "
+                        + "comprimentoBlusa = ?, "
+                        + "comprimentoSaia = ? where idPedido = ?";
+                //Preparando o Statement
+                stmt = con.prepareStatement(sql);
+                //Inserindo os dados no statement
+                stmt.setInt(1, pedido.getPrioridade());
+                stmt.setString(2, pedido.getTitulo());
+                stmt.setString(3, pedido.getDescricao());
+                stmt.setDate(4, (Date) pedido.getDataEntrega());
+                stmt.setDate(5, (Date) pedido.getDataCriacao());
+                stmt.setBytes(6, pedido.getImagem());
+                stmt.setInt(7, pedido.getCliente().getIdPessoa());
+                stmt.setFloat(8, pedido.CalculaPrecoPedido());
+                stmt.setFloat(9, pedido.getMedidas().getPescoco());
+                stmt.setFloat(10, pedido.getMedidas().getBusto());
+                stmt.setFloat(11, pedido.getMedidas().getOmbro());
+                stmt.setFloat(12, pedido.getMedidas().getBico());
+                stmt.setFloat(13, pedido.getMedidas().getCintura());
+                stmt.setFloat(14, pedido.getMedidas().getQuadris());
+                stmt.setFloat(15, pedido.getMedidas().getManga());
+                stmt.setFloat(16, pedido.getMedidas().getPunho());
+                stmt.setFloat(17, pedido.getMedidas().getLarguraBraco());
+                stmt.setFloat(18, pedido.getMedidas().getLarguraCoxa());
+                stmt.setFloat(19, pedido.getMedidas().getAlturaFrente());
+                stmt.setFloat(20, pedido.getMedidas().getAlturaCostas());
+                stmt.setFloat(21, pedido.getMedidas().getAlturaBusto());
+                stmt.setFloat(22, pedido.getMedidas().getAlturaQuadris());
+                stmt.setFloat(23, pedido.getMedidas().getAlturaGancho());
+                stmt.setFloat(24, pedido.getMedidas().getAlturaJoelho());
+                stmt.setFloat(25, pedido.getMedidas().getComprimentoCalca());
+                stmt.setFloat(26, pedido.getMedidas().getComprimentoBlusa());
+                stmt.setFloat(27, pedido.getMedidas().getComprimentoSaia());
+                stmt.setFloat(28, pedido.getMedidas().getLarguraCostas());
+                stmt.setInt(29, pedido.getIdPedido());
+                //Executando o statement
+                stmt.execute();
+                //Realizando o commit
+                con.commit();
+                //Chamando PedidoMaterialDao para alterar a conexão do Pedido com seus Materiais no banco
+                pedidoMaterialDao.pedidoMaterialAlterar(pedido);
+                //Deu tudo certo retornando -1
+                return -1;
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    e.printStackTrace();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException exc) {
+                exc.printStackTrace();
+                exc.getErrorCode();
+            }
+        } 
     }
 
 }

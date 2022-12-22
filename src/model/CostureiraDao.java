@@ -28,7 +28,19 @@ public class CostureiraDao {
                 //Desligando o autocommit
                 con.setAutoCommit(false);
                 //Fazendo o comando SQL
-                String sql = "insert into pessoa (cpf, nome, email, telefone, dataNascimento, cep, estado, cidade, rua, numero, tipo, senha, imagem) "
+                String sql = "insert into pessoa (cpf,"
+                        + " nome,"
+                        + " email,"
+                        + " telefone,"
+                        + " dataNascimento,"
+                        + " cep,"
+                        + " estado,"
+                        + " cidade,"
+                        + " rua,"
+                        + " numero,"
+                        + " tipo,"
+                        + " senha,"
+                        + " imagem) "
                         + "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 //Preparando o statement
                 stmt = con.prepareStatement(sql);

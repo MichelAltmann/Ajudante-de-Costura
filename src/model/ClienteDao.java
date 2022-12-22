@@ -95,7 +95,7 @@ public class ClienteDao {
                 //Desligando o autocommit
                 con.setAutoCommit(false);
                 //Escrevendo o comando SQL
-                String sql = "update cliente set cpf, "
+                String sql = "update cliente set cpf = ?, "
                         + "nome = ?, "
                         + "email = ?, "
                         + "telefone = ?, "
