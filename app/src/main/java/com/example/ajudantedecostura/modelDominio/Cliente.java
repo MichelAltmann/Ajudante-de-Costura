@@ -1,6 +1,7 @@
 package com.example.ajudantedecostura.modelDominio;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Cliente extends Pessoa implements Serializable {
 

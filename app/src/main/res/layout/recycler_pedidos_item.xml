@@ -1,73 +1,73 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".home.adapters.ListaPedidosAdapter"
-    android:padding="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".home.adapters.ListaPedidosAdapter">
 
     <androidx.cardview.widget.CardView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#ffffc3"
         app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="#ffffc3">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/pedidos_item_image"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:id="@+id/pedidos_item_image"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_margin="16dp"
-                android:background="@drawable/image_frame"/>
+                android:background="@drawable/image_frame"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/pedidos_item_titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pedidos_item_titulo"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toTopOf="@id/pedidos_item_nome_cliente"
                 app:layout_constraintStart_toStartOf="@id/pedidos_item_nome_cliente"
-                android:layout_marginBottom="16dp"
-                tools:text="Titulo do pedido"
-                />
+                tools:text="Titulo do pedido" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/pedidos_item_nome_cliente"
-                app:layout_constraintTop_toTopOf="@id/pedidos_item_image"
-                app:layout_constraintStart_toEndOf="@id/pedidos_item_image"
-                app:layout_constraintBottom_toBottomOf="@id/pedidos_item_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                tools:text="Nome do cliente"
-                />
+                app:layout_constraintBottom_toBottomOf="@id/pedidos_item_image"
+                app:layout_constraintStart_toEndOf="@id/pedidos_item_image"
+                app:layout_constraintTop_toTopOf="@id/pedidos_item_image"
+                tools:text="Nome do cliente" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/pedidos_item_prazo_entrega"
-                app:layout_constraintTop_toBottomOf="@id/pedidos_item_nome_cliente"
-                app:layout_constraintStart_toStartOf="@id/pedidos_item_nome_cliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                tools:text="Prazo de entrega"
-                />
+                app:layout_constraintStart_toStartOf="@id/pedidos_item_nome_cliente"
+                app:layout_constraintTop_toBottomOf="@id/pedidos_item_nome_cliente"
+                tools:text="Prazo de entrega" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="12dp"
-                android:text="R$0,00"/>
+                android:text="R$0,00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

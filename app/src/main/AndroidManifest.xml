@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AjudanteDeCostura"
         tools:targetApi="31">
         <activity
+            android:name=".login.CadastroActivity"
+            android:exported="false" />
+        <activity
             android:name=".home.HomeActivity"
             android:exported="false">
             <meta-data
@@ -20,7 +23,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

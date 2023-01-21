@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.CadastroActivity">
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Nome"
+        android:inputType="textCapWords"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_nome" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_confirmar_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Confirmar Senha"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_senha" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_telefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Telefone"
+        android:inputType="phone"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_confirmar_senha" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_cpf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="CPF"
+        android:inputType="number"
+        android:maxLength="11"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_telefone" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_cpf" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_cep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="CEP"
+        android:inputType="number"
+        android:maxLength="8"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_email" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_estado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Estado"
+        android:inputType="textCapWords"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_cep" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_cidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Cidade"
+        android:inputType="textCapWords"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_estado" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_rua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Rua"
+        android:inputType="textCapWords"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/activity_cadastro_txt_numero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_cidade" />
+
+    <EditText
+        android:id="@+id/activity_cadastro_txt_numero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Número"
+        android:inputType="number"
+        android:maxLength="4"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/activity_cadastro_txt_rua"
+        app:layout_constraintTop_toTopOf="@id/activity_cadastro_txt_rua" />
+
+    <Button
+        android:id="@+id/activity_cadastro_btn_cadastrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#9DE8B2"
+        android:padding="12dp"
+        android:text="Cadastrar"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toStartOf="@id/activity_cadastro_btn_cancelar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_rua"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/activity_cadastro_btn_cancelar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="#E89D9D"
+        android:padding="12dp"
+        android:text="Cancelar"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/activity_cadastro_btn_cadastrar"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_rua"
+        app:strokeWidth="1dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
