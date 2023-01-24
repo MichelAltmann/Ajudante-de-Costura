@@ -4,11 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/drawable/cadastro_frame.xml" value="0.2545" />
+        <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/drawable/ic_pedidos.xml" value="0.255" />
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/drawable/image_frame.xml" value="0.2545" />
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/drawable/text_background.xml" value="0.2545" />
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/drawable/text_cadastro_background.xml" value="0.2155" />
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/layout/activity_cadastro.xml" value="0.33" />
-        <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/layout/activity_home.xml" value="0.34479166666666666" />
+        <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/layout/activity_login.xml" value="0.34479166666666666" />
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/layout/fragment_lista_clientes.xml" value="0.34479166666666666" />
         <entry key="..\:/Documentos(D)/Michel/Android Studio/Ajudante-de-Costura/app/src/main/res/layout/fragment_lista_pedidos.xml" value="0.34479166666666666" />

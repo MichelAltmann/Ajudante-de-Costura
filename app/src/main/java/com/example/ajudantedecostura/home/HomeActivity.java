@@ -5,6 +5,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 
+import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.databinding.ActivityHomeBinding;
 import com.example.ajudantedecostura.home.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -32,7 +33,12 @@ public class HomeActivity extends AppCompatActivity {
 
         binding.viewpager.setAdapter(adapter);
         new TabLayoutMediator(tabLayout, viewPager2, ((tab, position) -> {
-            tab.setText(name[position]);
+//            tab.setText(name[position]);
+            if (position == 0){
+                tab.setIcon(R.drawable.ic_clientes);
+            } else if (position == 1){
+                tab.setIcon(R.drawable.ic_pedidos);
+            }
         })).attach();
 
     }
