@@ -195,8 +195,8 @@
         android:text="Cadastrar"
         android:textColor="@color/black"
         app:cornerRadius="12dp"
-        app:layout_constraintEnd_toStartOf="@id/activity_cadastro_btn_cancelar"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/activity_cadastro_btn_cancelar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_rua"
         app:strokeWidth="1dp" />
 
@@ -212,8 +212,8 @@
         android:text="Cancelar"
         android:textColor="@color/black"
         app:cornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_cadastro_btn_cadastrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/activity_cadastro_btn_cadastrar"
         app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_rua"
         app:strokeWidth="1dp" />
 

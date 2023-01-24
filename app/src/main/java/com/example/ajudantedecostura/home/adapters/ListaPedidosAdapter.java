@@ -1,6 +1,7 @@
 package com.example.ajudantedecostura.home.adapters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -9,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ajudantedecostura.databinding.RecyclerPedidosItemBinding;
 
 public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapter.ViewHolder> {
+
     private String[] lista;
+    private PedidosOnClickListener itemClickListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private RecyclerPedidosItemBinding binding;
@@ -19,8 +22,9 @@ public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapte
         }
     }
 
-    public ListaPedidosAdapter(String[] pegaLista) {
+    public ListaPedidosAdapter(String[] pegaLista, PedidosOnClickListener itemClickListener) {
         this.lista = pegaLista;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -32,10 +36,23 @@ public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapte
     @Override
     public void onBindViewHolder(@NonNull ListaPedidosAdapter.ViewHolder holder, int position) {
         holder.binding.pedidosItemTitulo.setText(String.valueOf(lista[position]));
+
+        if (itemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClickListener.onClickPedido(holder.itemView, holder.getAdapterPosition());
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
         return lista.length;
+    }
+
+    public interface PedidosOnClickListener{
+        public void onClickPedido(View view, int position);
     }
 }

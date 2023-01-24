@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".home.pedido.DetalhesPedidoActivity">
+
+    <ImageView
+        android:id="@+id/activity_detalhes_pedido_imagem"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/image_frame"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_detalhes_pedido_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_imagem"
+        android:text="Título do pedido"/>
+    <EditText
+        android:id="@+id/activity_detalhes_pedido_txt_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:paddingLeft="8dp"
+        android:background="@drawable/text_cadastro_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_titulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/activity_detalhes_pedido_descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_titulo"
+        android:text="Descrição do pedido"/>
+    <EditText
+        android:id="@+id/activity_detalhes_pedido_txt_descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:paddingLeft="8dp"
+        android:background="@drawable/text_cadastro_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_descricao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/activity_detalhes_pedido_data_criacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_descricao"
+        android:text="Data de criação do pedido"/>
+    <EditText
+        android:id="@+id/activity_detalhes_pedido_txt_data_criacao"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:paddingLeft="8dp"
+        android:background="@drawable/text_cadastro_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_data_criacao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/activity_detalhes_pedido_data_entrega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_data_criacao"
+        android:text="Data de criação do pedido"/>
+    <EditText
+        android:id="@+id/activity_detalhes_pedido_txt_data_entrega"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:paddingLeft="8dp"
+        android:background="@drawable/text_cadastro_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_data_entrega"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/activity_detalhes_pedido_preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_data_entrega"
+        android:text="Preço"/>
+    <EditText
+        android:id="@+id/activity_detalhes_pedido_txt_preco"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:paddingLeft="8dp"
+        android:background="@drawable/text_cadastro_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_preco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/activity_detalhes_pedido_nome_cliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_preco"
+        android:text="Nome do Cliente"/>
+    <EditText
+        android:id="@+id/activity_detalhes_pedido_txt_nome_cliente"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_margin="8dp"
+        android:paddingLeft="8dp"
+        android:background="@drawable/text_cadastro_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_nome_cliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/activity_detalhes_pedido_btn_excluir"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="9dp"
+        android:backgroundTint="#E89D9D"
+        android:padding="12dp"
+        android:text="Excluir Pedido"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/activity_detalhes_pedido_btn_finalizar"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_nome_cliente"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/activity_detalhes_pedido_btn_finalizar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#9DE8B2"
+        android:padding="12dp"
+        android:text="Finalizar Pedido"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_btn_excluir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_nome_cliente"
+        app:strokeWidth="1dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

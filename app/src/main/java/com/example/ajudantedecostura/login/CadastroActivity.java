@@ -20,7 +20,5 @@ public class CadastroActivity extends AppCompatActivity {
         binding.activityCadastroBtnCancelar.setOnClickListener(view -> {
             finish();
         });
-
-
     }
 }

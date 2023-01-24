@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.ajudantedecostura.home.fragments.ListaClientesFragment;
-import com.example.ajudantedecostura.home.fragments.ListaPedidosFragment;
+import com.example.ajudantedecostura.home.pedido.ListaPedidosFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 

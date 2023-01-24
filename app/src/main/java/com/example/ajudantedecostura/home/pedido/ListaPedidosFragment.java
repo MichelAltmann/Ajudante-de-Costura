@@ -1,5 +1,6 @@
-package com.example.ajudantedecostura.home.fragments;
+package com.example.ajudantedecostura.home.pedido;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,15 @@ public class ListaPedidosFragment extends Fragment {
 
     FragmentListaPedidosBinding binding;
     String[] lista = {"Camiseta Confortável", "Calça chave", "Moletom branco", "Cachecol vermelho", "Camisa social"};
-    ListaPedidosAdapter adapter = new ListaPedidosAdapter(lista);
+    ListaPedidosAdapter adapter;
+
+    ListaPedidosAdapter.PedidosOnClickListener onPedidoClick = new ListaPedidosAdapter.PedidosOnClickListener() {
+        @Override
+        public void onClickPedido(View view, int position) {
+            Intent intent = new Intent(getContext(), DetalhesPedidoActivity.class);
+            startActivity(intent);
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -27,6 +36,7 @@ public class ListaPedidosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        adapter = new ListaPedidosAdapter(lista, onPedidoClick);
         binding.fragmentListaPedidosRecyclerview.setAdapter(adapter);
     }
 }
