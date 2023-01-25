@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/activity_detalhes_pedido_btn_finalizar"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,16 +29,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/activity_detalhes_pedido_fab_edicao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/activity_detalhes_pedido_fab_edicao"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="8dp"
-                android:scaleY="0.7"
                 android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:src="@drawable/lapis_edicao"
                 app:borderWidth="0dp"
-                android:src="@drawable/lapis_edicao"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/activity_detalhes_pedido_titulo"
@@ -53,13 +54,13 @@
 
             <EditText
                 android:id="@+id/activity_detalhes_pedido_txt_titulo"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
                 android:background="@drawable/text_cadastro_background"
-                android:enabled="false"
                 android:inputType="text"
-                android:paddingLeft="8dp"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_titulo" />
@@ -78,13 +79,13 @@
 
             <EditText
                 android:id="@+id/activity_detalhes_pedido_txt_descricao"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
                 android:background="@drawable/text_cadastro_background"
-                android:enabled="false"
                 android:inputType="textMultiLine"
-                android:paddingLeft="8dp"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_descricao" />
@@ -103,13 +104,13 @@
 
             <EditText
                 android:id="@+id/activity_detalhes_pedido_txt_data_criacao"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
                 android:background="@drawable/text_cadastro_background"
-                android:enabled="false"
                 android:inputType="date"
-                android:paddingLeft="8dp"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_data_criacao" />
@@ -119,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Data de criação do pedido"
+                android:text="Data de entrega do pedido"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -128,13 +129,13 @@
 
             <EditText
                 android:id="@+id/activity_detalhes_pedido_txt_data_entrega"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
                 android:background="@drawable/text_cadastro_background"
-                android:enabled="false"
                 android:inputType="date"
-                android:paddingLeft="8dp"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_data_entrega" />
@@ -153,13 +154,13 @@
 
             <EditText
                 android:id="@+id/activity_detalhes_pedido_txt_preco"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
                 android:background="@drawable/text_cadastro_background"
-                android:enabled="false"
                 android:inputType="numberDecimal"
-                android:paddingLeft="8dp"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_preco" />
@@ -178,13 +179,13 @@
 
             <EditText
                 android:id="@+id/activity_detalhes_pedido_txt_nome_cliente"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_margin="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
                 android:background="@drawable/text_cadastro_background"
-                android:enabled="false"
                 android:inputType="textCapWords"
-                android:paddingLeft="8dp"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_nome_cliente" />
@@ -200,6 +201,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_nome_cliente" />
+
+            <ImageButton
+                android:id="@+id/activity_detalhes_pedido_fab_add_material"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_add"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_materiais"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_materiais"
+                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_materiais" />
 
             <RelativeLayout
                 android:id="@+id/activity_detalhes_pedido_linha_materiais"
@@ -219,11 +232,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="36dp"
                 android:orientation="horizontal"
-                tools:listitem="@layout/recycler_medidas_materiais_item"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_linha_materiais" />
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_linha_materiais"
+                tools:listitem="@layout/recycler_medidas_materiais_item" />
 
             <TextView
                 android:id="@+id/activity_detalhes_pedido_medidas"
@@ -236,6 +249,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_recycler_materiais" />
+
+            <ImageButton
+                android:id="@+id/activity_detalhes_pedido_fab_add_medida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_add"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_medidas"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_medidas"
+                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_medidas" />
 
             <RelativeLayout
                 android:id="@+id/activity_detalhes_pedido_linha_medidas"
@@ -255,11 +280,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="36dp"
                 android:orientation="horizontal"
-                tools:listitem="@layout/recycler_medidas_materiais_item"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_linha_medidas" />
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_linha_medidas"
+                tools:listitem="@layout/recycler_medidas_materiais_item" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
