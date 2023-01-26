@@ -14,22 +14,22 @@ import modelDominio.Pedido;
  * @author Pedro Müller
  */
 public class PedidoMaterialDao {
-    
+
     Connection con;
 
     public PedidoMaterialDao() {
         this.con = Conector.getConnection();
     }
-    
+
     //Função que faz a conexão de um Pedido com um Material no Banco
-    public int pedidoMaterialCadastrar(Pedido pedido){
+    public int pedidoMaterialCadastrar(Pedido pedido) {
         PreparedStatement stmt = null;
-        
+
         try {
-            try{
+            try {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
-                for (int x = 0; x > pedido.getListaMateriais().size(); x++){
+                for (int x = 0; x > pedido.getListaMateriais().size(); x++) {
                     Material material = pedido.getListaMateriais().get(x);
                     //SQL statemente
                     String sql = "insert into pedidoMaterial (idPedido, "
@@ -47,41 +47,41 @@ public class PedidoMaterialDao {
                     //Realizando o commit
                     con.commit();
                 }
-                
+
                 //Terminou a lista e deu tudo certo, retornando -1
                 return -1;
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 try {
                     con.rollback();
                     e.printStackTrace();
                     return e.getErrorCode();
-                } catch (SQLException ex){
+                } catch (SQLException ex) {
                     ex.printStackTrace();
                     return ex.getErrorCode();
                 }
             }
-        } finally{
+        } finally {
             try {
                 stmt.close();
                 con.setAutoCommit(true);
                 con.close();
-            } catch (SQLException exc){
+            } catch (SQLException exc) {
                 exc.printStackTrace();
                 exc.getErrorCode();
             }
         }
     }
-    
+
     //Função que altera a conexão de um Pedido com um Material no Banco
     public int pedidoMaterialAlterar(Pedido pedido) {
-         PreparedStatement stmt = null;
-        
+        PreparedStatement stmt = null;
+
         try {
-            try{
-                
+            try {
+
                 //Desliga o autocommit
                 con.setAutoCommit(false);
-                for (int x = 0; x > pedido.getListaMateriais().size(); x++){
+                for (int x = 0; x > pedido.getListaMateriais().size(); x++) {
                     Material material = pedido.getListaMateriais().get(x);
                     //SQL statemente
                     String sql = "update pedidoMaterial set idPedido = ?, "
@@ -99,29 +99,66 @@ public class PedidoMaterialDao {
                     //Realizando o commit
                     con.commit();
                 }
-                
+
                 //Terminou a lista e deu tudo certo, retornando -1
                 return -1;
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 try {
                     con.rollback();
                     e.printStackTrace();
                     return e.getErrorCode();
-                } catch (SQLException ex){
+                } catch (SQLException ex) {
                     ex.printStackTrace();
                     return ex.getErrorCode();
                 }
             }
-        } finally{
+        } finally {
             try {
                 stmt.close();
                 con.setAutoCommit(true);
                 con.close();
-            } catch (SQLException exc){
+            } catch (SQLException exc) {
                 exc.printStackTrace();
                 exc.getErrorCode();
             }
         }
     }
-     
+
+    //Função que deleta a conexão de um Pedido com um Material no Banco
+    public int pedidoMaterialDeletar(Pedido pedido) {
+        PreparedStatement stmt = null;
+        try {
+            try {
+                //desliga o autocommit
+                con.setAutoCommit(false);
+
+                String sql = "delete from pedidoMaterial where idPedido = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, pedido.getIdPedido());
+                //Executando o statement
+                stmt.execute();
+                //realizando o commit
+                con.commit();
+                return -1;
+
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                e.getErrorCode();
+            }
+        }
+    }
+
 }

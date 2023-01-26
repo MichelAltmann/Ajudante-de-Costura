@@ -307,7 +307,7 @@ public class PedidoDao {
                 //desliga o autocommit
                 con.setAutoCommit(false);
 
-                String sql = "delete from cliente where idPedido = ?";
+                String sql = "delete from pedido where idPedido = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setInt(1, pedido.getIdPedido());
                 //Executando o statement
