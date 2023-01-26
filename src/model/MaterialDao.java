@@ -164,4 +164,49 @@ public class MaterialDao {
             }
         }
     }
+    
+    //Função que altera um material
+    public int materialAlterar(Material material){
+        PreparedStatement stmt = null;
+
+        try {
+            try {
+                //Desligando o autocommit
+                con.setAutoCommit(false);
+                //Fazendo o comando SQL
+                String sql = "update material set comprimento = ?,"
+                        + " largura = ?,"
+                        + " preco = ? where idMaterial = ?";
+                //Preparando o statement
+                stmt = con.prepareStatement(sql);
+                //Inserindo os dados no statement
+                stmt.setFloat(1, material.getComprimento());
+                stmt.setFloat(2, material.getLargura());
+                stmt.setFloat(3, material.getPreco());
+                stmt.setInt(4, material.getIdMaterial());
+                //Executando o statement
+                stmt.execute();
+                //Executando o commit
+                con.commit();
+                //Deu tudo certo retornando -1
+                return -1;
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    e.printStackTrace();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException exc) {
+                exc.printStackTrace();
+                exc.getErrorCode();
+            }
+        }
+    }
 }
