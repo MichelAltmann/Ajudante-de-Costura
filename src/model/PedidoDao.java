@@ -24,7 +24,7 @@ public class PedidoDao {
     public PedidoDao() {
         this.con = Conector.getConnection();
     }
-    
+
     //Função que carrega a lista de pedidos
     public ArrayList<Pedido> pedidoCarregaLista() {
         MaterialDao materialDao = new MaterialDao();
@@ -99,7 +99,7 @@ public class PedidoDao {
         }
 
     }
-    
+
     //Função que cadastra pedidos
     public int pedidoCadastrar(Pedido pedido) {
         PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
@@ -199,10 +199,10 @@ public class PedidoDao {
         }
 
     }
-    
+
     //Função que altera pedido
-    public int pedidoAlterar(Pedido pedido){
-       PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
+    public int pedidoAlterar(Pedido pedido) {
+        PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
         PreparedStatement stmt = null;
         try {
             try {
@@ -296,7 +296,43 @@ public class PedidoDao {
                 exc.printStackTrace();
                 exc.getErrorCode();
             }
-        } 
+        }
     }
 
+    //Função que deleta um pedido
+    public int pedidoDeletar(Pedido pedido) {
+        PreparedStatement stmt = null;
+        try {
+            try {
+                //desliga o autocommit
+                con.setAutoCommit(false);
+
+                String sql = "delete from cliente where idPedido = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, pedido.getIdPedido());
+                //Executando o statement
+                stmt.execute();
+                //realizando o commit
+                con.commit();
+                return -1;
+
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                e.getErrorCode();
+            }
+        }
+    }
 }

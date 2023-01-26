@@ -186,5 +186,42 @@ public class ClienteDao {
             return null;
         }
     }
+    
+    //Função que deleta cliente
+    public int clienteDeletar(Cliente cliente){
+        PreparedStatement stmt = null;
+        try {
+            try {
+                //desliga o autocommit
+                con.setAutoCommit(false);
+
+                String sql = "delete from cliente where idPessoa = ?";
+                stmt = con.prepareStatement(sql);
+                stmt.setInt(1, cliente.getIdPessoa());
+                //Executando o statement
+                stmt.execute();
+                //realizando o commit
+                con.commit();
+                return -1;
+
+            } catch (SQLException e) {
+                try {
+                    con.rollback();
+                    return e.getErrorCode();
+                } catch (SQLException ex) {
+                    return ex.getErrorCode();
+                }
+            }
+        } finally {
+            try {
+                stmt.close();
+                con.setAutoCommit(true);
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                e.getErrorCode();
+            }
+        }
+    }
 
 }

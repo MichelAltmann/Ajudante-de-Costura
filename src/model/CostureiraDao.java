@@ -92,14 +92,16 @@ public class CostureiraDao {
         Costureira costureiraLogada = null;
 
         try {
+            //Statement SQL
             String sql = "select * from costureira"
                     + " where (email = ? or cpf = ?) and senha = ?";
-
+            //Preparando o statement
             stmt = con.prepareStatement(sql);
+            //Inserindo os dados no statement
             stmt.setString(1, costureira.getEmail());
             stmt.setString(2, costureira.getCpf());
             stmt.setString(3, costureira.getSenha());
-
+            //Navegando pelos resultados
             ResultSet res = stmt.executeQuery();
 
             //Se tem resultado
@@ -203,10 +205,10 @@ public class CostureiraDao {
         PreparedStatement stmt = null;
         try {
             try {
-                //Desliga o autocommit
+                //Desligando o autocommit
                 con.setAutoCommit(false);
                 String sql = "update pessoa set autorizacao = ? where idPessoa = ?";
-                //Prepara o Statement
+                //Preparando o Statement
                 stmt = con.prepareStatement(sql);
                 stmt.setInt(1, costureira.getAutorizacao());
                 stmt.setInt(2, costureira.getIdPessoa());
