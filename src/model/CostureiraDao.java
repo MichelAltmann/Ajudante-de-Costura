@@ -6,6 +6,7 @@ package model;
 
 import factory.Conector;
 import java.sql.*;
+import java.util.ArrayList;
 import modelDominio.Costureira;
 
 /**
@@ -228,6 +229,45 @@ public class CostureiraDao {
                 exc.printStackTrace();
                 exc.getErrorCode();
             }
+        }
+    }
+    
+     //Função que retorna a lista de costureiras
+    public ArrayList<Costureira> costureiraCarregaLista(){
+        PreparedStatement stmt = null;
+        ArrayList<Costureira> listaCostureiras = new ArrayList<>();
+        try {
+            //Escrevendo o comando SQL
+            String sql = "select * from costureira";
+            //preparando o statement
+            stmt = con.prepareStatement(sql);
+            //pegando o resultado
+            ResultSet res = stmt.executeQuery();
+            //Navegando no resultados, criando o objeto da costureira e adicionando na lista
+            while (res.next()){
+                //Criando a costureira
+                Costureira costureira = new Costureira(res.getString("senha"), 
+                        res.getBytes("imagem"),
+                        res.getInt("idPessoa"),
+                        res.getString("cpf"), 
+                        res.getString("nome"), 
+                        res.getString("email"), 
+                        res.getString("telefone"),
+                        res.getDate("dataNascimento"), 
+                        res.getInt("cep"), 
+                        res.getString("estado"), 
+                        res.getString("cidade"), 
+                        res.getString("rua"), 
+                        res.getInt("numero"), 
+                        res.getInt("autorizacao"));
+                //Adicionando a costureira na lista
+                listaCostureiras.add(costureira);
+            }
+            //Deu tudo certo retornando a lista
+            return listaCostureiras;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
         }
     }
 
