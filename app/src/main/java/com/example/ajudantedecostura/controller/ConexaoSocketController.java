@@ -1,6 +1,6 @@
 package com.example.ajudantedecostura.controller;
 
-import com.example.ajudantedecostura.modelDominio.Costureira;
+import modelDominio.Costureira;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("10.0.2.2", 12345);
+            informacoesApp.socket = new Socket("192.168.31.101", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 

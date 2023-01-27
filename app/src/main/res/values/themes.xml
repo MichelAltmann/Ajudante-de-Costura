@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
     <style name="Theme.AjudanteDeCostura" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -13,4 +13,9 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+<!--    <style android:name="DatePicker" android:parent="Theme.AppCompat.Light.Dialog" name="date_picker_style">-->
+<!--        <item android:name="colorAccent" name="cor">#5C9BE5</item>-->
+<!--    </style>-->
+
 </resources>

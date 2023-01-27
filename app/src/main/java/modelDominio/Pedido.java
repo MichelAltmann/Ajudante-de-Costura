@@ -1,4 +1,4 @@
-package com.example.ajudantedecostura.modelDominio;
+package modelDominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;

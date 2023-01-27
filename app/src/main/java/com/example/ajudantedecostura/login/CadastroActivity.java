@@ -1,33 +1,35 @@
 package com.example.ajudantedecostura.login;
 
-import static android.app.DatePickerDialog.*;
+import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.ActivityCadastroBinding;
-import com.example.ajudantedecostura.modelDominio.Costureira;
+import modelDominio.Costureira;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
-import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
-public class CadastroActivity extends AppCompatActivity {
+public class CadastroActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     private ActivityCadastroBinding binding;
     InformacoesApp informacoesApp;
     String msgRecebida;
-    DatePicker picker;
+    final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +45,9 @@ public class CadastroActivity extends AppCompatActivity {
         binding.activityCadastroTxtDataNascimento.setInputType(InputType.TYPE_NULL);
 
         binding.activityCadastroTxtDataNascimento.setOnClickListener(v -> {
-            final Calendar cldr = Calendar.getInstance();
-            int day = cldr.get(Calendar.DAY_OF_MONTH);
-            int month = cldr.get(Calendar.MONTH);
-            int year = cldr.get(Calendar.YEAR);
             // date picker dialog
-
-
+            DatePickerFragment fragment = new DatePickerFragment();
+            fragment.show(getSupportFragmentManager(), "Date dialog");
         });
 
         binding.activityCadastroBtnCadastrar.setOnClickListener(v -> {
@@ -72,7 +70,15 @@ public class CadastroActivity extends AppCompatActivity {
                                                                 telefone = binding.activityCadastroTxtTelefone.getText().toString();
                                                                 cpf = binding.activityCadastroTxtCpf.getText().toString();
                                                                 email = binding.activityCadastroTxtEmail.getText().toString();
-                                                                Date data =  (Date) binding.activityCadastroTxtDataNascimento.getText();
+
+                                                                Date data = null;
+                                                                try {
+                                                                    data = dataFormatada.parse(binding.activityCadastroTxtDataNascimento.getText().toString());
+                                                                    Log.i(TAG, "onCreate: " + data);
+                                                                } catch (ParseException e) {
+                                                                    e.printStackTrace();
+                                                                }
+
                                                                 Integer cep = Integer.parseInt(binding.activityCadastroTxtCep.getText().toString());
                                                                 estado = binding.activityCadastroTxtEstado.getText().toString();
                                                                 cidade = binding.activityCadastroTxtCidade.getText().toString();
@@ -146,5 +152,17 @@ public class CadastroActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
+        Calendar c = new GregorianCalendar(ano, mes, dia);
+        Log.d("VVV", dataFormatada.format(c.getTime()));
+        binding.activityCadastroTxtDataNascimento.setText(dataFormatada.format(c.getTime()));
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

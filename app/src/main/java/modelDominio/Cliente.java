@@ -1,7 +1,4 @@
-package com.example.ajudantedecostura.modelDominio;
-
-import java.io.Serializable;
-import java.util.Date;
+package modelDominio;
 
 import java.io.Serializable;
 import java.util.Date;

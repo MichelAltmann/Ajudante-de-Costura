@@ -2,7 +2,7 @@ package com.example.ajudantedecostura.socket;
 
 import android.app.Application;
 
-import com.example.ajudantedecostura.modelDominio.Costureira;
+import modelDominio.Costureira;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

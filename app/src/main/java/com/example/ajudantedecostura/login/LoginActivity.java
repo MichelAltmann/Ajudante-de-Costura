@@ -1,7 +1,10 @@
 package com.example.ajudantedecostura.login;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -91,8 +94,10 @@ public class LoginActivity extends AppCompatActivity {
             runOnUiThread((Runnable) () -> {
                 if (resultadoConexao){
                     Toast.makeText(informacoesApp, "Conexão estabelecida com sucesso!", Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "Conexão estabelecida com sucesso!");
                 } else {
                     Toast.makeText(informacoesApp, "Erro: Não foi possível estabelecer conexão com o servidor!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Erro: Não foi possível estabelecer conexão com o servidor!");
                 }
             });
         });
