@@ -81,4 +81,9 @@ public class Material implements Serializable {
         return precoTotal;
     }
 
+    @Override
+    public String toString() {
+        return "Material{" + "idMaterial=" + idMaterial + ", tipo=" + tipo + ", comprimento=" + comprimento + ", largura=" + largura + ", precoMetro=" + precoMetro + '}';
+    }
+
 }

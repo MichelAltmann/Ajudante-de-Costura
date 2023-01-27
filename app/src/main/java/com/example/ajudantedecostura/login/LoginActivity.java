@@ -36,18 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         // fazendo a conexão com o servidor
-        Thread thread = new Thread((Runnable) () -> {
-            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-            resultadoConexao = conexaoSocket.criaConexao();
-            runOnUiThread((Runnable) () -> {
-                if (resultadoConexao){
-                    Toast.makeText(informacoesApp, "Conexão estabelecida com sucesso!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(informacoesApp, "Erro: Não foi possível estabelecer conexão com o servidor!", Toast.LENGTH_SHORT).show();
-                }
-            });
-        });
-        thread.start();
+        iniciaConexao();
 
         // ação de click no botão de entrar utilizando lambda (->)
         binding.activityLoginBtnEntrar.setOnClickListener(v -> {
@@ -93,6 +82,21 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+    }
+
+    private void iniciaConexao() {
+        Thread thread = new Thread((Runnable) () -> {
+            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+            resultadoConexao = conexaoSocket.criaConexao();
+            runOnUiThread((Runnable) () -> {
+                if (resultadoConexao){
+                    Toast.makeText(informacoesApp, "Conexão estabelecida com sucesso!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(informacoesApp, "Erro: Não foi possível estabelecer conexão com o servidor!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+        thread.start();
     }
 
 }

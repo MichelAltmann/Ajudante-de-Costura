@@ -35,7 +35,7 @@ public class ConexaoSocketController {
         try {
             informacoesApp.out.writeObject("CostureiraEfetuarLogin");
             String msgRecebida = (String) informacoesApp.in.readObject();
-            if (msgRecebida.equals("Ok")); {
+            if (msgRecebida.equals("Ok")) {
                 informacoesApp.out.writeObject(costureira);
                 costureiraLogada = (Costureira) informacoesApp.in.readObject();
             }
@@ -43,6 +43,21 @@ public class ConexaoSocketController {
             ioe.printStackTrace();
         }
         return costureiraLogada;
+    }
+
+    public String cadastraCostureira(Costureira costureira){
+        String msgRecebida = null;
+        try {
+            informacoesApp.out.writeObject("CostureiraCadastrar");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("Ok")) {
+                informacoesApp.out.writeObject(costureira);
+                msgRecebida = (String) informacoesApp.in.readObject();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return msgRecebida;
     }
 
 }

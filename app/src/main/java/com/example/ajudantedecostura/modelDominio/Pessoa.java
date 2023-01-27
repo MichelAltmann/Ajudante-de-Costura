@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public abstract class Pessoa implements Serializable {
+
     private int idPessoa;
     private String cpf;
     private String nome;
@@ -157,4 +158,5 @@ public abstract class Pessoa implements Serializable {
 
         return idade;
     }
+
 }

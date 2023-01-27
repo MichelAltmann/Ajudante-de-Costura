@@ -3,6 +3,10 @@ package com.example.ajudantedecostura.modelDominio;
 import java.io.Serializable;
 import java.util.Date;
 
+import java.io.Serializable;
+import java.util.Date;
+
+
 public class Cliente extends Pessoa implements Serializable {
 
     private Costureira costureira;
@@ -29,5 +33,12 @@ public class Cliente extends Pessoa implements Serializable {
     public void setCostureira(Costureira costureira) {
         this.costureira = costureira;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "costureira=" + costureira + '}';
+    }
+
+
 
 }

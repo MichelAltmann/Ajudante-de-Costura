@@ -104,6 +104,22 @@
         app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_cpf" />
 
     <EditText
+        android:id="@+id/activity_cadastro_txt_data_nascimento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Data de Nascimento"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_email" />
+
+    <EditText
         android:id="@+id/activity_cadastro_txt_cep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,7 +134,7 @@
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_email" />
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_data_nascimento" />
 
     <EditText
         android:id="@+id/activity_cadastro_txt_estado"
