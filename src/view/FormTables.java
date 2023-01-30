@@ -4,11 +4,33 @@
  */
 package view;
 
+import view.tablemodel.ClienteTableModel;
+import view.tablemodel.CostureiraTableModel;
+import view.tablemodel.PedidoTableModel;
+
 /**
  *
  * @author Pedro Müller
  */
 public class FormTables extends javax.swing.JFrame {
+    
+    private CostureiraTableModel costureiraTableModel;
+    private ClienteTableModel clienteTableModel;
+    private PedidoTableModel pedidoTableModel;
+    private int opcao = 0;
+    
+    private void atualizaTabela(){
+        if (opcao == 1){
+            clienteTableModel = new ClienteTableModel (CosturaClienteDesktop.ccont.clienteCarregaLista());
+            jTable1.setModel(clienteTableModel);
+        } else if (opcao == 2){
+            pedidoTableModel = new PedidoTableModel(CosturaClienteDesktop.ccont.pedidoCarregaLista());
+            jTable1.setModel(pedidoTableModel);
+        } else {
+           costureiraTableModel = new CostureiraTableModel(CosturaClienteDesktop.ccont.costureiraCarregaLista());
+           jTable1.setModel(costureiraTableModel); 
+        }
+    }
 
     /**
      * Creates new form FormTables
