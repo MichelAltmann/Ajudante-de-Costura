@@ -12,7 +12,7 @@ import modelDominio.Costureira;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class ClienteDao {
 

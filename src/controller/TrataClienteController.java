@@ -15,7 +15,7 @@ import modelDominio.Costureira;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class TrataClienteController extends Thread {
 
@@ -75,7 +75,7 @@ public class TrataClienteController extends Thread {
 
                 }
                 
-                //Método que ativa a costureira
+                //Método que altera a autorização da costureira
                 else if (comando.equalsIgnoreCase("CostureiraAlterarAutorizacao")){
                     CostureiraDao costureiraDao = new CostureiraDao();
                     out.writeObject("Ok");

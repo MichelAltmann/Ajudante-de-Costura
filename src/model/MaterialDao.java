@@ -11,7 +11,7 @@ import modelDominio.Material;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class MaterialDao {
 

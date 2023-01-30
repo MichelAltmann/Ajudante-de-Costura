@@ -8,7 +8,7 @@ import java.sql.*;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class Conector {
 

@@ -11,7 +11,7 @@ import modelDominio.Costureira;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class CostureiraDao {
 
@@ -50,7 +50,7 @@ public class CostureiraDao {
                 stmt.setString(2, costureira.getNome());
                 stmt.setString(3, costureira.getEmail());
                 stmt.setString(4, costureira.getTelefone());
-                stmt.setDate(5, (Date) costureira.getDataNascimento());
+                stmt.setDate(5, new java.sql.Date(costureira.getDataNascimento().getTime()));
                 stmt.setInt(6, costureira.getCep());
                 stmt.setString(7, costureira.getEstado());
                 stmt.setString(8, costureira.getCidade());
@@ -93,7 +93,7 @@ public class CostureiraDao {
 
         try {
             //Statement SQL
-            String sql = "select * from costureira"
+            String sql = "select * from pessoa"
                     + " where (email = ? or cpf = ?) and senha = ?";
             //Preparando o statement
             stmt = con.prepareStatement(sql);
@@ -240,7 +240,7 @@ public class CostureiraDao {
         ArrayList<Costureira> listaCostureiras = new ArrayList<>();
         try {
             //Escrevendo o comando SQL
-            String sql = "select * from costureira";
+            String sql = "select * from pessoa";
             //preparando o statement
             stmt = con.prepareStatement(sql);
             //pegando o resultado

@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class Pedido implements Serializable {
 
