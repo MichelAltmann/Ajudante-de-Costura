@@ -9,7 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import model.AdministradorDao;
+import model.ClienteDao;
 import model.CostureiraDao;
+import model.PedidoDao;
 import modelDominio.Administrador;
 import modelDominio.Costureira;
 
@@ -75,7 +77,7 @@ public class TrataClienteController extends Thread {
 
                 }
                 
-                //Método que altera a autorização da costureira
+                //Método que altera a autorização da Costureira
                 else if (comando.equalsIgnoreCase("CostureiraAlterarAutorizacao")){
                     CostureiraDao costureiraDao = new CostureiraDao();
                     out.writeObject("Ok");
@@ -86,6 +88,25 @@ public class TrataClienteController extends Thread {
                         out.writeObject("Nok");
                     }
                 }
+                
+                //Comando que retorna a lista de Costureiras
+                else if (comando.equalsIgnoreCase("CostureiraCarregarLista")){
+                    CostureiraDao costureiraDao = new CostureiraDao();
+                    out.writeObject(costureiraDao.costureiraCarregaLista());
+                }
+                
+                //Comando que retorna a lista de Clientes
+                else if (comando.equalsIgnoreCase("ClienteCarregarLista")){
+                    ClienteDao clienteDao = new ClienteDao();
+                    out.writeObject(clienteDao.clienteCarregaLista());
+                }
+                
+                //Comando que retorna a lista de Pedidos
+                else if (comando.equalsIgnoreCase("PedidoCarregarLista")){
+                    PedidoDao pedidoDao = new PedidoDao();
+                    out.writeObject(pedidoDao.pedidoCarregaLista());
+                }
+                
                 comando = (String) in.readObject();
             }
             
