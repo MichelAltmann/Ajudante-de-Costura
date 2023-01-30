@@ -99,7 +99,7 @@ public class CostureiraDao {
             stmt = con.prepareStatement(sql);
             //Inserindo os dados no statement
             stmt.setString(1, costureira.getEmail());
-            stmt.setString(2, costureira.getCpf());
+            stmt.setString(2, costureira.getEmail()); //Pegamos com o email pois é do mesmo edittext
             stmt.setString(3, costureira.getSenha());
             //Navegando pelos resultados
             ResultSet res = stmt.executeQuery();
