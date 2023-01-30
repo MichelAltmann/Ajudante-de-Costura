@@ -4,11 +4,13 @@
  */
 package view;
 
+import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import modelDominio.Administrador;
+import view.util.Imagem;
 
 /**
  *
@@ -37,10 +39,39 @@ public class FormLogin extends javax.swing.JFrame {
         jBEntrar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 246, 255));
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(255, 0, 51));
+        setPreferredSize(new java.awt.Dimension(836, 555));
+        setResizable(false);
 
+        jTFLogin.setForeground(new java.awt.Color(153, 153, 153));
+        jTFLogin.setText("Login");
+        jTFLogin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFLoginFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFLoginFocusLost(evt);
+            }
+        });
+
+        jTFSenha.setForeground(new java.awt.Color(153, 153, 153));
+        jTFSenha.setText("Senha");
+        jTFSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTFSenhaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFSenhaFocusLost(evt);
+            }
+        });
+
+        jBEntrar.setBackground(new java.awt.Color(99, 203, 142));
         jBEntrar.setText("Entrar");
         jBEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,52 +79,93 @@ public class FormLogin extends javax.swing.JFrame {
             }
         });
 
+        jBCancelar.setBackground(new java.awt.Color(255, 121, 91));
         jBCancelar.setText("Sair");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 195, 204));
+
+        jLabel1.setFont(new java.awt.Font("Lora", 0, 24)); // NOI18N
+        jLabel1.setText("Ajudante de Costureira");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setDoubleBuffered(false);
+        jPanel2.setFocusable(false);
+        jPanel2.setRequestFocusEnabled(false);
+        jPanel2.setVerifyInputWhenFocusTarget(false);
+
+        jLImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/Vector.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(jLImagem)
+                .addContainerGap(214, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(208, 208, 208)
+                .addComponent(jLImagem)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(46, 46, 46))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(128, 128, 128))))
+                            .addComponent(jBEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTFLogin)
+                                .addComponent(jTFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(jTFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jTFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(72, 72, 72)
                 .addComponent(jBEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -101,8 +173,8 @@ public class FormLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-          if (!jTFLogin.equals("")){
-            if (!jTFSenha.equals("")){
+          if (!jTFLogin.equals("Login") ||  !jTFLogin.equals("")){
+            if (!jTFSenha.equals("Senha") || !jTFSenha.equals("")){
                 String login = jTFLogin.getText().toString();
                 String senha = null;
                 try {
@@ -128,6 +200,38 @@ public class FormLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencha o campo de Login");
         }
     }//GEN-LAST:event_jBEntrarActionPerformed
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jTFLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLoginFocusGained
+        if (jTFLogin.getText().equals("Login")){
+            jTFLogin.setText("");
+            jTFLogin.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jTFLoginFocusGained
+
+    private void jTFLoginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFLoginFocusLost
+        if (jTFLogin.getText().equals("")){
+            jTFLogin.setText("Login");
+            jTFLogin.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_jTFLoginFocusLost
+
+    private void jTFSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFSenhaFocusGained
+        if (jTFSenha.getText().equals("Senha")){
+            jTFSenha.setText("");
+            jTFSenha.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jTFSenhaFocusGained
+
+    private void jTFSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFSenhaFocusLost
+        if (jTFSenha.getText().equals("")){
+            jTFSenha.setText("Senha");
+            jTFSenha.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_jTFSenhaFocusLost
 
     /**
      * @param args the command line arguments
@@ -167,7 +271,10 @@ public class FormLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEntrar;
+    private javax.swing.JLabel jLImagem;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTFLogin;
     private javax.swing.JTextField jTFSenha;
     // End of variables declaration//GEN-END:variables
