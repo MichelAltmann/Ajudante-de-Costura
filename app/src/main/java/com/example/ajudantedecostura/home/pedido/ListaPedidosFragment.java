@@ -22,7 +22,7 @@ public class ListaPedidosFragment extends Fragment {
     ListaPedidosAdapter.PedidosOnClickListener onPedidoClick = new ListaPedidosAdapter.PedidosOnClickListener() {
         @Override
         public void onClickPedido(View view, int position) {
-            Intent intent = new Intent(getContext(), DetalhesPedidoActivity.class);
+            Intent intent = new Intent(getContext(), CadastroPedidoActivity.class);
             startActivity(intent);
         }
     };

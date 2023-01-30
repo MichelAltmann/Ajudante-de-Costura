@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.pedido.DetalhesPedidoActivity">
+    tools:context=".home.pedido.CadastroPedidoActivity">
 
     <ScrollView
-        android:id="@+id/activity_detalhes_pedido_scrollview"
+        android:id="@+id/activity_cadastro_pedido_scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/activity_detalhes_pedido_btn_finalizar"
+        app:layout_constraintBottom_toTopOf="@id/activity_cadastro_pedido_btn_finalizar"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-16dp">
 
@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/activity_detalhes_pedido_imagem"
+                android:id="@+id/activity_cadastro_pedido_imagem"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
                 android:layout_marginTop="24dp"
@@ -28,20 +28,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/activity_detalhes_pedido_fab_edicao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
-                android:src="@drawable/lapis_edicao"
-                app:borderWidth="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
-                android:id="@+id/activity_detalhes_pedido_titulo"
+                android:id="@+id/activity_cadastro_pedido_titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -50,10 +38,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_imagem" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_imagem" />
 
             <EditText
-                android:id="@+id/activity_detalhes_pedido_txt_titulo"
+                android:id="@+id/activity_cadastro_pedido_txt_titulo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
@@ -63,10 +51,10 @@
                 android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_titulo" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_titulo" />
 
             <TextView
-                android:id="@+id/activity_detalhes_pedido_descricao"
+                android:id="@+id/activity_cadastro_pedido_descricao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -75,10 +63,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_titulo" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_titulo" />
 
             <EditText
-                android:id="@+id/activity_detalhes_pedido_txt_descricao"
+                android:id="@+id/activity_cadastro_pedido_txt_descricao"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
@@ -88,10 +76,10 @@
                 android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_descricao" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_descricao" />
 
             <TextView
-                android:id="@+id/activity_detalhes_pedido_data_criacao"
+                android:id="@+id/activity_cadastro_pedido_data_criacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -100,10 +88,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_descricao" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_descricao" />
 
             <EditText
-                android:id="@+id/activity_detalhes_pedido_txt_data_criacao"
+                android:id="@+id/activity_cadastro_pedido_txt_data_criacao"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
@@ -113,10 +101,10 @@
                 android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_data_criacao" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_data_criacao" />
 
             <TextView
-                android:id="@+id/activity_detalhes_pedido_data_entrega"
+                android:id="@+id/activity_cadastro_pedido_data_entrega"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -125,10 +113,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_data_criacao" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_data_criacao" />
 
             <EditText
-                android:id="@+id/activity_detalhes_pedido_txt_data_entrega"
+                android:id="@+id/activity_cadastro_pedido_txt_data_entrega"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
@@ -137,11 +125,12 @@
                 android:inputType="date"
                 android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_data_entrega" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_data_entrega" />
 
             <TextView
-                android:id="@+id/activity_detalhes_pedido_preco"
+                android:id="@+id/activity_cadastro_pedido_preco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -150,10 +139,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_data_entrega" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_data_entrega" />
 
             <EditText
-                android:id="@+id/activity_detalhes_pedido_txt_preco"
+                android:id="@+id/activity_cadastro_pedido_txt_preco"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
@@ -163,10 +152,10 @@
                 android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_preco" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_preco" />
 
             <TextView
-                android:id="@+id/activity_detalhes_pedido_nome_cliente"
+                android:id="@+id/activity_cadastro_pedido_nome_cliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -175,10 +164,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_preco" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_preco" />
 
             <EditText
-                android:id="@+id/activity_detalhes_pedido_txt_nome_cliente"
+                android:id="@+id/activity_cadastro_pedido_txt_nome_cliente"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
@@ -188,10 +177,10 @@
                 android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_nome_cliente" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_nome_cliente" />
 
             <TextView
-                android:id="@+id/activity_detalhes_pedido_materiais"
+                android:id="@+id/activity_cadastro_pedido_materiais"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -200,32 +189,31 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_txt_nome_cliente" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_nome_cliente" />
 
             <ImageButton
-                android:id="@+id/activity_detalhes_pedido_fab_add_material"
+                android:id="@+id/activity_cadastro_pedido_fab_add_material"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_add"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_materiais"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_materiais"
-                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_materiais" />
+                app:layout_constraintBottom_toBottomOf="@id/activity_cadastro_pedido_materiais"
+                app:layout_constraintStart_toEndOf="@id/activity_cadastro_pedido_materiais"
+                app:layout_constraintTop_toTopOf="@id/activity_cadastro_pedido_materiais" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_pedido_linha_materiais"
+                android:id="@+id/activity_cadastro_pedido_linha_materiais"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/linha_separacao"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_pedido_txt_nome_cliente"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_pedido_txt_nome_cliente"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_materiais" />
+                app:layout_constraintEnd_toEndOf="@id/activity_cadastro_pedido_txt_nome_cliente"
+                app:layout_constraintStart_toStartOf="@id/activity_cadastro_pedido_txt_nome_cliente"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_materiais" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/activity_detalhes_pedido_recycler_materiais"
+                android:id="@+id/activity_cadastro_pedido_recycler_materiais"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
@@ -235,11 +223,11 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_linha_materiais"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_linha_materiais"
                 tools:listitem="@layout/recycler_medidas_materiais_item" />
 
             <TextView
-                android:id="@+id/activity_detalhes_pedido_medidas"
+                android:id="@+id/activity_cadastro_pedido_medidas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -248,32 +236,31 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_recycler_materiais" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_recycler_materiais" />
 
             <ImageButton
-                android:id="@+id/activity_detalhes_pedido_fab_add_medida"
+                android:id="@+id/activity_cadastro_pedido_fab_add_medida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_add"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_medidas"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_medidas"
-                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_medidas" />
+                app:layout_constraintBottom_toBottomOf="@id/activity_cadastro_pedido_medidas"
+                app:layout_constraintStart_toEndOf="@id/activity_cadastro_pedido_medidas"
+                app:layout_constraintTop_toTopOf="@id/activity_cadastro_pedido_medidas" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_pedido_linha_medidas"
+                android:id="@+id/activity_cadastro_pedido_linha_medidas"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/linha_separacao"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_pedido_txt_nome_cliente"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_pedido_txt_nome_cliente"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_medidas" />
+                app:layout_constraintEnd_toEndOf="@id/activity_cadastro_pedido_txt_nome_cliente"
+                app:layout_constraintStart_toStartOf="@id/activity_cadastro_pedido_txt_nome_cliente"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_medidas" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/activity_detalhes_pedido_recycler_medidas"
+                android:id="@+id/activity_cadastro_pedido_recycler_medidas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
@@ -283,7 +270,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_linha_medidas"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_linha_medidas"
                 tools:listitem="@layout/recycler_medidas_materiais_item" />
 
 
@@ -292,7 +279,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/activity_detalhes_pedido_btn_excluir"
+        android:id="@+id/activity_cadastro_pedido_btn_excluir"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -301,17 +288,17 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="#E89D9D"
         android:padding="12dp"
-        android:text="Excluir Pedido"
+        android:text="Cancelar"
         android:textColor="@color/black"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/activity_detalhes_pedido_btn_finalizar"
+        app:layout_constraintEnd_toStartOf="@id/activity_cadastro_pedido_btn_finalizar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_scrollview"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_scrollview"
         app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/activity_detalhes_pedido_btn_finalizar"
+        android:id="@+id/activity_cadastro_pedido_btn_finalizar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
@@ -320,13 +307,13 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="#9DE8B2"
         android:padding="12dp"
-        android:text="Finalizar Pedido"
+        android:text="Criar Pedido"
         android:textColor="@color/black"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_btn_excluir"
-        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_scrollview"
+        app:layout_constraintStart_toEndOf="@id/activity_cadastro_pedido_btn_excluir"
+        app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_scrollview"
         app:strokeWidth="1dp" />
 
 
