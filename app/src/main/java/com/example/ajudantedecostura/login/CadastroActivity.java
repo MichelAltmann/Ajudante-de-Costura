@@ -16,6 +16,9 @@ import com.example.ajudantedecostura.databinding.ActivityCadastroBinding;
 import modelDominio.Costureira;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,7 +67,7 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                     if (!binding.activityCadastroTxtRua.getText().toString().equals("")){
                                                         if (!binding.activityCadastroTxtNumero.getText().toString().equals("")) {
                                                             if (binding.activityCadastroTxtSenha.getText().toString().equals(binding.activityCadastroTxtConfirmarSenha.getText().toString())){
-                                                                String nome, senha, telefone, cpf, email, estado, cidade, rua;
+                                                                String nome, senha, senhaHash = null, telefone, cpf, email, estado, cidade, rua;
                                                                 nome = binding.activityCadastroTxtNome.getText().toString();
                                                                 senha = binding.activityCadastroTxtSenha.getText().toString();
                                                                 telefone = binding.activityCadastroTxtTelefone.getText().toString();
@@ -73,9 +76,15 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
 
                                                                 Date data = null;
                                                                 try {
+                                                                    // transformando senha em código hash
+                                                                    //----------------------------------------
+                                                                    MessageDigest md = MessageDigest.getInstance("MD5"); // MD5, SHA-1, SHA-256
+                                                                    BigInteger senhaCadastrada = new BigInteger(1, md.digest(senha.getBytes()));
+                                                                    senhaHash = String.valueOf(senhaCadastrada);
+                                                                    //----------------------------------------
                                                                     data = dataFormatada.parse(binding.activityCadastroTxtDataNascimento.getText().toString());
                                                                     Log.i(TAG, "onCreate: " + data);
-                                                                } catch (ParseException e) {
+                                                                } catch (ParseException | NoSuchAlgorithmException e) {
                                                                     e.printStackTrace();
                                                                 }
 
@@ -84,7 +93,8 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                                 cidade = binding.activityCadastroTxtCidade.getText().toString();
                                                                 rua = binding.activityCadastroTxtRua.getText().toString();
                                                                 Integer numero = Integer.parseInt(binding.activityCadastroTxtNumero.getText().toString());
-                                                                Costureira costureira = new Costureira(senha, null, cpf, nome, email, telefone, data, cep, estado, cidade, rua, numero, 0);
+
+                                                                Costureira costureira = new Costureira(senhaHash, null, cpf, nome, email, telefone, data, cep, estado, cidade, rua, numero, 0);
 
                                                                 Thread thread = new Thread((Runnable) () -> {
 

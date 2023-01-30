@@ -19,6 +19,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import modelDominio.Costureira;
+
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
@@ -57,7 +59,26 @@ public class LoginActivity extends AppCompatActivity {
                         String senha = String.valueOf(senhaCadastrada);
                         //----------------------------------------
 
+                        Costureira costureiraLogar = new Costureira(senha, loginCadastrado, loginCadastrado);
 
+                        Thread thread = new Thread((Runnable) () -> {
+                           ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+                            Costureira costureiraLogada = conexaoSocket.autenticaCostureira(costureiraLogar);
+                            
+                                runOnUiThread((Runnable) () -> {
+                                    if (costureiraLogada != null) {
+                                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                        intent.putExtra("nome", loginCadastrado);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        binding.activityLoginTxtLogin.requestFocus();
+                                        binding.activityLoginTxtLogin.setError("Erro: Login ou senha inválidos");
+                                    }
+                                });
+                            
+                        });
+                        thread.start();
 
                         // checando se a checkBox de manter logado está preenchida
                         if (binding.activityLoginCheckboxManterlogado.isChecked()) {
