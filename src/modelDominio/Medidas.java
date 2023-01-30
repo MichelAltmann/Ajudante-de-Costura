@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class Medidas implements Serializable {
 

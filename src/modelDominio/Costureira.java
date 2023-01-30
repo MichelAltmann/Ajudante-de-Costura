@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class Costureira extends Pessoa implements Serializable {
 
@@ -31,10 +31,12 @@ public class Costureira extends Pessoa implements Serializable {
         this.autorizacao = autorizacao;
     }
 
-    public Costureira(String senha, String cpf, String email) {
-        super(cpf, email);
+    public Costureira(String senha, String email) {
+        super(email);
         this.senha = senha;
     }
+    
+    
 
     public Costureira(int idPessoa) {
         super(idPessoa);

@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author aluno
+ * @author Pedro Müller
  */
 public class Cliente extends Pessoa implements Serializable {
 

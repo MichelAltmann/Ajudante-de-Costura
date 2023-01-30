@@ -22,13 +22,16 @@ public class FormTables extends javax.swing.JFrame {
     private void atualizaTabela(){
         if (opcao == 1){
             clienteTableModel = new ClienteTableModel (CosturaClienteDesktop.ccont.clienteCarregaLista());
-            jTable1.setModel(clienteTableModel);
+            jTTabela.setModel(clienteTableModel);
+            jLIndicador.setText("Clientes");
         } else if (opcao == 2){
             pedidoTableModel = new PedidoTableModel(CosturaClienteDesktop.ccont.pedidoCarregaLista());
-            jTable1.setModel(pedidoTableModel);
+            jTTabela.setModel(pedidoTableModel);
+            jLIndicador.setText("Pedidos");
         } else {
            costureiraTableModel = new CostureiraTableModel(CosturaClienteDesktop.ccont.costureiraCarregaLista());
-           jTable1.setModel(costureiraTableModel); 
+           jTTabela.setModel(costureiraTableModel); 
+           jLIndicador.setText("Costureira");
         }
     }
 
@@ -37,6 +40,7 @@ public class FormTables extends javax.swing.JFrame {
      */
     public FormTables() {
         initComponents();
+        atualizaTabela();
     }
 
     /**
@@ -49,35 +53,37 @@ public class FormTables extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLIndicador = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTTabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 195, 204));
 
-        jLabel1.setText("jLabel1");
+        jLIndicador.setFont(new java.awt.Font("Open Sans", 0, 48)); // NOI18N
+        jLIndicador.setForeground(new java.awt.Color(0, 0, 0));
+        jLIndicador.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLIndicador, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLIndicador, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTTabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -88,9 +94,9 @@ public class FormTables extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionBackground(new java.awt.Color(255, 195, 204));
-        jScrollPane1.setViewportView(jTable1);
+        jTTabela.setGridColor(new java.awt.Color(255, 255, 255));
+        jTTabela.setSelectionBackground(new java.awt.Color(255, 195, 204));
+        jScrollPane1.setViewportView(jTTabela);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,9 +153,9 @@ public class FormTables extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLIndicador;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTTabela;
     // End of variables declaration//GEN-END:variables
 }
