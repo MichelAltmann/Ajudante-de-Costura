@@ -33,7 +33,7 @@ public class PedidoDao {
 
         try {
             //Escrevendo o comando SQL
-            String sql = "select * from pedidos  join pessoa on (pedidos.idPessoa = pessoa.idPessoa)";
+            String sql = "select * from pedido  join pessoa on (pedidos.idPessoa = pessoa.idPessoa)";
             //Preparando o statement
             stmt = con.prepareStatement(sql);
             //Pegando os resultados
@@ -109,7 +109,7 @@ public class PedidoDao {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
                 //SQL statement
-                String sql = "insert into pedidos (prioridade, "
+                String sql = "insert into pedido (prioridade, "
                         + "titulo, "
                         + "descricao, "
                         + "dataEntrega, "
@@ -209,7 +209,7 @@ public class PedidoDao {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
                 //SQL statement
-                String sql = "update pedidos set prioridade = ?, "
+                String sql = "update pedido set prioridade = ?, "
                         + "titulo = ?, "
                         + "descricao = ?, "
                         + "dataEntrega = ?, "
@@ -307,7 +307,7 @@ public class PedidoDao {
                 //desliga o autocommit
                 con.setAutoCommit(false);
 
-                String sql = "delete from pedidos where idPedido = ?";
+                String sql = "delete from pedido where idPedido = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setInt(1, pedido.getIdPedido());
                 //Executando o statement
