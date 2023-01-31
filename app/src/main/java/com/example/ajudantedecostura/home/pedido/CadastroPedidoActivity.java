@@ -3,12 +3,11 @@ package com.example.ajudantedecostura.home.pedido;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.ajudantedecostura.databinding.ActivityCadastroPedidoBinding;
-import com.example.ajudantedecostura.home.adapters.MateriaisPedidoAdapter;
+import com.example.ajudantedecostura.home.pedido.adapter.MateriaisPedidoAdapter;
 
 public class CadastroPedidoActivity extends AppCompatActivity {
 
@@ -20,15 +19,12 @@ public class CadastroPedidoActivity extends AppCompatActivity {
     private int tipoMaterial = 1; // tipo material == 1
     private int tipoMedida = 2; // tipo medida == 2
 
-    MateriaisPedidoAdapter.OnItemClickListener onItemClick = new MateriaisPedidoAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(View view, int position, int tipo) {
-            if (tipo == tipoMaterial){
-                Toast.makeText(CadastroPedidoActivity.this, "sheesh", Toast.LENGTH_SHORT).show();
-            }
-            if (tipo == tipoMedida){
+    MateriaisPedidoAdapter.OnItemClickListener onItemClick = (view, position, tipo) -> {
+        if (tipo == tipoMaterial){
+            Toast.makeText(CadastroPedidoActivity.this, "sheesh", Toast.LENGTH_SHORT).show();
+        }
+        if (tipo == tipoMedida){
 
-            }
         }
     };
 
@@ -44,11 +40,11 @@ public class CadastroPedidoActivity extends AppCompatActivity {
         adapterMedida = new MateriaisPedidoAdapter(listaMedidas,tipoMedida, onItemClick);
         binding.activityCadastroPedidoRecyclerMedidas.setAdapter(adapterMedida);
 
-        binding.activityCadastroPedidoBtnExcluir.setOnClickListener(v -> {
-
+        binding.activityCadastroPedidoBtnCancelar.setOnClickListener(v -> {
+            finish();
         });
 
-        binding.activityCadastroPedidoBtnFinalizar.setOnClickListener(v -> {
+        binding.activityCadastroPedidoBtnCriar.setOnClickListener(v -> {
 
         });
     }

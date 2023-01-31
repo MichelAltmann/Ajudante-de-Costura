@@ -1,4 +1,4 @@
-package com.example.ajudantedecostura.home.adapters;
+package com.example.ajudantedecostura.home.pedido.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,11 +38,8 @@ public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapte
         holder.binding.pedidosItemTitulo.setText(String.valueOf(lista[position]));
 
         if (itemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            holder.itemView.setOnClickListener(v -> {
                     itemClickListener.onClickPedido(holder.itemView, holder.getAdapterPosition());
-                }
             });
         }
     }

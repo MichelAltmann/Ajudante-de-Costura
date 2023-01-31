@@ -17,7 +17,7 @@
         android:name=".socket.InformacoesApp"
         tools:targetApi="31">
         <activity
-            android:name=".home.pedido.DetalhesPedidoActivity"
+            android:name=".home.pedido.CadastroPedidoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

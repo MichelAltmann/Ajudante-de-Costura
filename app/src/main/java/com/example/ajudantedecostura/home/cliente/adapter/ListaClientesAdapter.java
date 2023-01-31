@@ -1,15 +1,12 @@
-package com.example.ajudantedecostura.home.adapters;
+package com.example.ajudantedecostura.home.cliente.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ajudantedecostura.databinding.RecyclerClientesItemBinding;
-
-import java.util.List;
 
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.ViewHolder> {
 

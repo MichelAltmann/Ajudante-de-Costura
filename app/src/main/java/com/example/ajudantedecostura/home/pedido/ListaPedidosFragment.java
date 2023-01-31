@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.ajudantedecostura.databinding.FragmentListaPedidosBinding;
-import com.example.ajudantedecostura.home.adapters.ListaPedidosAdapter;
+import com.example.ajudantedecostura.home.pedido.adapter.ListaPedidosAdapter;
 
 public class ListaPedidosFragment extends Fragment {
 

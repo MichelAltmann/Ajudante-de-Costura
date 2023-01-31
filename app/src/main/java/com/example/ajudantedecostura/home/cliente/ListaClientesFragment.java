@@ -1,4 +1,4 @@
-package com.example.ajudantedecostura.home.fragments;
+package com.example.ajudantedecostura.home.cliente;
 
 import android.os.Bundle;
 
@@ -9,13 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 
 import com.example.ajudantedecostura.databinding.FragmentListaClientesBinding;
-import com.example.ajudantedecostura.home.adapters.ListaClientesAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.ajudantedecostura.home.cliente.adapter.ListaClientesAdapter;
 
 public class ListaClientesFragment extends Fragment {
 

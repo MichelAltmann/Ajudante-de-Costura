@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.ajudantedecostura.home.fragments.ListaClientesFragment;
+import com.example.ajudantedecostura.home.cliente.ListaClientesFragment;
 import com.example.ajudantedecostura.home.pedido.ListaPedidosFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
@@ -15,6 +15,8 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     }
     @NonNull
     @Override
+
+    // cria fragment dependendo da posição recebida e o retorna para a activity
     public Fragment createFragment(int position) {
         switch (position){
             case 0: return new ListaClientesFragment();
@@ -23,6 +25,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         return new ListaClientesFragment();
     }
 
+    // número fixo de items(fragments)
     @Override
     public int getItemCount() {
         return 2;

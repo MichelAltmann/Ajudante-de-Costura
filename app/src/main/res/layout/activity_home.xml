@@ -58,21 +58,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabIconTint="@color/black"
+        app:tabIconTint="@color/selected_tab_color"
         android:background="@android:color/transparent"
         app:tabBackground="@android:color/transparent"
-        app:tabSelectedTextColor="@color/black"
+        app:tabSelectedTextColor="@color/selected_tab_color"
         app:tabIndicatorColor="#00c3c3c3">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clientes"/>
+            android:icon="@drawable/ic_clientes" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pedidos"/>
+            android:icon="@drawable/ic_pedidos"/>
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -84,6 +84,7 @@
         app:layout_constraintBottom_toTopOf="@id/tabLayout"
         android:layout_margin="16dp"
         android:backgroundTint="#ffc3cc"
+        android:src="@drawable/ic_clientes"
         app:borderWidth="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
