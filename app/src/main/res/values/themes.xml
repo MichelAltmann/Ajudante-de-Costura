@@ -14,8 +14,16 @@
         <!-- Customize your theme here. -->
     </style>
 
-<!--    <style android:name="DatePicker" android:parent="Theme.AppCompat.Light.Dialog" name="date_picker_style">-->
-<!--        <item android:name="colorAccent" name="cor">#5C9BE5</item>-->
-<!--    </style>-->
+    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#ffc3cc</item>                   <!--header background-->
+        <item name="android:windowBackground">@color/white</item>     <!--calendar background-->
+        <item name="android:colorControlActivated">#ffc3cc</item> <!--selected day-->
+        <item name="android:textColorPrimary">@color/black</item> <!--days of the month-->
+        <item name="android:textColorSecondary">@color/black</item> <!--days of the week-->
+        <item name="android:textColor">#ffc3cc</item>
+        <item name="colorOnPrimary">#ffc3cc</item>
+    </style>
+
+
 
 </resources>

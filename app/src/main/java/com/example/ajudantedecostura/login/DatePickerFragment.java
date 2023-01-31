@@ -24,7 +24,7 @@ public class DatePickerFragment extends DialogFragment {
 
         int tema = 2;
 
-        return new DatePickerDialog(getActivity(), tema,
+        return new DatePickerDialog(getActivity(), R.style.datepicker,
                 (DatePickerDialog.OnDateSetListener)
                         getActivity(), ano, mes, dia);
 
