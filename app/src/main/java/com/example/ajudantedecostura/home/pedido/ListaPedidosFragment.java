@@ -16,7 +16,7 @@ import com.example.ajudantedecostura.home.pedido.adapter.ListaPedidosAdapter;
 public class ListaPedidosFragment extends Fragment {
 
     private FragmentListaPedidosBinding binding;
-    private String[] lista = {"Camiseta Confortável", "Calça chave", "Moletom branco", "Cachecol vermelho", "Camisa social"};
+    private String[] lista = {"Camiseta Confortável", "Calça chave", "Moletom branco"};
     private ListaPedidosAdapter adapter;
 
     ListaPedidosAdapter.PedidosOnClickListener onPedidoClick = new ListaPedidosAdapter.PedidosOnClickListener() {

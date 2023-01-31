@@ -7,4 +7,29 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="rosa">#ffc3cc</color>
+    <color name="rosa_light">#fff6ff</color>
+    <color name="rosa_dark">#cb929b</color>
+
+    <color name="amarelo">#f5ffbb</color>
+    <color name="amarelo_light">#ffffee</color>
+    <color name="amarelo_dark">#c2cc8b</color>
+
+    <color name="verde">#96ffbe</color>
+    <color name="verde_light">#cafff1</color>
+    <color name="verde_dark">#63cb8e</color>
+
+    <color name="marrom">#ffddb8</color>
+    <color name="marrom_light">#ffffea</color>
+    <color name="marrom_dark">#cbab88</color>
+
+    <color name="roxo">#dabaff</color>
+    <color name="roxo_light">#ffedff</color>
+    <color name="roxo_dark">#a88acc</color>
+
+    <color name="azul">#b2c2ff</color>
+    <color name="azul_light">#e5f5ff</color>
+    <color name="azul_dark">#8192cc</color>
+
 </resources>
