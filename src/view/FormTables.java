@@ -54,6 +54,9 @@ public class FormTables extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLIndicador = new javax.swing.JLabel();
+        jBCostureira = new javax.swing.JButton();
+        jBCliente = new javax.swing.JButton();
+        jBPedidos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTTabela = new javax.swing.JTable();
 
@@ -66,6 +69,36 @@ public class FormTables extends javax.swing.JFrame {
         jLIndicador.setForeground(new java.awt.Color(0, 0, 0));
         jLIndicador.setText("jLabel1");
 
+        jBCostureira.setBackground(new java.awt.Color(255, 195, 204));
+        jBCostureira.setForeground(new java.awt.Color(0, 0, 0));
+        jBCostureira.setText("Costureiras");
+        jBCostureira.setBorderPainted(false);
+        jBCostureira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCostureiraActionPerformed(evt);
+            }
+        });
+
+        jBCliente.setBackground(new java.awt.Color(255, 195, 204));
+        jBCliente.setForeground(new java.awt.Color(0, 0, 0));
+        jBCliente.setText("Clientes");
+        jBCliente.setBorderPainted(false);
+        jBCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBClienteActionPerformed(evt);
+            }
+        });
+
+        jBPedidos.setBackground(new java.awt.Color(255, 195, 204));
+        jBPedidos.setForeground(new java.awt.Color(0, 0, 0));
+        jBPedidos.setText("Pedidos");
+        jBPedidos.setBorderPainted(false);
+        jBPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPedidosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,13 +107,24 @@ public class FormTables extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLIndicador, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jBCostureira, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jBCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jBPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLIndicador, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBCostureira, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBPedidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jTTabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -116,6 +160,21 @@ public class FormTables extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBCostureiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCostureiraActionPerformed
+        opcao = 0;
+        atualizaTabela();
+    }//GEN-LAST:event_jBCostureiraActionPerformed
+
+    private void jBClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBClienteActionPerformed
+        opcao = 1;
+        atualizaTabela();
+    }//GEN-LAST:event_jBClienteActionPerformed
+
+    private void jBPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPedidosActionPerformed
+        opcao = 2;
+        atualizaTabela();
+    }//GEN-LAST:event_jBPedidosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +212,9 @@ public class FormTables extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBCliente;
+    private javax.swing.JButton jBCostureira;
+    private javax.swing.JButton jBPedidos;
     private javax.swing.JLabel jLIndicador;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -36,7 +36,7 @@ public class PedidoTableModel extends AbstractTableModel {
         Pedido pedido = listaPedidos.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return pedido.getCliente().getCostureira();
+                return pedido.getCliente().getCostureira().getNome();
             case 1:
                 return pedido.getPrioridade();
             case 2:
@@ -44,7 +44,7 @@ public class PedidoTableModel extends AbstractTableModel {
             case 3:
                 return pedido.getDataCriacao();
             case 4:
-                return pedido.getCliente();
+                return pedido.getCliente().getNome();
             case 5:
                 return "1000";
             default:

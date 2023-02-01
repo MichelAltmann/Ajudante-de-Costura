@@ -188,7 +188,6 @@ public class FormLogin extends javax.swing.JFrame {
                 admin = CosturaClienteDesktop.ccont.efetuarLogin(admin);
                 if (admin != null){
                     CosturaClienteDesktop.ccont.administrador = admin;
-                    JOptionPane.showMessageDialog(this, "SUCESSO");
                     FormTables frmTables = new FormTables();
                     frmTables.setVisible(true);
                     dispose();
