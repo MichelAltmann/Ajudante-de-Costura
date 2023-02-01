@@ -25,23 +25,23 @@ public class PedidoDao {
         this.con = Conector.getConnection();
     }
 
-    //Função que carrega a lista de pedidos
-    public ArrayList<Pedido> pedidoCarregaLista() {
+    //Função que carrega a lista de pedidos - COSTUREIRA/ADMINISTRADOR
+    public ArrayList<Pedido> pedidoCarregaListaCostureira(Costureira costureira) {
         MaterialDao materialDao = new MaterialDao();
         PreparedStatement stmt = null;
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
 
         try {
             //Escrevendo o comando SQL
-            String sql = "select * from pedido  join pessoa on (pedidos.idPessoa = pessoa.idPessoa)";
+            String sql = "select * from pedido  join pessoa on (pedidos.idPessoa = pessoa.idPessoa)"
+                    + "where pessoa.idCostureira = ?";
             //Preparando o statement
             stmt = con.prepareStatement(sql);
+            stmt.setInt(1, costureira.getIdPessoa());
             //Pegando os resultados
             ResultSet res = stmt.executeQuery();
             //Navegando nos resultados, criando  o objeto do Pedido e adicionando na lista
             while (res.next()) {
-                //Criando Costureira
-                Costureira costureira = new Costureira(res.getInt("idCostureira"));
                 //Criando Cliente
                 Cliente cliente = new Cliente(costureira, res.getInt("idPessoa"),
                         res.getString("cpf"),
@@ -100,7 +100,7 @@ public class PedidoDao {
 
     }
 
-    //Função que cadastra pedidos
+    //Função que cadastra pedidos - COSTUREIRA
     public int pedidoCadastrar(Pedido pedido) {
         PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
         PreparedStatement stmt = null;
@@ -200,7 +200,7 @@ public class PedidoDao {
 
     }
 
-    //Função que altera pedido
+    //Função que altera pedido - COSTUREIRA
     public int pedidoAlterar(Pedido pedido) {
         PedidoMaterialDao pedidoMaterialDao = new PedidoMaterialDao();
         PreparedStatement stmt = null;
@@ -299,21 +299,24 @@ public class PedidoDao {
         }
     }
 
-    //Função que deleta um pedido
-    public int pedidoDeletar(Pedido pedido) {
+    //Função que deleta um pedido - COSTUREIRA - ARRAY
+    public int pedidoDeletar(ArrayList<Pedido> listaPedidos) {
         PreparedStatement stmt = null;
         try {
             try {
                 //desliga o autocommit
                 con.setAutoCommit(false);
+                for (int x = 0; x < listaPedidos.size(); x++) {
+                    Pedido pedido = listaPedidos.get(x);
+                    String sql = "delete from pedido where idPedido = ?";
+                    stmt = con.prepareStatement(sql);
+                    stmt.setInt(1, pedido.getIdPedido());
+                    //Executando o statement
+                    stmt.execute();
+                    //realizando o commit
+                    con.commit();
+                }
 
-                String sql = "delete from pedido where idPedido = ?";
-                stmt = con.prepareStatement(sql);
-                stmt.setInt(1, pedido.getIdPedido());
-                //Executando o statement
-                stmt.execute();
-                //realizando o commit
-                con.commit();
                 return -1;
 
             } catch (SQLException e) {
@@ -333,6 +336,84 @@ public class PedidoDao {
                 e.printStackTrace();
                 e.getErrorCode();
             }
+        }
+    }
+
+    //Função que carrega a lista de todos os pedidos do banco - ADMINISTRADOR
+    public ArrayList<Pedido> pedidoCarregarListaAdministrador() {
+        MaterialDao materialDao = new MaterialDao();
+        CostureiraDao costureiraDao = new CostureiraDao();
+        PreparedStatement stmt = null;
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+
+        try {
+            //Escrevendo o comando SQL
+            String sql = "select * from pedido join pessoa on "
+                    + "(pedido.idPessoa = pessoa.idPessoa)";
+            //Preparando o statement
+            stmt = con.prepareStatement(sql);
+            //Pegando os resultados
+            ResultSet res = stmt.executeQuery();
+            //Navegando nos resultados, criando  o objeto do Pedido e adicionando na lista
+            while (res.next()) {
+                //Criando Costureira
+                Costureira costureira = costureiraDao.costureiraCarregaComID(res.getInt("idCostureira"));
+//                Costureira costureira = new Costureira(res.getInt("idCostureira"));
+                //Criando Cliente
+                Cliente cliente = new Cliente(costureira, res.getInt("idPessoa"),
+                        res.getString("cpf"),
+                        res.getString("nome"),
+                        res.getString("email"),
+                        res.getString("telefone"),
+                        res.getDate("dataNascimento"),
+                        res.getInt("cep"),
+                        res.getString("estado"),
+                        res.getString("cidade"),
+                        res.getString("rua"),
+                        res.getInt("numero"));
+                //Criando lista de Materiais
+                ArrayList<Material> listaMateriais = materialDao.materialCarregaListaDePedido(res.getInt("idPedido"));
+                //Criando Medida
+                Medidas medidas = new Medidas(res.getFloat("pescoco"),
+                        res.getFloat("ombro"),
+                        res.getFloat("busto"),
+                        res.getFloat("bico"),
+                        res.getFloat("cintura"),
+                        res.getFloat("quadris"),
+                        res.getFloat("manga"),
+                        res.getFloat("punho"),
+                        res.getFloat("larguraBraco"),
+                        res.getFloat("larguraCoxa"),
+                        res.getFloat("larguraCostas"),
+                        res.getFloat("alturaFrente"),
+                        res.getFloat("alturaCostas"),
+                        res.getFloat("alturaBusto"),
+                        res.getFloat("alturaQuadris"),
+                        res.getFloat("alturaGancho"),
+                        res.getFloat("alturaJoelho"),
+                        res.getFloat("comprimentoCalca"),
+                        res.getFloat("comprimentoBlusa"),
+                        res.getFloat("comprimentoSaia"));
+                //Criando Pedido
+                Pedido pedido = new Pedido(res.getInt("idPedido"),
+                        cliente,
+                        res.getInt("prioridade"),
+                        res.getString("titulo"),
+                        res.getString("descricao"),
+                        res.getDate("dataEntrega"),
+                        res.getDate("dataCriacao"),
+                        listaMateriais,
+                        res.getBytes("imagem"),
+                        medidas);
+                //Adicionando na lista de Pedidos
+                System.out.println(pedido.toString());
+                listaPedidos.add(pedido);
+            }
+            //Deu tudo certo retornando a lista
+            return listaPedidos;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

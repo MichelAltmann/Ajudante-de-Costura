@@ -8,6 +8,7 @@ import factory.Conector;
 import java.sql.*;
 import java.util.ArrayList;
 import modelDominio.Material;
+import modelDominio.Pedido;
 
 /**
  *
@@ -21,7 +22,7 @@ public class MaterialDao {
         this.con = Conector.getConnection();
     }
 
-    //Função que carrega a lista de materiais de um pedido em específico
+    //Função que carrega a lista de materiais de um pedido em específico - COSTUREIRA/ADMINISTRADOR
     public ArrayList<Material> materialCarregaListaDePedido(int idPedido) {
         PreparedStatement stmt = null;
         ArrayList<Material> listaMateriais = new ArrayList<>();
@@ -51,7 +52,7 @@ public class MaterialDao {
         }
     }
 
-    //Função que cadastra novos materiais
+    //Função que cadastra novos materiais - COSTUREIRA
     public int materialCadastrar(Material material) {
         PreparedStatement stmt = null;
 
@@ -95,7 +96,7 @@ public class MaterialDao {
 
     }
 
-    //Função que carrega a lista de materiais sem um pedido em específico
+    //Função que carrega a lista de materiais sem um pedido em específico - COSTUREIRA
     public ArrayList<Material> materialCarregaLista() {
         PreparedStatement stmt = null;
         ArrayList<Material> listaMateriais = new ArrayList<>();
@@ -124,24 +125,27 @@ public class MaterialDao {
         }
     }
 
-    //Função que deleta um material
-    public int materialDeletar(Material material) {
+    //Função que deleta um material - COSTUREIRA - ARRAY
+    public int materialDeletar(ArrayList<Material> listaMateriais) {
         PreparedStatement stmt = null;
 
         try {
             try {
                 //Desligando o autocommit
                 con.setAutoCommit(false);
-                //Escrevendo o comando SQL
-                String sql = "delete from material where idMaterial = ?";
-                //Preparando o statement
-                stmt = con.prepareStatement(sql);
-                //Inserindo os dados no statement
-                stmt.setInt(1, material.getIdMaterial());
-                //Executando o statement
-                stmt.execute();
-                //Executando o commit
-                con.commit();
+                for (int x = 0; x < listaMateriais.size(); x++) {
+                    Material material = listaMateriais.get(x);
+                    //Escrevendo o comando SQL
+                    String sql = "delete from material where idMaterial = ?";
+                    //Preparando o statement
+                    stmt = con.prepareStatement(sql);
+                    //Inserindo os dados no statement
+                    stmt.setInt(1, material.getIdMaterial());
+                    //Executando o statement
+                    stmt.execute();
+                    //Executando o commit
+                    con.commit();
+                }
                 //Deu tudo certo retornando -1
                 return -1;
             } catch (SQLException e) {
@@ -164,9 +168,9 @@ public class MaterialDao {
             }
         }
     }
-    
-    //Função que altera um material
-    public int materialAlterar(Material material){
+
+    //Função que altera um material - COSTUREIRA
+    public int materialAlterar(Material material) {
         PreparedStatement stmt = null;
 
         try {

@@ -20,7 +20,7 @@ public class AdministradorDao {
         this.con = Conector.getConnection();
     }
     
-    //Função que realiza o login de administradores
+    //Função que realiza o login de administradores - ADMINISTRADOR
     public Administrador administradotEfetuarLogin(Administrador admin){
         PreparedStatement stmt = null;
         Administrador adminLogado = null;

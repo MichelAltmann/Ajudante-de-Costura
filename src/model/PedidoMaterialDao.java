@@ -21,7 +21,7 @@ public class PedidoMaterialDao {
         this.con = Conector.getConnection();
     }
 
-    //Função que faz a conexão de um Pedido com um Material no Banco
+    //Função que faz a conexão de um Pedido com um Material no Banco - COSTUREIRA
     public int pedidoMaterialCadastrar(Pedido pedido) {
         PreparedStatement stmt = null;
 
@@ -72,7 +72,7 @@ public class PedidoMaterialDao {
         }
     }
 
-    //Função que altera a conexão de um Pedido com um Material no Banco
+    //Função que altera a conexão de um Pedido com um Material no Banco - COSTUREIRA
     public int pedidoMaterialAlterar(Pedido pedido) {
         PreparedStatement stmt = null;
 
@@ -124,7 +124,7 @@ public class PedidoMaterialDao {
         }
     }
 
-    //Função que deleta a conexão de um Pedido com um Material no Banco
+    //Função que deleta a conexão de um Pedido com um Material no Banco - COSTUREIRA
     public int pedidoMaterialDeletar(Pedido pedido) {
         PreparedStatement stmt = null;
         try {

@@ -22,7 +22,7 @@ public class ClienteDao {
         this.con = Conector.getConnection();
     }
 
-    //Função que cadastra clientes
+    //Função que cadastra clientes - COSTUREIRA
     public int clienteCadastrar(Cliente cliente) {
         PreparedStatement stmt = null;
 
@@ -86,8 +86,8 @@ public class ClienteDao {
             }
         }
     }
-    
-    //Função que altera clientes
+
+    //Função que altera clientes - COSTUREIRA
     public int clienteAlterar(Cliente cliente) {;
         PreparedStatement stmt = null;
         try {
@@ -95,7 +95,7 @@ public class ClienteDao {
                 //Desligando o autocommit
                 con.setAutoCommit(false);
                 //Escrevendo o comando SQL
-                String sql = "update cliente set cpf = ?, "
+                String sql = "update pessoa set cpf = ?, "
                         + "nome = ?, "
                         + "email = ?, "
                         + "telefone = ?, "
@@ -149,14 +149,15 @@ public class ClienteDao {
         }
     }
 
-    //Função que carrega a lista de clientes
-    public ArrayList<Cliente> clienteCarregaLista() {
+    //Função que carrega a lista de clientes - ADMINISTRADOR
+    public ArrayList<Cliente> clienteCarregaListaAdministrador() {
         PreparedStatement stmt = null;
+        CostureiraDao costureiraDao = new CostureiraDao();
         ArrayList<Cliente> listaClientes = new ArrayList<>();
 
         try {
             //Escrevendo o comando SQL
-            String sql = "select * from pessoa join pedido on (pessoa.idPessoa = pedido.idPessoa)";
+            String sql = "select * from pessoa where autorizacao is null";
             //Preparando o Statement
             stmt = con.prepareStatement(sql);
             //Pegando o resultado
@@ -164,7 +165,7 @@ public class ClienteDao {
 
             //Navegando nos resultados, criando  o objeto do Cliente e adicionando na lista
             while (res.next()) {
-                Costureira costureira = new Costureira(res.getInt("idCostureira"));
+                Costureira costureira = costureiraDao.costureiraCarregaComID(res.getInt("idCostureira"));
                 Cliente cliente = new Cliente(costureira, res.getInt("idPessoa"),
                         res.getString("cpf"),
                         res.getString("nome"),
@@ -187,21 +188,64 @@ public class ClienteDao {
         }
     }
     
-    //Função que deleta cliente
-    public int clienteDeletar(Cliente cliente){
+    //Função que carrega a lista de clientes - COSTUREIRA/ADMINISTRADOR
+    public ArrayList<Cliente> clienteCarregaListaCostureira(Costureira costureira) {
+        PreparedStatement stmt = null;
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+
+        try {
+            //Escrevendo o comando SQL
+            String sql = "select * from pessoa where (idCostureira = ?) and autorizacao is null";
+            //Preparando o Statement
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, costureira.getIdPessoa());
+            //Pegando o resultado
+            ResultSet res = stmt.executeQuery();
+
+            //Navegando nos resultados, criando  o objeto do Cliente e adicionando na lista
+            while (res.next()) {
+                Cliente cliente = new Cliente(costureira, res.getInt("idPessoa"),
+                        res.getString("cpf"),
+                        res.getString("nome"),
+                        res.getString("email"),
+                        res.getString("telefone"),
+                        res.getDate("dataNascimento"),
+                        res.getInt("cep"),
+                        res.getString("estado"),
+                        res.getString("cidade"),
+                        res.getString("rua"),
+                        res.getInt("numero"));
+                listaClientes.add(cliente);
+            }
+            //Deu tudo certo retornando a lista
+            return listaClientes;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    //Função que deleta cliente - COSTUREIRA - ARRAY
+    public int clienteDeletar(ArrayList<Cliente> listaClientes) {
         PreparedStatement stmt = null;
         try {
             try {
                 //desliga o autocommit
                 con.setAutoCommit(false);
-
-                String sql = "delete from cliente where idPessoa = ?";
+                for (int x = 0; x < listaClientes.size(); x++){
+                //Pegando o objeto da lista
+                Cliente cliente = listaClientes.get(x);
+                //Query SQL
+                String sql = "delete from pessoa where idPessoa = ?";
                 stmt = con.prepareStatement(sql);
                 stmt.setInt(1, cliente.getIdPessoa());
                 //Executando o statement
                 stmt.execute();
                 //realizando o commit
                 con.commit();
+                }
+                //deu tudo certo retornando 
                 return -1;
 
             } catch (SQLException e) {
