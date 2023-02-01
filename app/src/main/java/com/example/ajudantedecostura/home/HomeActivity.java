@@ -13,6 +13,7 @@ import android.os.Bundle;
 import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.databinding.ActivityHomeBinding;
 import com.example.ajudantedecostura.home.adapters.ViewPagerAdapter;
+import com.example.ajudantedecostura.home.cliente.CadastroClienteActivity;
 import com.example.ajudantedecostura.home.pedido.CadastroPedidoActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -83,7 +84,8 @@ public class HomeActivity extends AppCompatActivity {
         // botão fab responsável pela navegação às páginas de cadastro de cliente e pedido
         binding.fragmentHomeFabAdiciona.setOnClickListener(v -> {
             if (binding.viewpager.getCurrentItem() == 0){
-                // cadastro de cliente
+                Intent intent = new Intent(this, CadastroClienteActivity.class);
+                startActivity(intent);
             } else {
                 Intent intent = new Intent(this, CadastroPedidoActivity.class);
                 startActivity(intent);

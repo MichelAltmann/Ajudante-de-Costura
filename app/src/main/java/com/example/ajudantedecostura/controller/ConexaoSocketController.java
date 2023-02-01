@@ -2,6 +2,7 @@ package com.example.ajudantedecostura.controller;
 
 import android.util.Log;
 
+import modelDominio.Cliente;
 import modelDominio.Costureira;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
@@ -55,6 +56,21 @@ public class ConexaoSocketController {
             msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("Ok")) {
                 informacoesApp.out.writeObject(costureira);
+                msgRecebida = (String) informacoesApp.in.readObject();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return msgRecebida;
+    }
+
+    public String cadastraCliente(Cliente cliente){
+        String msgRecebida = null;
+        try{
+            informacoesApp.out.writeObject("ClienteCadastrar");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("Ok")){
+                informacoesApp.out.writeObject(cliente);
                 msgRecebida = (String) informacoesApp.in.readObject();
             }
         } catch (IOException | ClassNotFoundException e) {

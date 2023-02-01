@@ -23,16 +23,14 @@ public class Costureira extends Pessoa implements Serializable {
         this.autorizacao = autorizacao;
     }
 
-    public Costureira(String senha, String cpf, String email) {
-        super(cpf, email);
+    public Costureira(String senha, String email) {
+        super(email);
         this.senha = senha;
     }
 
     public Costureira(int idPessoa) {
         super(idPessoa);
     }
-
-
 
     public String getSenha() {
         return senha;

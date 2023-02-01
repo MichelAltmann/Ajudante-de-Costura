@@ -36,6 +36,4 @@ public class Cliente extends Pessoa implements Serializable {
         return "Cliente{" + "costureira=" + costureira + '}';
     }
 
-
-
 }

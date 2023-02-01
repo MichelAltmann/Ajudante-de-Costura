@@ -44,8 +44,7 @@ public abstract class Pessoa implements Serializable {
         this.numero = numero;
     }
 
-    public Pessoa(String cpf, String email) {
-        this.cpf = cpf;
+    public Pessoa(String email) {
         this.email = email;
     }
 

@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                         String senha = String.valueOf(senhaCadastrada);
                         //----------------------------------------
 
-                        Costureira costureiraLogar = new Costureira(senha, loginCadastrado, loginCadastrado);
+                        Costureira costureiraLogar = new Costureira(senha, loginCadastrado);
 
                         Thread thread = new Thread((Runnable) () -> {
                            ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                             
                                 runOnUiThread((Runnable) () -> {
                                     if (costureiraLogada != null) {
+                                        informacoesApp.setCostureiraLogada(costureiraLogada);
                                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                         intent.putExtra("nome", loginCadastrado);
                                         startActivity(intent);

@@ -33,6 +33,4 @@ public class Administrador implements Serializable {
         return "Administrador{" + "login=" + login + ", senha=" + senha + '}';
     }
 
-
-
 }

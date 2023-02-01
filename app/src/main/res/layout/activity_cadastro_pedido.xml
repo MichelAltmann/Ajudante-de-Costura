@@ -305,7 +305,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#9DE8B2"
+        android:backgroundTint="@color/verde"
         android:padding="12dp"
         android:text="Criar Pedido"
         android:textColor="@color/black"

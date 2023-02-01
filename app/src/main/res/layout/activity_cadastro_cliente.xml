@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.CadastroActivity">
+    tools:context=".home.cliente.CadastroClienteActivity">
 
     <ScrollView
-        android:id="@+id/activity_cadastro_scrollview"
+        android:id="@+id/activity_cadastro_cliente_scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintBottom_toTopOf="@id/activity_cadastro_btn_cadastrar"
+        app:layout_constraintBottom_toTopOf="@id/activity_cadastro_cliente_btn_cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/activity_cadastro_adiciona_imagem"
+                android:id="@+id/activity_cadastro_cliente_adiciona_imagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_nome"
+                android:id="@+id/activity_cadastro_cliente_txt_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -47,42 +47,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_adiciona_imagem" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_adiciona_imagem" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_senha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/text_cadastro_background"
-                android:hint="Senha"
-                android:inputType="textPassword"
-                android:paddingLeft="12dp"
-                android:textColorHint="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_nome" />
-
-            <EditText
-                android:id="@+id/activity_cadastro_txt_confirmar_senha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/text_cadastro_background"
-                android:hint="Confirmar Senha"
-                android:inputType="textPassword"
-                android:paddingLeft="12dp"
-                android:textColorHint="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_senha" />
-
-            <EditText
-                android:id="@+id/activity_cadastro_txt_telefone"
+                android:id="@+id/activity_cadastro_cliente_txt_telefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -95,10 +63,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_confirmar_senha" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_nome" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_cpf"
+                android:id="@+id/activity_cadastro_cliente_txt_cpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -112,10 +80,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_telefone" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_telefone" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_email"
+                android:id="@+id/activity_cadastro_cliente_txt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -128,10 +96,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_cpf" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_cpf" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_data_nascimento"
+                android:id="@+id/activity_cadastro_cliente_txt_data_nascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -144,10 +112,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_email" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_email" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_cep"
+                android:id="@+id/activity_cadastro_cliente_txt_cep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -161,10 +129,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_data_nascimento" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_data_nascimento" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_estado"
+                android:id="@+id/activity_cadastro_cliente_txt_estado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -177,10 +145,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_cep" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_cep" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_cidade"
+                android:id="@+id/activity_cadastro_cliente_txt_cidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -193,10 +161,10 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_estado" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_estado" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_rua"
+                android:id="@+id/activity_cadastro_cliente_txt_rua"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -206,12 +174,12 @@
                 android:inputType="textCapWords"
                 android:paddingLeft="12dp"
                 android:textColorHint="@color/black"
-                app:layout_constraintEnd_toStartOf="@id/activity_cadastro_txt_numero"
+                app:layout_constraintEnd_toStartOf="@id/activity_cadastro_cliente_txt_numero"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_txt_cidade" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_cliente_txt_cidade" />
 
             <EditText
-                android:id="@+id/activity_cadastro_txt_numero"
+                android:id="@+id/activity_cadastro_cliente_txt_numero"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -223,8 +191,8 @@
                 android:maxLength="4"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/activity_cadastro_txt_rua"
-                app:layout_constraintTop_toTopOf="@id/activity_cadastro_txt_rua" />
+                app:layout_constraintStart_toEndOf="@id/activity_cadastro_cliente_txt_rua"
+                app:layout_constraintTop_toTopOf="@id/activity_cadastro_cliente_txt_rua" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -232,7 +200,7 @@
 
 
     <Button
-        android:id="@+id/activity_cadastro_btn_cadastrar"
+        android:id="@+id/activity_cadastro_cliente_btn_cadastrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -246,11 +214,11 @@
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/activity_cadastro_btn_cancelar"
+        app:layout_constraintStart_toEndOf="@id/activity_cadastro_cliente_btn_cancelar"
         app:strokeWidth="1dp" />
 
     <Button
-        android:id="@+id/activity_cadastro_btn_cancelar"
+        android:id="@+id/activity_cadastro_cliente_btn_cancelar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -263,9 +231,8 @@
         android:textColor="@color/black"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/activity_cadastro_btn_cadastrar"
+        app:layout_constraintEnd_toStartOf="@id/activity_cadastro_cliente_btn_cadastrar"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeWidth="1dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
