@@ -167,7 +167,7 @@ public class CostureiraDao {
                 stmt.setString(2, costureira.getNome());
                 stmt.setString(3, costureira.getEmail());
                 stmt.setString(4, costureira.getTelefone());
-                stmt.setDate(5, (Date) costureira.getDataNascimento());
+                stmt.setDate(5, new java.sql.Date(costureira.getDataNascimento().getTime()));
                 stmt.setInt(6, costureira.getCep());
                 stmt.setString(7, costureira.getEstado());
                 stmt.setString(8, costureira.getCidade());

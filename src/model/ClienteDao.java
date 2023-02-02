@@ -51,7 +51,7 @@ public class ClienteDao {
                 stmt.setString(2, cliente.getNome());
                 stmt.setString(3, cliente.getEmail());
                 stmt.setString(4, cliente.getTelefone());
-                stmt.setDate(5, (Date) cliente.getDataNascimento());
+                stmt.setDate(5,  new java.sql.Date(cliente.getDataNascimento().getTime()));
                 stmt.setInt(6, cliente.getCep());
                 stmt.setString(7, cliente.getEstado());
                 stmt.setString(8, cliente.getCidade());
@@ -114,7 +114,7 @@ public class ClienteDao {
                 stmt.setString(2, cliente.getNome());
                 stmt.setString(3, cliente.getEmail());
                 stmt.setString(4, cliente.getTelefone());
-                stmt.setDate(5, (Date) cliente.getDataNascimento());
+                stmt.setDate(5, new java.sql.Date(cliente.getDataNascimento().getTime()));
                 stmt.setInt(6, cliente.getCep());
                 stmt.setString(7, cliente.getEstado());
                 stmt.setString(8, cliente.getCidade());

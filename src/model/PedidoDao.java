@@ -243,8 +243,8 @@ public class PedidoDao {
                 stmt.setInt(1, pedido.getPrioridade());
                 stmt.setString(2, pedido.getTitulo());
                 stmt.setString(3, pedido.getDescricao());
-                stmt.setDate(4, (Date) pedido.getDataEntrega());
-                stmt.setDate(5, (Date) pedido.getDataCriacao());
+                stmt.setDate(4, new java.sql.Date(pedido.getDataEntrega().getTime()));
+                stmt.setDate(5, new java.sql.Date(pedido.getDataCriacao().getTime()));
                 stmt.setBytes(6, pedido.getImagem());
                 stmt.setInt(7, pedido.getCliente().getIdPessoa());
                 stmt.setFloat(8, pedido.CalculaPrecoPedido());
