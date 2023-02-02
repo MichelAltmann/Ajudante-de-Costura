@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ConexaoSocketController {
     InformacoesApp informacoesApp;
@@ -21,7 +22,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("10.0.2.2", 12345);
+            informacoesApp.socket = new Socket("192.168.1.157", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
@@ -77,6 +78,24 @@ public class ConexaoSocketController {
             e.printStackTrace();
         }
         return msgRecebida;
+    }
+
+    public ArrayList<Cliente> carregaListaCliente(){
+        ArrayList<Cliente> listaCliente = new ArrayList<>();
+        String msgRecebida = null;
+
+        try{
+            informacoesApp.out.writeObject("ClienteCarregarListaCostureira");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("Ok")){
+                informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
+                listaCliente = (ArrayList<Cliente>) informacoesApp.in.readObject();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return listaCliente;
     }
 
 }

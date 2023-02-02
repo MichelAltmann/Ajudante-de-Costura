@@ -8,9 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ajudantedecostura.databinding.RecyclerClientesItemBinding;
 
+import java.util.ArrayList;
+
+import modelDominio.Cliente;
+
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.ViewHolder> {
 
-    private String[] lista;
+    private ArrayList<Cliente> lista;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
     private RecyclerClientesItemBinding binding;
@@ -20,7 +24,7 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         }
     }
 
-    public ListaClientesAdapter(String[] pegaLista) {
+    public ListaClientesAdapter(ArrayList<Cliente> pegaLista) {
         this.lista = pegaLista;
     }
 
@@ -32,11 +36,12 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.binding.clientesItemNomeCliente.setText(String.valueOf(lista[position]));
+        holder.binding.clientesItemNomeCliente.setText(lista.get(position).getNome());
+        holder.binding.clientesItemNumeroCelular.setText(lista.get(position).getTelefone());
     }
 
     @Override
     public int getItemCount() {
-        return lista.length;
+        return lista.size();
     }
 }
