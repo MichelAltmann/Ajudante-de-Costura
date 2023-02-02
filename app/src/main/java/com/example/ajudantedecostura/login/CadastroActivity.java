@@ -5,10 +5,13 @@ import static android.content.ContentValues.TAG;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,9 +35,11 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class CadastroActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
@@ -43,6 +48,10 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
     Bitmap selectedImageBitmap;
     InformacoesApp informacoesApp;
     String msgRecebida;
+
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
+    public static final String WRITE_EXTERNAL_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
+    public static final String CAMERA = "android.permission.CAMERA";
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
@@ -56,6 +65,9 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
         });
 
         binding.activityCadastroAdicionaImagem.setOnClickListener(v -> {
+            if(checkAndRequestPermissions(this)){
+
+            }
             imageChooser();
         });
 
@@ -215,6 +227,28 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
         i.setAction(Intent.ACTION_GET_CONTENT);
 
         launchSomeActivity.launch(i);
+    }
+
+    public static boolean checkAndRequestPermissions(final Activity context) {
+        int WExtstorePermission = ContextCompat.checkSelfPermission(context,
+                WRITE_EXTERNAL_STORAGE);
+        int cameraPermission = ContextCompat.checkSelfPermission(context,
+                CAMERA);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(CAMERA);
+        }
+        if (WExtstorePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded
+                    .add(WRITE_EXTERNAL_STORAGE);
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(context, listPermissionsNeeded
+                            .toArray(new String[listPermissionsNeeded.size()]),
+                    REQUEST_ID_MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
     }
 
     @Override
