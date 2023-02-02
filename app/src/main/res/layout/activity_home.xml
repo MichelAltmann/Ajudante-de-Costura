@@ -16,7 +16,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/activity_home_cardView"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="#99ffc3cc"
+        app:cardBackgroundColor="@color/rosa"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/ic_profile"
                 app:borderWidth="0dp"
-                android:backgroundTint="@color/rosa_dark"
+                android:backgroundTint="@color/rosa_light"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:scaleX="0.7"
                 android:scaleY="0.7"/>
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tabLayout"
         android:layout_margin="16dp"
-        android:backgroundTint="#ffc3cc"
+        android:backgroundTint="@color/verde_light"
         android:src="@drawable/ic_clientes"
         app:borderWidth="0dp"/>
 

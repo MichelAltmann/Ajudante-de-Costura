@@ -61,7 +61,7 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
 
                 Date dataNascimento = null;
 
-                Integer cep = null, numero = null;
+                Integer cep = 0, numero = 0;
                 if (!binding.activityCadastroClienteTxtEmail.getText().toString().equals("")){
                     email = binding.activityCadastroClienteTxtEmail.getText().toString();
                 }
