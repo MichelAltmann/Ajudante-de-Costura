@@ -1,12 +1,16 @@
 package com.example.ajudantedecostura.home.cliente;
 
-import static android.content.ContentValues.TAG;
-
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -15,9 +19,9 @@ import com.example.ajudantedecostura.databinding.ActivityCadastroClienteBinding;
 import com.example.ajudantedecostura.login.DatePickerFragment;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +30,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import modelDominio.Cliente;
-import modelDominio.Costureira;
 
 public class CadastroClienteActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -34,6 +37,7 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
     InformacoesApp informacoesApp;
 
+    Bitmap selectedImageBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,12 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
             // date picker dialog
             DatePickerFragment fragment = new DatePickerFragment();
             fragment.show(getSupportFragmentManager(), "Date dialog");
+        });
+
+
+
+        binding.activityCadastroClienteAdicionaImagem.setOnClickListener(v -> {
+            imageChooser();
         });
 
         binding.activityCadastroClienteBtnCadastrar.setOnClickListener(v -> {
@@ -102,6 +112,12 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                     numero = Integer.parseInt(binding.activityCadastroClienteTxtTelefone.getText().toString());
                 }
 
+                if (selectedImageBitmap.getByteCount() != 0){
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    byte[] imagem = stream.toByteArray();
+                }
+
                 Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(),cpf, nome, email, telefone, dataNascimento, cep, estado, cidade, rua, numero);
 
                 Thread thread = new Thread((Runnable) () -> {
@@ -119,6 +135,34 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
             }
         });
 }
+
+    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+
+                    if (data != null && data.getData() != null){
+                        Uri selectedImageUri = data.getData();
+                        try {
+                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),selectedImageUri);
+                            binding.activityCadastroClienteAdicionaImagem.setImageBitmap(selectedImageBitmap);
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+    );
+
+    void imageChooser() {
+        Intent i = new Intent();
+        i.setType("image/");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        launchSomeActivity.launch(i);
+    }
 
     @Override
     public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
