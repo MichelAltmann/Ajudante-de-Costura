@@ -19,18 +19,20 @@ public abstract class Pessoa implements Serializable {
     private String email;
     private String telefone;
     private Date dataNascimento;
+    private byte[] imagem;
     private int cep;
     private String estado;
     private String cidade;
     private String rua;
     private int numero;
 
-    public Pessoa(String cpf, String nome, String email, String telefone, Date dataNascimento, int cep, String estado, String cidade, String rua, int numero) {
+    public Pessoa(String cpf, String nome, String email, String telefone, Date dataNascimento,byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
+        this.imagem = imagem;
         this.cep = cep;
         this.estado = estado;
         this.cidade = cidade;
@@ -38,13 +40,14 @@ public abstract class Pessoa implements Serializable {
         this.numero = numero;
     }
 
-    public Pessoa(int idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, int cep, String estado, String cidade, String rua, int numero) {
+    public Pessoa(int idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
         this.idPessoa = idPessoa;
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
+        this.imagem = imagem;
         this.cep = cep;
         this.estado = estado;
         this.cidade = cidade;
@@ -107,6 +110,16 @@ public abstract class Pessoa implements Serializable {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+    
+    
 
     public int getCep() {
         return cep;

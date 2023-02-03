@@ -107,19 +107,20 @@ public class CostureiraDao {
             //Se tem resultado
             if (res.next()) {
                 costureiraLogada = new Costureira(res.getString("senha"),
-                        res.getBytes("imagem"),
+                        res.getInt("autorizacao"),
                         res.getInt("idPessoa"),
                         res.getString("cpf"),
                         res.getString("nome"),
                         res.getString("email"),
                         res.getString("telefone"),
                         res.getDate("dataNascimento"),
+                        res.getBytes("imagem"),
                         res.getInt("cep"),
                         res.getString("estado"),
                         res.getString("cidade"),
                         res.getString("rua"),
-                        res.getInt("numero"),
-                        res.getInt("autorizacao"));
+                        res.getInt("numero"));
+                        
 
                 System.out.println(costureiraLogada.toString());
 
@@ -144,45 +145,47 @@ public class CostureiraDao {
             try {
                 //Desliga o autocommit
                 con.setAutoCommit(false);
-                for (int x = 0; x < listaCostureiras.size(); x++){
-                Costureira costureira = listaCostureiras.get(x);
-                //Escrevendo o comando SQL
-                String sql = "update pessoa set cpf = ?,"
-                        + " nome = ?,"
-                        + " email = ?,"
-                        + " telefone = ?,"
-                        + " dataNascimento = ?,"
-                        + " cep = ?,"
-                        + " estado = ?,"
-                        + " cidade = ?,"
-                        + " rua = ?,"
-                        + " numero = ?,"
-                        + " senha = ?,"
-                        + " imagem = ?,"
-                        + " autorizacao = ? where idPessoa = ?";
-                //Preparando o Statement
-                stmt = con.prepareStatement(sql);
-                //Inserindo os dados no statement
-                stmt.setString(1, costureira.getCpf());
-                stmt.setString(2, costureira.getNome());
-                stmt.setString(3, costureira.getEmail());
-                stmt.setString(4, costureira.getTelefone());
-                stmt.setDate(5, new java.sql.Date(costureira.getDataNascimento().getTime()));
-                stmt.setInt(6, costureira.getCep());
-                stmt.setString(7, costureira.getEstado());
-                stmt.setString(8, costureira.getCidade());
-                stmt.setString(9, costureira.getRua());
-                stmt.setInt(10, costureira.getNumero());
-                stmt.setString(11, costureira.getSenha());
-                stmt.setBytes(12, costureira.getImagem());
-                stmt.setInt(13, costureira.getAutorizacao());
-                stmt.setInt(14, costureira.getIdPessoa());
-                //Executando o comando SQL
-                stmt.execute();
-                //Executando o commit
-                con.commit();
+                for (int x = 0; x < listaCostureiras.size(); x++) {
+                    Costureira costureira = listaCostureiras.get(x);
+                    //Escrevendo o comando SQL
+                    String sql = "update pessoa set cpf = ?,"
+                            + " nome = ?,"
+                            + " email = ?,"
+                            + " telefone = ?,"
+                            + " dataNascimento = ?,"
+                            + " imagem = ?"
+                            + " cep = ?,"
+                            + " estado = ?,"
+                            + " cidade = ?,"
+                            + " rua = ?,"
+                            + " numero = ?,"
+                            + " senha = ?,"
+                            + " imagem = ?,"
+                            + " autorizacao = ? where idPessoa = ?";
+                    //Preparando o Statement
+                    stmt = con.prepareStatement(sql);
+                    //Inserindo os dados no statement
+                    stmt.setString(1, costureira.getCpf());
+                    stmt.setString(2, costureira.getNome());
+                    stmt.setString(3, costureira.getEmail());
+                    stmt.setString(4, costureira.getTelefone());
+                    stmt.setDate(5, new java.sql.Date(costureira.getDataNascimento().getTime()));
+                    stmt.setBytes(6, costureira.getImagem());
+                    stmt.setInt(7, costureira.getCep());
+                    stmt.setString(8, costureira.getEstado());
+                    stmt.setString(9, costureira.getCidade());
+                    stmt.setString(10, costureira.getRua());
+                    stmt.setInt(11, costureira.getNumero());
+                    stmt.setString(12, costureira.getSenha());
+                    stmt.setBytes(13, costureira.getImagem());
+                    stmt.setInt(14, costureira.getAutorizacao());
+                    stmt.setInt(14, costureira.getIdPessoa());
+                    //Executando o comando SQL
+                    stmt.execute();
+                    //Executando o commit
+                    con.commit();
                 }
-                
+
                 return -1;
             } catch (SQLException e) {
                 try {
@@ -221,19 +224,19 @@ public class CostureiraDao {
             while (res.next()) {
                 //Criando a costureira
                 Costureira costureira = new Costureira(res.getString("senha"),
-                        res.getBytes("imagem"),
+                        res.getInt("autorizacao"),
                         res.getInt("idPessoa"),
                         res.getString("cpf"),
                         res.getString("nome"),
                         res.getString("email"),
                         res.getString("telefone"),
                         res.getDate("dataNascimento"),
+                        res.getBytes("imagem"),
                         res.getInt("cep"),
                         res.getString("estado"),
                         res.getString("cidade"),
                         res.getString("rua"),
-                        res.getInt("numero"),
-                        res.getInt("autorizacao"));
+                        res.getInt("numero"));
                 //Adicionando a costureira na lista
                 listaCostureiras.add(costureira);
             }
@@ -254,26 +257,26 @@ public class CostureiraDao {
             String sql = "select * from pessoa where idPessoa = ?";
             //preparando o statement
             stmt = con.prepareStatement(sql);
-            stmt.setInt(1,id);
+            stmt.setInt(1, id);
             //pegando o resultado
             ResultSet res = stmt.executeQuery();
             //Navegando no resultados, criando o objeto da costureira
             while (res.next()) {
                 //Criando a costureira
                 costureira = new Costureira(res.getString("senha"),
-                        res.getBytes("imagem"),
+                        res.getInt("autorizacao"),
                         res.getInt("idPessoa"),
                         res.getString("cpf"),
                         res.getString("nome"),
                         res.getString("email"),
                         res.getString("telefone"),
                         res.getDate("dataNascimento"),
+                        res.getBytes("imagem"),
                         res.getInt("cep"),
                         res.getString("estado"),
                         res.getString("cidade"),
                         res.getString("rua"),
-                        res.getInt("numero"),
-                        res.getInt("autorizacao"));
+                        res.getInt("numero"));
             }
             //Deu tudo certo retornando a costureira
             return costureira;

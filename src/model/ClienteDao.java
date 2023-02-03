@@ -35,7 +35,8 @@ public class ClienteDao {
                         + "nome, "
                         + "email, "
                         + "telefone, "
-                        + "dataNascimento, "
+                        + "dataNascimento,"
+                        + "imagem, "
                         + "cep, "
                         + "estado, "
                         + "cidade, "
@@ -52,13 +53,14 @@ public class ClienteDao {
                 stmt.setString(3, cliente.getEmail());
                 stmt.setString(4, cliente.getTelefone());
                 stmt.setDate(5,  new java.sql.Date(cliente.getDataNascimento().getTime()));
-                stmt.setInt(6, cliente.getCep());
-                stmt.setString(7, cliente.getEstado());
-                stmt.setString(8, cliente.getCidade());
-                stmt.setString(9, cliente.getRua());
-                stmt.setInt(10, cliente.getNumero());
-                stmt.setInt(11, 1);
-                stmt.setInt(12, cliente.getCostureira().getIdPessoa());
+                stmt.setBytes( 6,cliente.getImagem());
+                stmt.setInt(7, cliente.getCep());
+                stmt.setString(8, cliente.getEstado());
+                stmt.setString(9, cliente.getCidade());
+                stmt.setString(10, cliente.getRua());
+                stmt.setInt(11, cliente.getNumero());
+                stmt.setInt(12, 1);
+                stmt.setInt(13, cliente.getCostureira().getIdPessoa());
                 //Executando o Statement
                 stmt.execute();
                 //Realizando o commit
@@ -115,14 +117,15 @@ public class ClienteDao {
                 stmt.setString(3, cliente.getEmail());
                 stmt.setString(4, cliente.getTelefone());
                 stmt.setDate(5, new java.sql.Date(cliente.getDataNascimento().getTime()));
-                stmt.setInt(6, cliente.getCep());
-                stmt.setString(7, cliente.getEstado());
-                stmt.setString(8, cliente.getCidade());
-                stmt.setString(9, cliente.getRua());
-                stmt.setInt(10, cliente.getNumero());
-                stmt.setInt(11, 1);
-                stmt.setInt(12, cliente.getCostureira().getIdPessoa());
-                stmt.setInt(13, cliente.getIdPessoa());
+                stmt.setBytes(6, cliente.getImagem());
+                stmt.setInt(7, cliente.getCep());
+                stmt.setString(8, cliente.getEstado());
+                stmt.setString(9, cliente.getCidade());
+                stmt.setString(10, cliente.getRua());
+                stmt.setInt(11, cliente.getNumero());
+                stmt.setInt(12, 1);
+                stmt.setInt(13, cliente.getCostureira().getIdPessoa());
+                stmt.setInt(14, cliente.getIdPessoa());
                 //Executando o comando SQL
                 stmt.execute();
                 //Executando o commit
@@ -172,6 +175,7 @@ public class ClienteDao {
                         res.getString("email"),
                         res.getString("telefone"),
                         res.getDate("dataNascimento"),
+                        res.getBytes("imagem"),
                         res.getInt("cep"),
                         res.getString("estado"),
                         res.getString("cidade"),
@@ -210,6 +214,7 @@ public class ClienteDao {
                         res.getString("email"),
                         res.getString("telefone"),
                         res.getDate("dataNascimento"),
+                        res.getBytes("imagem"),
                         res.getInt("cep"),
                         res.getString("estado"),
                         res.getString("cidade"),
