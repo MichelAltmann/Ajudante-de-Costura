@@ -8,8 +8,7 @@ import modelDominio.Medida;
 import modelDominio.Medidas;
 
 public class TransformaEmMedidas {
-
-    @SuppressLint("NotConstructor")
+    
     public static Medidas transformaEmMedidas(ArrayList<Medida> listaMedidas) {
 
         float pescoco = 0;

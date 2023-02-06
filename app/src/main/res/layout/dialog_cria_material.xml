@@ -6,19 +6,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".home.pedido.CriaMaterialDialogFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialog_cria_material_titulo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/rosa_dark"
+        android:textSize="20sp"
+        android:text="Adicionar Material"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dialog_cria_material_nome"/>
+
+
     <EditText
         android:id="@+id/dialog_cria_material_nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/text_cadastro_background"
         android:hint="Nome do material"
         android:inputType="textCapWords"
         android:paddingLeft="12dp"
         android:textColorHint="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_cria_material_titulo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

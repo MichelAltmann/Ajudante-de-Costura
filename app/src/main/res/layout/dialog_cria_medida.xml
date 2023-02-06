@@ -6,6 +6,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".home.pedido.CriaMedidaDialogFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/dialog_cria_medida_titulo"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/rosa_dark"
+        android:textSize="20sp"
+        android:text="Adicionar Medida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dialog_cria_medida_spinner"/>
+
     <Spinner
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -15,8 +30,8 @@
         android:popupBackground="@color/amarelo_light"
         app:layout_constraintStart_toStartOf="@id/dialog_cria_medida"
         app:layout_constraintEnd_toEndOf="@id/dialog_cria_medida"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/dialog_cria_medida"
+        app:layout_constraintTop_toBottomOf="@id/dialog_cria_medida_titulo"
+        app:layout_constraintBottom_toTopOf="@id/dialog_cria_medida"
         android:background="@drawable/background_spinner"/>
 
     <EditText
@@ -46,7 +61,7 @@
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/verde"
         android:padding="12dp"
-        android:text="Cadastrar"
+        android:text="Adicionar"
         android:textColor="@color/black"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -19,6 +19,8 @@ import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ajudantedecostura.controller.ConexaoSocketController;
@@ -72,6 +74,19 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
         });
 
         informacoesApp = (InformacoesApp) getApplicationContext();
+        EditText txtNome = binding.activityCadastroTxtNome;
+        EditText txtSenha = binding.activityCadastroTxtSenha;
+        EditText txtConfirmaSenha = binding.activityCadastroTxtConfirmarSenha;
+        EditText txtTelefone = binding.activityCadastroTxtTelefone;
+        EditText txtCpf = binding.activityCadastroTxtCpf;
+        EditText txtEmail = binding.activityCadastroTxtEmail;
+        EditText txtDataNascimento = binding.activityCadastroTxtDataNascimento;
+        EditText txtCep = binding.activityCadastroTxtCep;
+        EditText txtEstado = binding.activityCadastroTxtEstado;
+        EditText txtCidade = binding.activityCadastroTxtCidade;
+        EditText txtRua = binding.activityCadastroTxtRua;
+        EditText txtNumero = binding.activityCadastroTxtNumero;
+        ImageView addImagem = binding.activityCadastroAdicionaImagem;
 
         binding.activityCadastroTxtDataNascimento.setInputType(InputType.TYPE_NULL);
 
@@ -82,29 +97,29 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
         });
 
         binding.activityCadastroBtnCadastrar.setOnClickListener(v -> {
-            if (!binding.activityCadastroTxtNome.getText().toString().equals("")){
-                if (!binding.activityCadastroTxtSenha.getText().toString().equals("")) {
-                    if (!binding.activityCadastroTxtConfirmarSenha.getText().toString().equals("")){
-                        if (!binding.activityCadastroTxtTelefone.getText().toString().equals("")){
-                            if (!binding.activityCadastroTxtCpf.getText().toString().equals("")){
-                                if (!binding.activityCadastroTxtEmail.getText().toString().equals("")){
-                                    if (!binding.activityCadastroTxtDataNascimento.getText().toString().equals("")){
-                                        if (!binding.activityCadastroTxtCep.getText().toString().equals("")){
-                                            if (!binding.activityCadastroTxtEstado.getText().toString().equals("")){
-                                                if (!binding.activityCadastroTxtCidade.getText().toString().equals("")){
-                                                    if (!binding.activityCadastroTxtRua.getText().toString().equals("")){
-                                                        if (!binding.activityCadastroTxtNumero.getText().toString().equals("")) {
-                                                            if (binding.activityCadastroAdicionaImagem.getDrawable() != null){
+            if (!txtNome.getText().toString().equals("")){
+                if (!txtSenha.getText().toString().equals("")) {
+                    if (!txtConfirmaSenha.getText().toString().equals("")){
+                        if (!txtTelefone.getText().toString().equals("")){
+                            if (!txtCpf.getText().toString().equals("")){
+                                if (!txtEmail.getText().toString().equals("")){
+                                    if (!txtDataNascimento.getText().toString().equals("")){
+                                        if (!txtCep.getText().toString().equals("")){
+                                            if (!txtEstado.getText().toString().equals("")){
+                                                if (!txtCidade.getText().toString().equals("")){
+                                                    if (!txtRua.getText().toString().equals("")){
+                                                        if (!txtNumero.getText().toString().equals("")) {
+                                                            if (addImagem.getDrawable() != null){
                                                                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                                                                 selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                                                                 byte[] imagem = stream.toByteArray();
-                                                                if (binding.activityCadastroTxtSenha.getText().toString().equals(binding.activityCadastroTxtConfirmarSenha.getText().toString())){
+                                                                if (txtSenha.getText().toString().equals(txtConfirmaSenha.getText().toString())){
                                                                     String nome, senha, senhaHash = null, telefone, cpf, email, estado, cidade, rua;
-                                                                    nome = binding.activityCadastroTxtNome.getText().toString();
-                                                                    senha = binding.activityCadastroTxtSenha.getText().toString();
-                                                                    telefone = binding.activityCadastroTxtTelefone.getText().toString();
-                                                                    cpf = binding.activityCadastroTxtCpf.getText().toString();
-                                                                    email = binding.activityCadastroTxtEmail.getText().toString();
+                                                                    nome = txtNome.getText().toString();
+                                                                    senha = txtSenha.getText().toString();
+                                                                    telefone = txtTelefone.getText().toString();
+                                                                    cpf = txtCpf.getText().toString();
+                                                                    email = txtEmail.getText().toString();
 
                                                                     Date data = null;
                                                                     try {
@@ -114,17 +129,17 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                                         BigInteger senhaCadastrada = new BigInteger(1, md.digest(senha.getBytes()));
                                                                         senhaHash = String.valueOf(senhaCadastrada);
                                                                         //----------------------------------------
-                                                                        data = dataFormatada.parse(binding.activityCadastroTxtDataNascimento.getText().toString());
+                                                                        data = dataFormatada.parse(txtDataNascimento.getText().toString());
                                                                         Log.i(TAG, "onCreate: " + data);
                                                                     } catch (ParseException | NoSuchAlgorithmException e) {
                                                                         e.printStackTrace();
                                                                     }
 
-                                                                    Integer cep = Integer.parseInt(binding.activityCadastroTxtCep.getText().toString());
-                                                                    estado = binding.activityCadastroTxtEstado.getText().toString();
-                                                                    cidade = binding.activityCadastroTxtCidade.getText().toString();
-                                                                    rua = binding.activityCadastroTxtRua.getText().toString();
-                                                                    Integer numero = Integer.parseInt(binding.activityCadastroTxtNumero.getText().toString());
+                                                                    Integer cep = Integer.parseInt(txtCep.getText().toString());
+                                                                    estado = txtEstado.getText().toString();
+                                                                    cidade = txtCidade.getText().toString();
+                                                                    rua = txtRua.getText().toString();
+                                                                    Integer numero = Integer.parseInt(txtNumero.getText().toString());
 
                                                                     Costureira costureira = new Costureira(senhaHash, imagem, cpf, nome, email, telefone, data, cep, estado, cidade, rua, numero, 0);
 
@@ -141,61 +156,61 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                                     thread.start();
 
                                                                 } else {
-                                                                    binding.activityCadastroTxtConfirmarSenha.requestFocus();
-                                                                    binding.activityCadastroTxtConfirmarSenha.setError("Erro: Senhas não coincidem");
+                                                                    txtConfirmaSenha.requestFocus();
+                                                                    txtConfirmaSenha.setError("Erro: Senhas não coincidem");
                                                                 }
                                                             } else {
-                                                                binding.activityCadastroAdicionaImagem.requestFocus();
+                                                                addImagem.requestFocus();
                                                                 Toast.makeText(informacoesApp, "Insira uma foto.", Toast.LENGTH_SHORT).show();
                                                             }
 
                                                         } else {
-                                                            binding.activityCadastroTxtNumero.requestFocus();
-                                                            binding.activityCadastroTxtNumero.setError("Erro: Campo obrigatório");
+                                                            txtNumero.requestFocus();
+                                                            txtNumero.setError("Erro: Campo obrigatório");
                                                         }
                                                     } else {
-                                                        binding.activityCadastroTxtRua.requestFocus();
-                                                        binding.activityCadastroTxtRua.setError("Erro: Campo obrigatório");
+                                                        txtRua.requestFocus();
+                                                        txtRua.setError("Erro: Campo obrigatório");
                                                     }
                                                 } else {
-                                                    binding.activityCadastroTxtCidade.requestFocus();
-                                                    binding.activityCadastroTxtCidade.setError("Erro: Campo obrigatório");
+                                                    txtCidade.requestFocus();
+                                                    txtCidade.setError("Erro: Campo obrigatório");
                                                 }
                                             } else {
-                                                binding.activityCadastroTxtEstado.requestFocus();
-                                                binding.activityCadastroTxtEstado.setError("Erro: Campo obrigatório");
+                                                txtEstado.requestFocus();
+                                                txtEstado.setError("Erro: Campo obrigatório");
                                             }
                                         } else {
-                                            binding.activityCadastroTxtCep.requestFocus();
-                                            binding.activityCadastroTxtCep.setError("Erro: Campo obrigatório");
+                                            txtCep.requestFocus();
+                                            txtCep.setError("Erro: Campo obrigatório");
                                         }
                                     } else {
-                                        binding.activityCadastroTxtDataNascimento.requestFocus();
-                                        binding.activityCadastroTxtDataNascimento.setError("Erro: Campo obrigatório");
+                                        txtDataNascimento.requestFocus();
+                                        txtDataNascimento.setError("Erro: Campo obrigatório");
                                     }
                                 } else {
-                                    binding.activityCadastroTxtEmail.requestFocus();
-                                    binding.activityCadastroTxtEmail.setError("Erro: Campo obrigatório");
+                                    txtEmail.requestFocus();
+                                    txtEmail.setError("Erro: Campo obrigatório");
                                 }
                             } else {
-                                binding.activityCadastroTxtCpf.requestFocus();
-                                binding.activityCadastroTxtCpf.setError("Erro: Campo obrigatório");
+                                txtCpf.requestFocus();
+                                txtCpf.setError("Erro: Campo obrigatório");
                             }
                         } else {
-                            binding.activityCadastroTxtTelefone.requestFocus();
-                            binding.activityCadastroTxtTelefone.setError("Erro: Campo obrigatório");
+                            txtTelefone.requestFocus();
+                            txtTelefone.setError("Erro: Campo obrigatório");
                         }
                     } else {
-                        binding.activityCadastroTxtConfirmarSenha.requestFocus();
-                        binding.activityCadastroTxtConfirmarSenha.setError("Erro: Campo obrigatório");
+                        txtConfirmaSenha.requestFocus();
+                        txtConfirmaSenha.setError("Erro: Campo obrigatório");
                     }
                 } else {
-                    binding.activityCadastroTxtSenha.requestFocus();
-                    binding.activityCadastroTxtSenha.setError("Erro: Campo obrigatório");
+                    txtSenha.requestFocus();
+                    txtSenha.setError("Erro: Campo obrigatório");
                 }
             } else {
-                binding.activityCadastroTxtNome.requestFocus();
-                binding.activityCadastroTxtNome.setError("Erro: Campo obrigatório");
+                txtNome.requestFocus();
+                txtNome.setError("Erro: Campo obrigatório");
 
             }
         });

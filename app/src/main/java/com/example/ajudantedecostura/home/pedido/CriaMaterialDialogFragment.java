@@ -55,6 +55,8 @@ public class CriaMaterialDialogFragment extends DialogFragment {
         EditText etLargura = binding.dialogCriaMaterialLargura;
         EditText etPreco = binding.dialogCriaMaterialPreco;
 
+        getDialog().setTitle("Adicionar Medida");
+
         listener = (CriaMaterialDialogListener) getContext();
 
         binding.dialogCriaMaterialBtnCriar.setOnClickListener(v -> {

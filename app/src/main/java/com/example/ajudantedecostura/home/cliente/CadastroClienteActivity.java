@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ajudantedecostura.controller.ConexaoSocketController;
@@ -43,24 +45,36 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
         super.onCreate(savedInstanceState);
         binding = ActivityCadastroClienteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-        binding.activityCadastroClienteTxtDataNascimento.setOnClickListener(v -> {
+        EditText txtDataNascimento = binding.activityCadastroClienteTxtDataNascimento;
+        ImageView addImagem = binding.activityCadastroClienteAdicionaImagem;
+        EditText txtNome = binding.activityCadastroClienteTxtNome;
+        EditText txtEmail = binding.activityCadastroClienteTxtEmail;
+        EditText txtEstado = binding.activityCadastroClienteTxtEstado;
+        EditText txtCidade = binding.activityCadastroClienteTxtCidade;
+        EditText txtRua = binding.activityCadastroClienteTxtRua;
+        EditText txtCpf = binding.activityCadastroClienteTxtCpf;
+        EditText txtTelefone = binding.activityCadastroClienteTxtTelefone;
+        EditText txtCep = binding.activityCadastroClienteTxtCep;
+
+        txtDataNascimento.setOnClickListener(v -> {
             // date picker dialog
             DatePickerFragment fragment = new DatePickerFragment();
             fragment.show(getSupportFragmentManager(), "Date dialog");
         });
 
 
-
-        binding.activityCadastroClienteAdicionaImagem.setOnClickListener(v -> {
+        addImagem.setOnClickListener(v -> {
             imageChooser();
         });
 
         binding.activityCadastroClienteBtnCadastrar.setOnClickListener(v -> {
-            if (!binding.activityCadastroClienteTxtNome.getText().toString().equals("")){
+            if (!txtNome.getText().toString().equals("")){
 
-                String nome = binding.activityCadastroClienteTxtNome.getText().toString();
+                String nome = txtNome.getText().toString();
 
                 String email = null,
                         estado = null,
@@ -72,44 +86,44 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                 Date dataNascimento = null;
 
                 Integer cep = 0, numero = 0;
-                if (!binding.activityCadastroClienteTxtEmail.getText().toString().equals("")){
-                    email = binding.activityCadastroClienteTxtEmail.getText().toString();
+                if (!txtEmail.getText().toString().equals("")){
+                    email = txtEmail.getText().toString();
                 }
 
-                if (!binding.activityCadastroClienteTxtEstado.getText().toString().equals("")){
-                    estado = binding.activityCadastroClienteTxtEstado.getText().toString();
+                if (!txtEstado.getText().toString().equals("")){
+                    estado = txtEstado.getText().toString();
                 }
 
-                if (!binding.activityCadastroClienteTxtCidade.getText().toString().equals("")){
-                    cidade = binding.activityCadastroClienteTxtCidade.getText().toString();
+                if (!txtCidade.getText().toString().equals("")){
+                    cidade = txtCidade.getText().toString();
                 }
 
-                if (!binding.activityCadastroClienteTxtRua.getText().toString().equals("")){
-                    rua = binding.activityCadastroClienteTxtRua.getText().toString();
+                if (!txtRua.getText().toString().equals("")){
+                    rua = txtRua.getText().toString();
                 }
 
-                if (!binding.activityCadastroClienteTxtCpf.getText().toString().equals("")){
-                    cpf = binding.activityCadastroClienteTxtCpf.getText().toString();
+                if (!txtCpf.getText().toString().equals("")){
+                    cpf = txtCpf.getText().toString();
                 }
 
-                if (!binding.activityCadastroClienteTxtDataNascimento.getText().toString().equals("")){
+                if (!txtDataNascimento.getText().toString().equals("")){
                     try {
-                        dataNascimento = dataFormatada.parse(binding.activityCadastroClienteTxtDataNascimento.getText().toString());
+                        dataNascimento = dataFormatada.parse(txtDataNascimento.getText().toString());
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                 }
 
-                if (!binding.activityCadastroClienteTxtTelefone.getText().toString().equals("")){
-                    telefone = binding.activityCadastroClienteTxtTelefone.getText().toString();
+                if (!txtTelefone.getText().toString().equals("")){
+                    telefone = txtTelefone.getText().toString();
                 }
 
-                if (!binding.activityCadastroClienteTxtCep.getText().toString().equals("")){
-                    cep = Integer.parseInt(binding.activityCadastroClienteTxtCep.getText().toString());
+                if (!txtCep.getText().toString().equals("")){
+                    cep = Integer.parseInt(txtCep.getText().toString());
                 }
 
-                if (!binding.activityCadastroClienteTxtTelefone.getText().toString().equals("")){
-                    numero = Integer.parseInt(binding.activityCadastroClienteTxtTelefone.getText().toString());
+                if (!txtTelefone.getText().toString().equals("")){
+                    numero = Integer.parseInt(txtTelefone.getText().toString());
                 }
 
                 if (selectedImageBitmap.getByteCount() != 0){
@@ -130,8 +144,8 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                 thread.start();
 
             } else {
-                binding.activityCadastroClienteTxtNome.requestFocus();
-                binding.activityCadastroClienteTxtNome.setError("Erro: Campo obrigatório");
+                txtNome.requestFocus();
+                txtNome.setError("Erro: Campo obrigatório");
             }
         });
 }
