@@ -9,15 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ajudantedecostura.databinding.RecyclerMedidasMateriaisItemBinding;
 
+import java.util.ArrayList;
+
+import modelDominio.Material;
+
 public class MateriaisPedidoAdapter extends RecyclerView.Adapter<MateriaisPedidoAdapter.ViewHolder> {
 
-    private String[] lista;
-    private OnItemClickListener itemClickListener;
-    private int tipo, tipoMaterial = 1, tipoMedida = 2; // 1 == material 2 == medida
+    private ArrayList<Material> lista;
+    private OnMateriaisItemClickListener itemClickListener;
 
     // cria o ItemClickListener
-    public interface OnItemClickListener {
-        public void onItemClick(View view, int position, int tipo);
+    public interface OnMateriaisItemClickListener {
+        public void onItemClick(View view, int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -30,9 +33,8 @@ public class MateriaisPedidoAdapter extends RecyclerView.Adapter<MateriaisPedido
     }
 
     // método construtor do adapter, recebendo a lista e o tipo, se é material ou uma medida
-    public MateriaisPedidoAdapter(String[] pegaLista, int pegaTipo, OnItemClickListener itemClickListener) {
+    public MateriaisPedidoAdapter(ArrayList<Material> pegaLista, OnMateriaisItemClickListener itemClickListener) {
         lista = pegaLista;
-        tipo = pegaTipo;
         this.itemClickListener = itemClickListener;
     }
 
@@ -45,20 +47,13 @@ public class MateriaisPedidoAdapter extends RecyclerView.Adapter<MateriaisPedido
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // faz o bind do nome dependendo do tipo, se é material ou medida
-        if (tipo == tipoMaterial) {
-            holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista[position]));
-        } else if (tipo == tipoMedida) {
-            holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista[position]));
-        }
+            holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista.get(position).getTipo()));
+            holder.binding.recyclerMedidasMateriaisItem2Txt.setText(String.valueOf("R$" + lista.get(position).getPreco()));
         // check se existe um clickListener ativo
         if (itemClickListener != null) {
             // caso exista, o click vai volta para a activity com os dados de onde foi
             holder.itemView.setOnClickListener(v -> {
-                if (tipo == tipoMaterial) {
-                    itemClickListener.onItemClick(holder.itemView, holder.getAdapterPosition(), tipoMaterial);
-                } else if (tipo == tipoMedida) {
-                    itemClickListener.onItemClick(holder.itemView, holder.getAdapterPosition(), tipoMedida);
-                }
+                    itemClickListener.onItemClick(holder.itemView, holder.getAdapterPosition());
             });
         }
     }
@@ -66,10 +61,6 @@ public class MateriaisPedidoAdapter extends RecyclerView.Adapter<MateriaisPedido
     // número de items dependendo de qual é a lista
     @Override
     public int getItemCount() {
-        if (tipo == 1) {
-            return lista.length;
-        } else {
-            return lista.length;
-        }
+            return lista.size();
     }
 }

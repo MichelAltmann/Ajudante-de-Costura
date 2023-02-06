@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                                 });
                             
                         });
-                        thread.start();
+//                        thread.start();
 
                         // checando se a checkBox de manter logado está preenchida
                         if (binding.activityLoginCheckboxManterlogado.isChecked()) {

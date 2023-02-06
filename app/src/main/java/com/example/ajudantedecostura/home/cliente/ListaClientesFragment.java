@@ -53,7 +53,7 @@ public class ListaClientesFragment extends Fragment {
             });
 
         });
-        thread.start();
+//        thread.start();
 
 
     }
