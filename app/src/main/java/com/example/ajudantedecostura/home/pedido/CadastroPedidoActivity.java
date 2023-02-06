@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -22,18 +23,17 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import modelDominio.Material;
+import modelDominio.Medida;
 import modelDominio.Medidas;
 
-public class CadastroPedidoActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, CriaMaterialDialogFragment.CriaMaterialDialogListener {
+public class CadastroPedidoActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, CriaMaterialDialogFragment.CriaMaterialDialogListener, CriaMedidaDialogFragment.CriaMedidaDialogListener {
 
 
     private ActivityCadastroPedidoBinding binding;
     private MateriaisPedidoAdapter adapterMaterial;
     private MedidasPedidoAdapter adapterMedida;
     private ArrayList<Material> listaMaterial = new ArrayList<>();
-    private ArrayList<Medidas> medidas = new ArrayList<>();
-    private int tipoMaterial = 1; // tipo material == 1
-    private int tipoMedida = 2; // tipo medida == 2
+    private ArrayList<Medida> medidas = new ArrayList<>();
     private int dataClicada = 0; // 1 == dataCriada 2 == dataEntrega
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -58,6 +58,17 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
             FragmentManager fm = getSupportFragmentManager();
             CriaMaterialDialogFragment criaMaterialDialogFragment = CriaMaterialDialogFragment.newInstance("Add Material", listaMaterial);
             criaMaterialDialogFragment.show(fm, "fragment_add_material");
+        });
+
+        binding.activityCadastroPedidoFabAddMedida.setOnClickListener(v -> {
+            if (medidas.size() >= 20){
+                Toast.makeText(this, "Número limite de medidas atingido.", Toast.LENGTH_SHORT).show();
+            } else {
+                FragmentManager fm = getSupportFragmentManager();
+                CriaMedidaDialogFragment criaMedidaDialogFragment = CriaMedidaDialogFragment.newInstance("Add Material", medidas);
+                criaMedidaDialogFragment.show(fm, "fragment_add_medida");
+            }
+            
         });
 
         adapterMedida = new MedidasPedidoAdapter(medidas, onMedidasItemClick);
@@ -106,13 +117,14 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
 
 
     @Override
-    public void onDialogCriar(ArrayList<Material> materiais) {
+    public void onDialogMaterialCriar(ArrayList<Material> materiais) {
         adapterMaterial = new MateriaisPedidoAdapter(materiais, onMateriaisItemClick);
         binding.activityCadastroPedidoRecyclerMateriais.setAdapter(adapterMaterial);
     }
 
-    @Override
-    public void onDialogCancelar(DialogFragment dialog) {
-
+    public void onDialogMedidaCriar(ArrayList<Medida> medidas){
+        Medidas medidas1 = TransformaEmMedidas.transformaEmMedidas(medidas);
+        adapterMedida = new MedidasPedidoAdapter(medidas, onMedidasItemClick);
+        binding.activityCadastroPedidoRecyclerMedidas.setAdapter(adapterMedida);
     }
 }

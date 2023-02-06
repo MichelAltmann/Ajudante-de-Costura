@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.ajudantedecostura.databinding.DialogCriaMaterialBinding;
-import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.util.ArrayList;
 
@@ -22,15 +20,13 @@ import modelDominio.Material;
 public class CriaMaterialDialogFragment extends DialogFragment {
 
     private DialogCriaMaterialBinding binding;
-    InformacoesApp informacoesApp;
     ArrayList<Material> listaMaterial;
     public CriaMaterialDialogFragment(ArrayList<Material> listaMaterial) {
         this.listaMaterial = listaMaterial;
     }
 
     public interface CriaMaterialDialogListener {
-        public void onDialogCriar(ArrayList<Material> materiais);
-        public void onDialogCancelar(DialogFragment dialog);
+        public void onDialogMaterialCriar(ArrayList<Material> materiais);
     }
 
     CriaMaterialDialogListener listener;
@@ -59,7 +55,6 @@ public class CriaMaterialDialogFragment extends DialogFragment {
         EditText etLargura = binding.dialogCriaMaterialLargura;
         EditText etPreco = binding.dialogCriaMaterialPreco;
 
-        informacoesApp = (InformacoesApp) getActivity().getApplicationContext();
         listener = (CriaMaterialDialogListener) getContext();
 
         binding.dialogCriaMaterialBtnCriar.setOnClickListener(v -> {
@@ -78,7 +73,7 @@ public class CriaMaterialDialogFragment extends DialogFragment {
                             Material material = new Material(nome, comprimento, largura, preco);
                             listaMaterial.add(material);
 
-                            listener.onDialogCriar(listaMaterial);
+                            listener.onDialogMaterialCriar(listaMaterial);
 
                             dismiss();
                         } else {

@@ -12,11 +12,12 @@ import com.example.ajudantedecostura.databinding.RecyclerMedidasMateriaisItemBin
 import java.util.ArrayList;
 
 import modelDominio.Material;
+import modelDominio.Medida;
 import modelDominio.Medidas;
 
 public class MedidasPedidoAdapter extends RecyclerView.Adapter<MedidasPedidoAdapter.ViewHolder> {
 
-    ArrayList<Medidas> lista;
+    ArrayList<Medida> lista;
 
     private OnMedidaItemClickListener itemClickListener;
 
@@ -34,7 +35,7 @@ public class MedidasPedidoAdapter extends RecyclerView.Adapter<MedidasPedidoAdap
         }
     }
 
-    public MedidasPedidoAdapter(ArrayList<Medidas> pegaLista, OnMedidaItemClickListener itemClickListener){
+    public MedidasPedidoAdapter(ArrayList<Medida> pegaLista, OnMedidaItemClickListener itemClickListener){
         lista = pegaLista;
         this.itemClickListener = itemClickListener;
     }
@@ -47,7 +48,8 @@ public class MedidasPedidoAdapter extends RecyclerView.Adapter<MedidasPedidoAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista.get(position)));
+        holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista.get(position).getNome()));
+        holder.binding.recyclerMedidasMateriaisItem2Txt.setText(String.valueOf(lista.get(position).getMedida() + " cm"));
 
         holder.itemView.setOnClickListener( v -> {
             itemClickListener.onMedidaItemClick(holder.itemView, holder.getAdapterPosition());

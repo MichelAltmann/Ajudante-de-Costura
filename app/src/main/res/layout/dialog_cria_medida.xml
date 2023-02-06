@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".home.pedido.CriaMedidaDialogFragment">
+
+<!--    <ExpandableListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/dialog_cria_medida_tipo"-->
+<!--        android:indicatorEnd="?android:attr/expandableListPreferredChildIndicatorRight"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:divider="@color/amarelo_light"-->
+<!--        android:dividerHeight="0.5dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/dialog_cria_medida"/>-->
+
+    <Spinner
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialog_cria_medida_spinner"
+        app:layout_constraintStart_toStartOf="@id/dialog_cria_medida"
+        app:layout_constraintEnd_toEndOf="@id/dialog_cria_medida"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/dialog_cria_medida"/>
+
+    <EditText
+        android:id="@+id/dialog_cria_medida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_cadastro_background"
+        android:hint="Medida: "
+        android:inputType="numberDecimal"
+        android:paddingLeft="12dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/dialog_cria_medida_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <Button
+        android:id="@+id/dialog_cria_medida_btn_criar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/verde"
+        android:padding="12dp"
+        android:text="Cadastrar"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_cria_medida"
+        app:layout_constraintStart_toEndOf="@id/dialog_cria_medida_btn_cancelar"
+        app:strokeWidth="1dp" />
+
+    <Button
+        android:id="@+id/dialog_cria_medida_btn_cancelar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#E89D9D"
+        android:padding="12dp"
+        android:text="Cancelar"
+        android:textColor="@color/black"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/dialog_cria_medida_btn_criar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
