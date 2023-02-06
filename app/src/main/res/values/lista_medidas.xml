@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="lista_medidas">
-        <item>Seleciona qual Medida</item>
+        <item>Selecione qual Medida</item>
         <item>Pescoço</item>
         <item>Ombro</item>
         <item>Busto</item>
