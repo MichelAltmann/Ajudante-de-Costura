@@ -86,4 +86,6 @@ public class Material implements Serializable {
         return "Material{" + "idMaterial=" + idMaterial + ", tipo=" + tipo + ", comprimento=" + comprimento + ", largura=" + largura + ", precoMetro=" + precoMetro + '}';
     }
 
+
+
 }

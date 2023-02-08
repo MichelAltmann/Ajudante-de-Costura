@@ -25,7 +25,9 @@ import android.widget.Toast;
 
 import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.ActivityCadastroBinding;
+
 import modelDominio.Costureira;
+
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.io.ByteArrayOutputStream;
@@ -43,7 +45,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class CadastroActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class CadastroActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private ActivityCadastroBinding binding;
 
@@ -67,10 +69,9 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
         });
 
         binding.activityCadastroAdicionaImagem.setOnClickListener(v -> {
-            if(checkAndRequestPermissions(this)){
-
+            if (checkAndRequestPermissions(this)) {
+                imageChooser();
             }
-            imageChooser();
         });
 
         informacoesApp = (InformacoesApp) getApplicationContext();
@@ -97,23 +98,23 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
         });
 
         binding.activityCadastroBtnCadastrar.setOnClickListener(v -> {
-            if (!txtNome.getText().toString().equals("")){
-                if (!txtSenha.getText().toString().equals("")) {
-                    if (!txtConfirmaSenha.getText().toString().equals("")){
-                        if (!txtTelefone.getText().toString().equals("")){
-                            if (!txtCpf.getText().toString().equals("")){
-                                if (!txtEmail.getText().toString().equals("")){
-                                    if (!txtDataNascimento.getText().toString().equals("")){
-                                        if (!txtCep.getText().toString().equals("")){
-                                            if (!txtEstado.getText().toString().equals("")){
-                                                if (!txtCidade.getText().toString().equals("")){
-                                                    if (!txtRua.getText().toString().equals("")){
-                                                        if (!txtNumero.getText().toString().equals("")) {
-                                                            if (addImagem.getDrawable() != null){
+            if (!binding.activityCadastroTxtNome.getText().toString().equals("")) {
+                if (!binding.activityCadastroTxtSenha.getText().toString().equals("")) {
+                    if (!binding.activityCadastroTxtConfirmarSenha.getText().toString().equals("")) {
+                        if (!binding.activityCadastroTxtTelefone.getText().toString().equals("")) {
+                            if (!binding.activityCadastroTxtCpf.getText().toString().equals("")) {
+                                if (!binding.activityCadastroTxtEmail.getText().toString().equals("")) {
+                                    if (!binding.activityCadastroTxtDataNascimento.getText().toString().equals("")) {
+                                        if (!binding.activityCadastroTxtCep.getText().toString().equals("")) {
+                                            if (!binding.activityCadastroTxtEstado.getText().toString().equals("")) {
+                                                if (!binding.activityCadastroTxtCidade.getText().toString().equals("")) {
+                                                    if (!binding.activityCadastroTxtRua.getText().toString().equals("")) {
+                                                        if (!binding.activityCadastroTxtNumero.getText().toString().equals("")) {
+                                                            if (binding.activityCadastroAdicionaImagem.getDrawable() != null) {
                                                                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                                                                 selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                                                                 byte[] imagem = stream.toByteArray();
-                                                                if (txtSenha.getText().toString().equals(txtConfirmaSenha.getText().toString())){
+                                                                if (binding.activityCadastroTxtSenha.getText().toString().equals(binding.activityCadastroTxtConfirmarSenha.getText().toString())) {
                                                                     String nome, senha, senhaHash = null, telefone, cpf, email, estado, cidade, rua;
                                                                     nome = txtNome.getText().toString();
                                                                     senha = txtSenha.getText().toString();
@@ -128,6 +129,7 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                                         MessageDigest md = MessageDigest.getInstance("MD5"); // MD5, SHA-1, SHA-256
                                                                         BigInteger senhaCadastrada = new BigInteger(1, md.digest(senha.getBytes()));
                                                                         senhaHash = String.valueOf(senhaCadastrada);
+                                                                        senha = null;
                                                                         //----------------------------------------
                                                                         data = dataFormatada.parse(txtDataNascimento.getText().toString());
                                                                         Log.i(TAG, "onCreate: " + data);
@@ -141,7 +143,7 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                                     rua = txtRua.getText().toString();
                                                                     Integer numero = Integer.parseInt(txtNumero.getText().toString());
 
-                                                                    Costureira costureira = new Costureira(senhaHash, imagem, cpf, nome, email, telefone, data, cep, estado, cidade, rua, numero, 0);
+                                                                    Costureira costureira = new Costureira(senhaHash, 1, cpf, nome, email, telefone, data, imagem, cep, estado, cidade, rua, numero);
 
                                                                     Thread thread = new Thread((Runnable) () -> {
 
@@ -221,10 +223,10 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
 
-                    if (data != null && data.getData() != null){
+                    if (data != null && data.getData() != null) {
                         Uri selectedImageUri = data.getData();
                         try {
-                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),selectedImageUri);
+                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                             binding.activityCadastroAdicionaImagem.setImageBitmap(selectedImageBitmap);
                         } catch (FileNotFoundException e) {
                             throw new RuntimeException(e);

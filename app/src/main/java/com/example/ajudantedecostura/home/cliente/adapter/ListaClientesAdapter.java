@@ -1,5 +1,7 @@
 package com.example.ajudantedecostura.home.cliente.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -16,8 +18,9 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
 
     private ArrayList<Cliente> lista;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-    private RecyclerClientesItemBinding binding;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private RecyclerClientesItemBinding binding;
+
         public ViewHolder(RecyclerClientesItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
@@ -38,6 +41,13 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.clientesItemNomeCliente.setText(lista.get(position).getNome());
         holder.binding.clientesItemNumeroCelular.setText(lista.get(position).getTelefone());
+
+        byte[] imagem = lista.get(position).getImagem();
+        if (imagem != null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imagem, 0, imagem.length);
+            holder.binding.clientesItemImage.setImageBitmap(bitmap);
+        }
+
     }
 
     @Override

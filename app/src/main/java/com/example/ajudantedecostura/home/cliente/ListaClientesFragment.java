@@ -23,9 +23,10 @@ import modelDominio.Cliente;
 public class ListaClientesFragment extends Fragment {
 
     FragmentListaClientesBinding binding;
-    ArrayList<Cliente> listaClientes;
+    ArrayList<Cliente> listaClientes = new ArrayList<>();
     ListaClientesAdapter adapter;
     InformacoesApp informacoesApp;
+    ConexaoSocketController conexaoSocket;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         binding = FragmentListaClientesBinding.inflate(inflater, container, false);
@@ -38,14 +39,22 @@ public class ListaClientesFragment extends Fragment {
 
         informacoesApp = (InformacoesApp) getActivity().getApplicationContext();
 
-        ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+        conexaoSocket = new ConexaoSocketController(informacoesApp);
 
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        carregaLista(conexaoSocket);
+    }
+
+    private void carregaLista(ConexaoSocketController conexaoSocket){
         Thread thread = new Thread((Runnable) () -> {
 
-            if (conexaoSocket.carregaListaCliente() != null){
-                listaClientes = conexaoSocket.carregaListaCliente();
-            }
-
+            listaClientes = conexaoSocket.carregaListaCliente();
             getActivity().runOnUiThread((Runnable) () -> {
                 adapter = new ListaClientesAdapter(listaClientes);
                 binding.fragmentListaClientesRecyclerview.setAdapter(adapter);
@@ -53,8 +62,6 @@ public class ListaClientesFragment extends Fragment {
             });
 
         });
-//        thread.start();
-
-
+        thread.start();
     }
 }

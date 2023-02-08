@@ -22,7 +22,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("192.168.0.13", 12345);
+            informacoesApp.socket = new Socket("192.168.4.103", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
@@ -87,10 +87,15 @@ public class ConexaoSocketController {
         try{
             informacoesApp.out.writeObject("ClienteCarregarListaCostureira");
             msgRecebida = (String) informacoesApp.in.readObject();
-            if (msgRecebida.equals("Ok")){
+            informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
+            listaCliente = (ArrayList<Cliente>) informacoesApp.in.readObject();
+            /*if (msgRecebida.equals("Ok")){
+                Log.i("costureira: ", "carregaListaCliente: " + informacoesApp.getCostureiraLogada().toString());
                 informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
                 listaCliente = (ArrayList<Cliente>) informacoesApp.in.readObject();
-            }
+            } else {
+                Log.i("costureira: ", "carregaListaCliente: ");
+            }*/
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

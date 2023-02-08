@@ -93,7 +93,7 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
         });
 
         binding.activityCadastroPedidoBtnCriar.setOnClickListener(v -> {
-
+            finish();
         });
     }
 

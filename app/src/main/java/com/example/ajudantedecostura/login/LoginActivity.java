@@ -68,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
                                 runOnUiThread((Runnable) () -> {
                                     if (costureiraLogada != null) {
                                         informacoesApp.setCostureiraLogada(costureiraLogada);
+                                        Log.i(TAG, "onCreate: " + costureiraLogada.getSenha());
+                                        Log.i("testeLogin", "" + informacoesApp.getCostureiraLogada().toString());
                                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                         intent.putExtra("nome", loginCadastrado);
                                         startActivity(intent);
@@ -79,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                 });
                             
                         });
-//                        thread.start();
+                        thread.start();
 
                         // checando se a checkBox de manter logado está preenchida
                         if (binding.activityLoginCheckboxManterlogado.isChecked()) {

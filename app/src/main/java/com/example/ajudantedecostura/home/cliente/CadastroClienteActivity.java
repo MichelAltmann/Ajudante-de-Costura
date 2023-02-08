@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -74,8 +75,8 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
         binding.activityCadastroClienteBtnCadastrar.setOnClickListener(v -> {
             if (!txtNome.getText().toString().equals("")){
 
-                String nome = txtNome.getText().toString();
-
+                String nome = binding.activityCadastroClienteTxtNome.getText().toString();
+                byte[] imagem = null;
                 String email = null,
                         estado = null,
                         cidade = null,
@@ -126,28 +127,36 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                     numero = Integer.parseInt(txtTelefone.getText().toString());
                 }
 
-                if (selectedImageBitmap.getByteCount() != 0){
+                if (binding.activityCadastroClienteAdicionaImagem.getDrawable() != null){
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    byte[] imagem = stream.toByteArray();
+                    imagem = stream.toByteArray();
+                } else {
+                    imagem = null;
                 }
 
-                Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(),cpf, nome, email, telefone, dataNascimento, cep, estado, cidade, rua, numero);
+                Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(), cpf, nome, email, telefone, dataNascimento, imagem, cep, estado, cidade, rua, numero);
 
                 Thread thread = new Thread((Runnable) () -> {
                     ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
                     String msg = conexaoSocket.cadastraCliente(cliente);
+                    Log.i("cliente: ", msg);
                     runOnUiThread((Runnable) () -> {
-                        Toast.makeText(informacoesApp, msg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(informacoesApp, "Cliente cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+                        finish();
                     });
                 });
                 thread.start();
-
             } else {
                 txtNome.requestFocus();
                 txtNome.setError("Erro: Campo obrigatório");
             }
         });
+
+        binding.activityCadastroClienteBtnCancelar.setOnClickListener(v -> {
+            finish();
+        });
+
 }
 
     ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
