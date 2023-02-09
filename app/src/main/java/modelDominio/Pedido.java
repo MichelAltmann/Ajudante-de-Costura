@@ -10,6 +10,7 @@ public class Pedido implements Serializable {
     private Cliente cliente;
     private int prioridade;
     private String Titulo;
+    private Float preco;
     private String descricao;
     private Date dataEntrega;
     private Date dataCriacao;
@@ -17,17 +18,39 @@ public class Pedido implements Serializable {
     private byte[] imagem;
     private Medidas medidas;
 
-    public Pedido(int idPedido, Cliente cliente, int prioridade, String Titulo, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
+    public Pedido(int idPedido, Cliente cliente, int prioridade, String titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.prioridade = prioridade;
-        this.Titulo = Titulo;
+        Titulo = titulo;
+        this.preco = preco;
         this.descricao = descricao;
         this.dataEntrega = dataEntrega;
         this.dataCriacao = dataCriacao;
         this.listaMateriais = listaMateriais;
         this.imagem = imagem;
         this.medidas = medidas;
+    }
+
+    public Pedido(Cliente cliente, int prioridade, String titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
+        this.cliente = cliente;
+        this.prioridade = prioridade;
+        Titulo = titulo;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.dataEntrega = dataEntrega;
+        this.dataCriacao = dataCriacao;
+        this.listaMateriais = listaMateriais;
+        this.imagem = imagem;
+        this.medidas = medidas;
+    }
+
+    public Float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Float preco) {
+        this.preco = preco;
     }
 
     public int getIdPedido() {

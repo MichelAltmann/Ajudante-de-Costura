@@ -2,11 +2,13 @@ package com.example.ajudantedecostura.socket;
 
 import android.app.Application;
 
+import modelDominio.Cliente;
 import modelDominio.Costureira;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class InformacoesApp extends Application {
     public Socket socket;
@@ -14,6 +16,7 @@ public class InformacoesApp extends Application {
     public ObjectInputStream in;
 
     private Costureira costureiraLogada;
+    private ArrayList<Cliente> clientes;
 
     @Override
     public void onCreate() {
@@ -27,5 +30,13 @@ public class InformacoesApp extends Application {
 
     public void setCostureiraLogada(Costureira costureiraLogada){
         this.costureiraLogada = costureiraLogada;
+    }
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
     }
 }

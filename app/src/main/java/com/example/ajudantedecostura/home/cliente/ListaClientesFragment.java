@@ -55,6 +55,7 @@ public class ListaClientesFragment extends Fragment {
         Thread thread = new Thread((Runnable) () -> {
 
             listaClientes = conexaoSocket.carregaListaCliente();
+            informacoesApp.setClientes(listaClientes);
             getActivity().runOnUiThread((Runnable) () -> {
                 adapter = new ListaClientesAdapter(listaClientes);
                 binding.fragmentListaClientesRecyclerview.setAdapter(adapter);
