@@ -25,7 +25,7 @@
                 android:id="@+id/activity_cadastro_cliente_adiciona_imagem"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/image_frame"
                 android:minWidth="128dp"

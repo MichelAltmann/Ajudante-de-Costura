@@ -24,6 +24,7 @@
                 android:layout_height="128dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/image_frame"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -78,81 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_descricao" />
 
-            <TextView
-                android:id="@+id/activity_cadastro_pedido_data_criacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Data de criação do pedido"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_descricao" />
 
-            <EditText
-                android:id="@+id/activity_cadastro_pedido_txt_data_criacao"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="78dp"
-                android:layout_marginEnd="78dp"
-                android:background="@drawable/text_cadastro_background"
-                android:inputType="date"
-                android:padding="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_data_criacao" />
-
-            <TextView
-                android:id="@+id/activity_cadastro_pedido_data_entrega"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Data de entrega do pedido"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_data_criacao" />
-
-            <EditText
-                android:id="@+id/activity_cadastro_pedido_txt_data_entrega"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="78dp"
-                android:layout_marginEnd="78dp"
-                android:background="@drawable/text_cadastro_background"
-                android:inputType="date"
-                android:padding="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_data_entrega" />
-
-            <TextView
-                android:id="@+id/activity_cadastro_pedido_preco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Preço"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_data_entrega" />
-
-            <EditText
-                android:id="@+id/activity_cadastro_pedido_txt_preco"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="78dp"
-                android:layout_marginEnd="78dp"
-                android:background="@drawable/text_cadastro_background"
-                android:inputType="numberDecimal"
-                android:padding="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_preco" />
 
             <TextView
                 android:id="@+id/activity_cadastro_pedido_nome_cliente"
@@ -164,7 +91,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_preco" />
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_descricao" />
 
             <EditText
                 android:id="@+id/activity_cadastro_pedido_txt_nome_cliente"
@@ -273,6 +200,135 @@
                 app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_linha_medidas"
                 tools:listitem="@layout/recycler_medidas_materiais_item" />
 
+            <TextView
+                android:id="@+id/activity_cadastro_pedido_prioridade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Prioridade"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_recycler_medidas" />
+
+            <RelativeLayout
+                android:id="@+id/activity_cadastro_pedido_linha_prioridade"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/linha_separacao"
+                app:layout_constraintEnd_toEndOf="@id/activity_cadastro_pedido_txt_nome_cliente"
+                app:layout_constraintStart_toStartOf="@id/activity_cadastro_pedido_txt_nome_cliente"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_prioridade" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/activity_cadastro_pedido_gp_prioridade"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_linha_prioridade"
+                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/activity_cadastro_pedido_rb_baixo"
+                    android:text="Baixa"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/activity_cadastro_pedido_rb_media"
+                    android:text="Média"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/activity_cadastro_pedido_rb_alta"
+                    android:text="Alta"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/activity_cadastro_pedido_data_criacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Data de criação do pedido"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_gp_prioridade" />
+
+            <EditText
+                android:id="@+id/activity_cadastro_pedido_txt_data_criacao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
+                android:background="@drawable/text_cadastro_background"
+                android:inputType="date"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_data_criacao" />
+
+            <TextView
+                android:id="@+id/activity_cadastro_pedido_data_entrega"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Data de entrega do pedido"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_data_criacao" />
+
+            <EditText
+                android:id="@+id/activity_cadastro_pedido_txt_data_entrega"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
+                android:background="@drawable/text_cadastro_background"
+                android:inputType="date"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_data_entrega" />
+
+            <TextView
+                android:id="@+id/activity_cadastro_pedido_preco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Preço"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_txt_data_entrega" />
+
+            <EditText
+                android:id="@+id/activity_cadastro_pedido_txt_preco"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="78dp"
+                android:layout_marginEnd="78dp"
+                android:background="@drawable/text_cadastro_background"
+                android:inputType="numberDecimal"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_preco" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,13 +1,24 @@
 package com.example.ajudantedecostura.home.pedido;
 
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static com.example.ajudantedecostura.login.CadastroActivity.REQUEST_ID_MULTIPLE_PERMISSIONS;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputType;
-import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -15,16 +26,25 @@ import com.example.ajudantedecostura.databinding.ActivityCadastroPedidoBinding;
 import com.example.ajudantedecostura.home.pedido.adapter.MateriaisPedidoAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MedidasPedidoAdapter;
 import com.example.ajudantedecostura.login.DatePickerFragment;
+import com.example.ajudantedecostura.socket.InformacoesApp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
+import modelDominio.Cliente;
 import modelDominio.Material;
 import modelDominio.Medida;
 import modelDominio.Medidas;
+import modelDominio.Pedido;
 
 public class CadastroPedidoActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, CriaMaterialDialogFragment.CriaMaterialDialogListener, CriaMedidaDialogFragment.CriaMedidaDialogListener {
 
@@ -36,6 +56,10 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
     private ArrayList<Medida> medidas = new ArrayList<>();
     private int dataClicada = 0; // 1 == dataCriada 2 == dataEntrega
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+    public static final String CAMERA = "android.permission.CAMERA";
+    Bitmap selectedImageBitmap;
+    InformacoesApp informacoesApp;
+
 
     MateriaisPedidoAdapter.OnMateriaisItemClickListener onMateriaisItemClick = (view, position) -> {
             Toast.makeText(CadastroPedidoActivity.this, "sheesh", Toast.LENGTH_SHORT).show();
@@ -50,6 +74,10 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
         super.onCreate(savedInstanceState);
         binding = ActivityCadastroPedidoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        informacoesApp = (InformacoesApp) getApplicationContext();
+
+        binding.activityCadastroPedidoTxtDataCriacao.setText(dataFormatada.format(Calendar.getInstance().getTime()));
 
         adapterMaterial = new MateriaisPedidoAdapter(listaMaterial, onMateriaisItemClick);
         binding.activityCadastroPedidoRecyclerMateriais.setAdapter(adapterMaterial);
@@ -74,6 +102,10 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
         adapterMedida = new MedidasPedidoAdapter(medidas, onMedidasItemClick);
         binding.activityCadastroPedidoRecyclerMedidas.setAdapter(adapterMedida);
 
+        binding.activityCadastroPedidoImagem.setOnClickListener(v -> {
+            imageChooser();
+        });
+
         binding.activityCadastroPedidoTxtDataCriacao.setInputType(InputType.TYPE_NULL);
         binding.activityCadastroPedidoTxtDataCriacao.setOnClickListener(v -> {
             dataClicada = 1;
@@ -89,10 +121,29 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
         });
 
         binding.activityCadastroPedidoBtnCancelar.setOnClickListener(v -> {
+            Date dataCriacao = null;
+            Date dataEntrega = null;
+            String titulo = binding.activityCadastroPedidoTxtTitulo.getText().toString();
+            String descricao = binding.activityCadastroPedidoTxtDescricao.getText().toString();
+            String nomeCliente = binding.activityCadastroPedidoTxtNomeCliente.getText().toString();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            byte[] imagem = stream.toByteArray();
+            try {
+                dataCriacao = dataFormatada.parse(binding.activityCadastroPedidoDataCriacao.getText().toString());
+                dataEntrega = dataFormatada.parse(binding.activityCadastroPedidoDataEntrega.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            String preco = binding.activityCadastroPedidoTxtPreco.getText().toString();
+
+            Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(), null, nomeCliente, "", "", dataEntrega, imagem, 0, "", "", "", 0);
+
             finish();
         });
 
         binding.activityCadastroPedidoBtnCriar.setOnClickListener(v -> {
+
             finish();
         });
     }
@@ -116,6 +167,57 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
     }
 
 
+    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+
+                    if (data != null && data.getData() != null) {
+                        Uri selectedImageUri = data.getData();
+                        try {
+                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                            binding.activityCadastroPedidoImagem.setImageBitmap(selectedImageBitmap);
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+    );
+
+    void imageChooser() {
+        Intent i = new Intent();
+        i.setType("image/");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        launchSomeActivity.launch(i);
+    }
+
+    public static boolean checkAndRequestPermissions(final Activity context) {
+        int WExtstorePermission = ContextCompat.checkSelfPermission(context,
+                WRITE_EXTERNAL_STORAGE);
+        int cameraPermission = ContextCompat.checkSelfPermission(context,
+                CAMERA);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(CAMERA);
+        }
+        if (WExtstorePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded
+                    .add(WRITE_EXTERNAL_STORAGE);
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(context, listPermissionsNeeded
+                            .toArray(new String[listPermissionsNeeded.size()]),
+                    REQUEST_ID_MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
+    }
+
+
     @Override
     public void onDialogMaterialCriar(ArrayList<Material> materiais) {
         adapterMaterial = new MateriaisPedidoAdapter(materiais, onMateriaisItemClick);
@@ -124,6 +226,7 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
 
     public void onDialogMedidaCriar(ArrayList<Medida> medidas){
         Medidas medidas1 = TransformaEmMedidas.transformaEmMedidas(medidas);
+        Toast.makeText(this, medidas1.toString(), Toast.LENGTH_SHORT).show();
         adapterMedida = new MedidasPedidoAdapter(medidas, onMedidasItemClick);
         binding.activityCadastroPedidoRecyclerMedidas.setAdapter(adapterMedida);
     }
