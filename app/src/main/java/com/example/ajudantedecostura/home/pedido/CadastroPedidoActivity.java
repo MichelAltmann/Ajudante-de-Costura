@@ -21,12 +21,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.databinding.ActivityCadastroPedidoBinding;
+import com.example.ajudantedecostura.home.pedido.adapter.CustomSpinnerAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MateriaisPedidoAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MedidasPedidoAdapter;
 import com.example.ajudantedecostura.login.DatePickerFragment;
@@ -98,7 +101,27 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
         }
         nomesClientes.add("Adicionar apenas nome");
 
-        binding.activityCadastroPedidoSpinnerNomeCliente.setAdapter(new ArrayAdapter<String>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, nomesClientes));
+        CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, android.R.layout.simple_spinner_dropdown_item, nomesClientes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        binding.activityCadastroPedidoSpinnerNomeCliente.setAdapter(adapter);
+
+        binding.activityCadastroPedidoSpinnerNomeCliente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i + 1 != nomesClientes.size()){
+                    binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.GONE);
+                } else {
+                    binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         binding.activityCadastroPedidoFabAddMaterial.setOnClickListener(v -> {
             FragmentManager fm = getSupportFragmentManager();
