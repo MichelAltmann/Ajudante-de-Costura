@@ -1,9 +1,12 @@
 package com.example.ajudantedecostura.controller;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import modelDominio.Cliente;
 import modelDominio.Costureira;
+import modelDominio.Pedido;
+
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.io.IOException;
@@ -104,5 +107,19 @@ public class ConexaoSocketController {
     }
 
 
+    public String cadastraPedido(Pedido pedido){
+        String msgRecebida = null;
+        try {
+            informacoesApp.out.writeObject("PedidoCadastrar");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("Ok")){
+                informacoesApp.out.writeObject(pedido);
+                msgRecebida = (String) informacoesApp.in.readObject();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return msgRecebida;
+    }
 
 }

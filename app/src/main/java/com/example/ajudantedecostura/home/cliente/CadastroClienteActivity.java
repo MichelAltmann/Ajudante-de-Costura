@@ -60,6 +60,7 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
         EditText txtCpf = binding.activityCadastroClienteTxtCpf;
         EditText txtTelefone = binding.activityCadastroClienteTxtTelefone;
         EditText txtCep = binding.activityCadastroClienteTxtCep;
+        EditText txtNumero = binding.activityCadastroClienteTxtNumero;
 
         txtDataNascimento.setOnClickListener(v -> {
             // date picker dialog
@@ -123,8 +124,8 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                     cep = Integer.parseInt(txtCep.getText().toString());
                 }
 
-                if (!txtTelefone.getText().toString().equals("")){
-                    numero = Integer.parseInt(txtTelefone.getText().toString());
+                if (!txtNumero.getText().toString().equals("")){
+                    numero = Integer.parseInt(txtNumero.getText().toString());
                 }
 
                 if (binding.activityCadastroClienteAdicionaImagem.getDrawable() != null){

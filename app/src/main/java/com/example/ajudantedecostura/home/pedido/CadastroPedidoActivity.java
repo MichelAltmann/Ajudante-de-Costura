@@ -25,9 +25,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ajudantedecostura.R;
+import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.ActivityCadastroPedidoBinding;
 import com.example.ajudantedecostura.home.pedido.adapter.CustomSpinnerAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MateriaisPedidoAdapter;
@@ -70,6 +73,7 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
     InformacoesApp informacoesApp;
     ArrayList<Cliente> clientes;
     ArrayList<String> nomesClientes = new ArrayList<>();
+    Cliente cliente = null;
 
 
     MateriaisPedidoAdapter.OnMateriaisItemClickListener onMateriaisItemClick = (view, position) -> {
@@ -111,6 +115,10 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i + 1 != nomesClientes.size()){
                     binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.GONE);
+                    if (i > 0){
+                        cliente = clientes.get(i - 1);
+                        Toast.makeText(informacoesApp, cliente.getIdPessoa() + "", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.VISIBLE);
                 }
@@ -182,31 +190,45 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
                 imagem = stream.toByteArray();
             }
 
-            Integer medidaSelecionada = binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition();
-
-            try {
-                dataCriacao = dataFormatada.parse(binding.activityCadastroPedidoDataCriacao.getText().toString());
-                dataEntrega = dataFormatada.parse(binding.activityCadastroPedidoDataEntrega.getText().toString());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
 
             if (binding.activityCadastroPedidoRbAlta.isChecked()) {
-                prioridade = 3;
-            } else if (binding.activityCadastroPedidoRbMedia.isChecked()) {
                 prioridade = 2;
-            } else {
+            } else if (binding.activityCadastroPedidoRbMedia.isChecked()) {
                 prioridade = 1;
+            } else {
+                prioridade = 0;
             }
 
             if (!binding.activityCadastroPedidoTxtPreco.getText().toString().equals("")) {
                 preco = Float.parseFloat(binding.activityCadastroPedidoTxtPreco.getText().toString());
             }
 
-            if (!titulo.equals("")){
-                Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(), null, nomeCliente, "", "", dataEntrega, imagem, 0, "", "", "", 0);
+            try {
+                dataCriacao = dataFormatada.parse(binding.activityCadastroPedidoTxtDataCriacao.getText().toString());
+                dataEntrega = dataFormatada.parse(binding.activityCadastroPedidoTxtDataEntrega.getText().toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
+            if (!titulo.equals("")){
+                if (cliente == null){
+                    cliente = new Cliente(informacoesApp.getCostureiraLogada(), null, nomeCliente, null, null, dataEntrega, imagem, 0, null, null, null, 0);
+                }
+
+                Toast.makeText(informacoesApp, cliente.getNome(), Toast.LENGTH_SHORT).show();
                 Pedido pedido = new Pedido(cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
+
+                Log.i("asd", pedido.toString());
+
+                Thread thread = new Thread((Runnable) () -> {
+                    ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+                    String msg = conexaoSocket.cadastraPedido(pedido);
+                    runOnUiThread((Runnable) () -> {
+                        Log.i("asd", "onCreate: " + msg);
+                        Toast.makeText(informacoesApp, msg, Toast.LENGTH_SHORT).show();
+                    });
+                });
+                thread.start();
 
                 Toast.makeText(informacoesApp, "Pedido criado com sucesso!", Toast.LENGTH_SHORT).show();
 

@@ -18,11 +18,11 @@ public class Pedido implements Serializable {
     private byte[] imagem;
     private Medidas medidas;
 
-    public Pedido(int idPedido, Cliente cliente, int prioridade, String titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
+    public Pedido(int idPedido, Cliente cliente, int prioridade, String Titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.prioridade = prioridade;
-        Titulo = titulo;
+        this.Titulo = Titulo;
         this.preco = preco;
         this.descricao = descricao;
         this.dataEntrega = dataEntrega;
@@ -32,10 +32,10 @@ public class Pedido implements Serializable {
         this.medidas = medidas;
     }
 
-    public Pedido(Cliente cliente, int prioridade, String titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
+    public Pedido(Cliente cliente, int prioridade, String Titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
         this.cliente = cliente;
         this.prioridade = prioridade;
-        Titulo = titulo;
+        this.Titulo = Titulo;
         this.preco = preco;
         this.descricao = descricao;
         this.dataEntrega = dataEntrega;
@@ -44,6 +44,8 @@ public class Pedido implements Serializable {
         this.imagem = imagem;
         this.medidas = medidas;
     }
+
+
 
     public Float getPreco() {
         return preco;
@@ -52,6 +54,8 @@ public class Pedido implements Serializable {
     public void setPreco(Float preco) {
         this.preco = preco;
     }
+
+
 
     public int getIdPedido() {
         return idPedido;
@@ -148,3 +152,4 @@ public class Pedido implements Serializable {
 
 
 }
+
