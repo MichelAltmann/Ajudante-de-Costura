@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.ajudantedecostura.databinding.DialogCriaMaterialBinding;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import modelDominio.Material;
 
@@ -72,7 +73,9 @@ public class CriaMaterialDialogFragment extends DialogFragment {
                                     largura = Float.parseFloat(etLargura.getText().toString()),
                                     preco = Float.parseFloat(etPreco.getText().toString());
 
-                            Material material = new Material(nome, comprimento, largura, preco);
+                            String idMaterial = UUID.randomUUID().toString();
+
+                            Material material = new Material(idMaterial, nome, comprimento, largura, preco);
                             listaMaterial.add(material);
 
                             listener.onDialogMaterialCriar(listaMaterial);

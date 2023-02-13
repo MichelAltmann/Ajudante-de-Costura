@@ -49,6 +49,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.UUID;
 
 import modelDominio.Cliente;
 import modelDominio.Material;
@@ -216,7 +217,10 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
                 }
 
                 Toast.makeText(informacoesApp, cliente.getNome(), Toast.LENGTH_SHORT).show();
-                Pedido pedido = new Pedido(cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
+
+                String idPedido = UUID.randomUUID().toString();
+
+                Pedido pedido = new Pedido(idPedido,cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
 
                 Log.i("asd", pedido.toString());
 
@@ -230,7 +234,7 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
                 });
                 thread.start();
 
-                Toast.makeText(informacoesApp, "Pedido criado com sucesso!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(informacoesApp, "Pedido criado com sucesso!" + pedido.getListaMateriais().get(0), Toast.LENGTH_SHORT).show();
 
                 finish();
             } else {

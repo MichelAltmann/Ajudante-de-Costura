@@ -3,10 +3,11 @@ package modelDominio;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class Pedido implements Serializable {
 
-    private int idPedido;
+    private String idPedido;
     private Cliente cliente;
     private int prioridade;
     private String Titulo;
@@ -18,7 +19,7 @@ public class Pedido implements Serializable {
     private byte[] imagem;
     private Medidas medidas;
 
-    public Pedido(int idPedido, Cliente cliente, int prioridade, String Titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
+    public Pedido(String idPedido, Cliente cliente, int prioridade, String Titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.prioridade = prioridade;
@@ -32,8 +33,9 @@ public class Pedido implements Serializable {
         this.medidas = medidas;
     }
 
-    public Pedido(Cliente cliente, int prioridade, String Titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
+    public Pedido(Cliente cliente, String uuidPedido, int prioridade, String Titulo, Float preco, String descricao, Date dataEntrega, Date dataCriacao, ArrayList<Material> listaMateriais, byte[] imagem, Medidas medidas) {
         this.cliente = cliente;
+        this.idPedido = idPedido;
         this.prioridade = prioridade;
         this.Titulo = Titulo;
         this.preco = preco;
@@ -44,6 +46,16 @@ public class Pedido implements Serializable {
         this.imagem = imagem;
         this.medidas = medidas;
     }
+
+    public String getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(String idPedido) {
+        this.idPedido = idPedido;
+    }
+
+
 
 
 
@@ -53,16 +65,6 @@ public class Pedido implements Serializable {
 
     public void setPreco(Float preco) {
         this.preco = preco;
-    }
-
-
-
-    public int getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
     }
 
     public Cliente getCliente() {
@@ -152,4 +154,3 @@ public class Pedido implements Serializable {
 
 
 }
-

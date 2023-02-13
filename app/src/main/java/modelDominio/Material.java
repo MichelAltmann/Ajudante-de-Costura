@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public class Material implements Serializable {
 
-    private int idMaterial;
+    private String idMaterial;
     private String tipo;
     private float comprimento;
     private float largura;
     private float precoMetro;
 
-    public Material(int idMaterial, String tipo, float comprimento, float largura, float precoMetro) {
+    public Material(String idMaterial, String tipo, float comprimento, float largura, float precoMetro) {
         this.idMaterial = idMaterial;
         this.tipo = tipo;
         this.comprimento = comprimento;
@@ -25,15 +25,11 @@ public class Material implements Serializable {
         this.precoMetro = precoMetro;
     }
 
-    public Material(int idMaterial) {
-        this.idMaterial = idMaterial;
-    }
-
-    public int getIdMaterial() {
+    public String getIdMaterial() {
         return idMaterial;
     }
 
-    public void setIdMaterial(int idMaterial) {
+    public void setIdMaterial(String idMaterial) {
         this.idMaterial = idMaterial;
     }
 
