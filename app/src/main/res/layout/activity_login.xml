@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity">
 
-    <RelativeLayout
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/agulhaSvg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/agulha_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/splash_screen_loading"
         android:layout_margin="72dp"
         app:layout_constraintEnd_toStartOf="@id/ajudanteCosturaSvg"
         app:layout_constraintStart_toStartOf="parent"
