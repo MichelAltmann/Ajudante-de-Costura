@@ -3,12 +3,14 @@ package com.example.ajudantedecostura.home.cliente.adapter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ajudantedecostura.databinding.RecyclerClientesItemBinding;
+import com.example.ajudantedecostura.home.pedido.adapter.ListaPedidosAdapter;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ import modelDominio.Cliente;
 public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdapter.ViewHolder> {
 
     private ArrayList<Cliente> lista;
+    private ClientesOnClickListener itemClickListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private RecyclerClientesItemBinding binding;
@@ -27,8 +30,14 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         }
     }
 
-    public ListaClientesAdapter(ArrayList<Cliente> pegaLista) {
+    public interface ClientesOnClickListener{
+        public void onClickCliente(View view, int position);
+    }
+
+
+    public ListaClientesAdapter(ArrayList<Cliente> pegaLista, ClientesOnClickListener itemClickListener) {
         this.lista = pegaLista;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -47,6 +56,13 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
             Bitmap bitmap = BitmapFactory.decodeByteArray(imagem, 0, imagem.length);
             holder.binding.clientesItemImage.setImageBitmap(bitmap);
         }
+
+        if (itemClickListener != null) {
+            holder.itemView.setOnClickListener(v -> {
+                itemClickListener.onClickCliente(holder.itemView, holder.getAdapterPosition());
+            });
+        }
+
 
     }
 

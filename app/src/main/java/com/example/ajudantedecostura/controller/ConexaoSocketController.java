@@ -12,6 +12,7 @@ import com.example.ajudantedecostura.socket.InformacoesApp;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("192.168.43.108", 12345);
+            informacoesApp.socket = new Socket("192.168.0.78", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
@@ -113,6 +114,7 @@ public class ConexaoSocketController {
             informacoesApp.out.writeObject("PedidoCadastrar");
             msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("Ok")){
+                Log.i("asd", "cadastraPedido: tristeza");
                 informacoesApp.out.writeObject(pedido);
                 msgRecebida = (String) informacoesApp.in.readObject();
             }
@@ -120,6 +122,19 @@ public class ConexaoSocketController {
             e.printStackTrace();
         }
         return msgRecebida;
+    }
+
+    public ArrayList<Pedido> carregaListaPedidos(){
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        try {
+            informacoesApp.out.writeObject("PedidoCarregarListaCostureira");
+            String msgRecebida = (String) informacoesApp.in.readObject();
+            informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
+            listaPedidos = (ArrayList<Pedido>) informacoesApp.in.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return listaPedidos;
     }
 
 }

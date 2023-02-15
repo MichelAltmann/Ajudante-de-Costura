@@ -230,13 +230,13 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
                     runOnUiThread((Runnable) () -> {
                         Log.i("asd", "onCreate: " + msg);
                         Toast.makeText(informacoesApp, msg, Toast.LENGTH_SHORT).show();
+                        finish();
                     });
                 });
                 thread.start();
 
                 Toast.makeText(informacoesApp, "Pedido criado com sucesso!" + pedido.getListaMateriais().get(0), Toast.LENGTH_SHORT).show();
 
-                finish();
             } else {
                 binding.activityCadastroPedidoTxtTitulo.requestFocus();
                 binding.activityCadastroPedidoTxtTitulo.setError("Erro: Insira um título.");
