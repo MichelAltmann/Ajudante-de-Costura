@@ -48,12 +48,13 @@ public class ListaPedidosFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         informacoesApp = (InformacoesApp) getActivity().getApplicationContext();
         conexaoSocket = new ConexaoSocketController(informacoesApp);
-        carregaLista(conexaoSocket);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        carregaLista(conexaoSocket);
+
     }
 
     private void carregaLista(ConexaoSocketController conexaoSocket){

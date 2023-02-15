@@ -110,3 +110,7 @@ local.properties
 .gradle/7.4/checksums/checksums.lock
 *.lock
 *.bin
+.gradle/7.4/executionHistory/executionHistory.bin
+*.lock
+*.bin
+*.probe
