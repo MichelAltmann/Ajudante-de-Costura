@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +32,7 @@ public class ListaClientesFragment extends Fragment {
     InformacoesApp informacoesApp;
     ConexaoSocketController conexaoSocket;
     ListaClientesAdapter.ClientesOnClickListener onClickListener;
-
+    ListaClientesViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -42,38 +44,41 @@ public class ListaClientesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        viewModel = new ViewModelProvider(this).get(ListaClientesViewModel.class);
+
         informacoesApp = (InformacoesApp) getActivity().getApplicationContext();
 
         conexaoSocket = new ConexaoSocketController(informacoesApp);
 
         onClickListener = (iview, position) -> {
             Intent intent = new Intent(getContext(), DetalhesClienteActivity.class);
-            Cliente cliente = listaClientes.get(position);
-            SalvaImagem.imagem = cliente.getImagem();
-            cliente.setImagem(null);
-            intent.putExtra("cliente", cliente);
+            intent.putExtra("posicao", position);
             startActivity(intent);
         };
+
+        atualizaLista();
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        carregaLista(conexaoSocket);
+
     }
 
-    private void carregaLista(ConexaoSocketController conexaoSocket){
-        Thread thread = new Thread((Runnable) () -> {
-            listaClientes = conexaoSocket.carregaListaCliente();
-            informacoesApp.setClientes(listaClientes);
-            getActivity().runOnUiThread((Runnable) () -> {
+    private void atualizaLista(){
+        final Observer<ArrayList<Cliente>> clientesObserver = new Observer<ArrayList<Cliente>>() {
+            @Override
+            public void onChanged(ArrayList<Cliente> clientes) {
                 adapter = new ListaClientesAdapter(listaClientes, onClickListener);
                 binding.fragmentListaClientesRecyclerview.setAdapter(adapter);
-                Toast.makeText(informacoesApp, ""+listaClientes.size(), Toast.LENGTH_SHORT).show();
-            });
+            }
 
+        };
+        Thread thread = new Thread((Runnable) () -> {
+            viewModel.pegaListaClientes(conexaoSocket).observe(getActivity(), clientesObserver);
         });
         thread.start();
     }
+
 }

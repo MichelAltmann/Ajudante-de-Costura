@@ -114,3 +114,6 @@ local.properties
 *.lock
 *.bin
 *.probe
+*.bin
+*.lock
+.gradle/file-system.probe

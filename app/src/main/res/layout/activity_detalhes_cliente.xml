@@ -521,6 +521,87 @@
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_numero"
                 app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_numero"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_numero" />
+
+            <TextView
+                android:id="@+id/activity_detalhes_cliente_pedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@color/rosa_dark"
+                android:text="Pedidos do Cliente"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_linha_rua" />
+
+            <ImageButton
+                android:id="@+id/activity_detalhes_cliente_fab_add_pedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_add"
+                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_cliente_pedido"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_pedido"
+                app:layout_constraintTop_toTopOf="@id/activity_detalhes_cliente_pedido" />
+
+            <RelativeLayout
+                android:id="@+id/activity_detalhes_cliente_linha_pedidos"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:foregroundTint="@color/azul"
+                android:backgroundTint="@color/azul_dark"
+                android:background="@drawable/linha_separacao"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_recycler_pedido"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_recycler_pedido"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_pedido" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/activity_detalhes_cliente_recycler_pedido"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="36dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_pedidos"
+                tools:listitem="@layout/recycler_medidas_materiais_item" />
+
+            <RelativeLayout
+                android:id="@+id/activity_detalhes_cliente_linha_deletar"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:foregroundTint="@color/azul"
+                android:backgroundTint="@color/azul_dark"
+                android:background="@drawable/linha_separacao"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_recycler_pedido"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_recycler_pedido"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_recycler_pedido" />
+
+            <Button
+                android:id="@+id/activity_detalhes_cliente_btn_deletar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#E89D9D"
+                android:padding="12dp"
+                android:text="Remover Cliente"
+                android:textColor="@color/black"
+                app:cornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_linha_deletar"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_linha_deletar"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_deletar"
+                app:strokeWidth="1dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

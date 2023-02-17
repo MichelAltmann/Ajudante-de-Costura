@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import modelDominio.Cliente;
 import modelDominio.Costureira;
+import modelDominio.Material;
 import modelDominio.Pedido;
 
 import com.example.ajudantedecostura.socket.InformacoesApp;
@@ -26,7 +27,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("192.168.0.78", 12345);
+            informacoesApp.socket = new Socket("192.168.43.108", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
@@ -137,4 +138,64 @@ public class ConexaoSocketController {
         return listaPedidos;
     }
 
+    public ArrayList<Pedido> carregaListaPedidoCliente(Cliente cliente){
+        ArrayList<Pedido> listaPedidos = new ArrayList<>();
+        String msgRecebida;
+        try {
+            informacoesApp.out.writeObject("PedidoCarregarListaCliente");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            Log.i("ConexaoSocket", "carregaListaPedidoCliente: " + msgRecebida);
+            informacoesApp.out.writeObject(cliente);
+            listaPedidos = (ArrayList<Pedido>) informacoesApp.in.readObject();
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return listaPedidos;
+    }
+
+    public String deletaCliente(ArrayList<Cliente> clientes){
+        String msgRecebida = null;
+        try {
+            informacoesApp.out.writeObject("ClienteDeletar");
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("Ok")){
+                informacoesApp.out.writeObject(clientes);
+                msgRecebida = (String) informacoesApp.in.readObject();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return msgRecebida;
+    }
+
+    public void deletaPedidos(ArrayList<Pedido> pedidos) {
+        try {
+            informacoesApp.out.writeObject("PedidoDeletar");
+            informacoesApp.out.writeObject(pedidos);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Material> carregaMateriaisPedido(String idPedido){
+        ArrayList<Material> materiais = new ArrayList<>();
+        try {
+            informacoesApp.out.writeObject("MaterialCarregarListaPedido");
+            informacoesApp.out.writeObject(idPedido);
+            materiais = (ArrayList<Material>) informacoesApp.in.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return materiais;
+    }
+
+    public void deletaMateriais(ArrayList<Material> materiais){
+
+    }
 }

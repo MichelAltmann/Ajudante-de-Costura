@@ -1,5 +1,7 @@
 package com.example.ajudantedecostura;
 
+import modelDominio.Cliente;
+
 public class SalvaImagem {
-    public static byte[] imagem = null;
+    public static Cliente cliente = null;
 }
