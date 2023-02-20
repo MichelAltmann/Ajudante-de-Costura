@@ -27,7 +27,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("192.168.43.108", 12345);
+            informacoesApp.socket = new Socket("10.0.2.2", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
@@ -92,15 +92,13 @@ public class ConexaoSocketController {
         try{
             informacoesApp.out.writeObject("ClienteCarregarListaCostureira");
             msgRecebida = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
-            listaCliente = (ArrayList<Cliente>) informacoesApp.in.readObject();
-            /*if (msgRecebida.equals("Ok")){
+            if (msgRecebida.equals("Ok")){
                 Log.i("costureira: ", "carregaListaCliente: " + informacoesApp.getCostureiraLogada().toString());
                 informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
                 listaCliente = (ArrayList<Cliente>) informacoesApp.in.readObject();
             } else {
                 Log.i("costureira: ", "carregaListaCliente: ");
-            }*/
+            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -154,13 +152,13 @@ public class ConexaoSocketController {
         return listaPedidos;
     }
 
-    public String deletaCliente(ArrayList<Cliente> clientes){
+    public String deletaCliente(String idPessoa){
         String msgRecebida = null;
         try {
             informacoesApp.out.writeObject("ClienteDeletar");
             msgRecebida = (String) informacoesApp.in.readObject();
             if (msgRecebida.equals("Ok")){
-                informacoesApp.out.writeObject(clientes);
+                informacoesApp.out.writeObject(idPessoa);
                 msgRecebida = (String) informacoesApp.in.readObject();
             }
         } catch (IOException e) {
@@ -169,6 +167,19 @@ public class ConexaoSocketController {
             e.printStackTrace();
         }
         return msgRecebida;
+    }
+
+    public Cliente selecionaCliente(String id){
+        Cliente cliente;
+        try {
+            informacoesApp.out.writeObject("ClienteSelecionar");
+            informacoesApp.out.writeObject(id);
+            cliente = (Cliente) informacoesApp.in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return cliente;
     }
 
     public void deletaPedidos(ArrayList<Pedido> pedidos) {

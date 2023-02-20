@@ -14,7 +14,7 @@ public class Costureira extends Pessoa implements Serializable {
         this.autorizacao = autorizacao;
     }
 
-    public Costureira(String senha, int autorizacao, int idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
+    public Costureira(String senha, int autorizacao, String idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
         super(idPessoa, cpf, nome, email, telefone, dataNascimento, imagem, cep, estado, cidade, rua, numero);
         this.senha = senha;
         this.autorizacao = autorizacao;
@@ -27,7 +27,7 @@ public class Costureira extends Pessoa implements Serializable {
 
 
 
-    public Costureira(int idPessoa) {
+    public Costureira(String idPessoa) {
         super(idPessoa);
     }
 

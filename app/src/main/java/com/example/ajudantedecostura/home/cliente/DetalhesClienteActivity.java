@@ -1,18 +1,16 @@
 package com.example.ajudantedecostura.home.cliente;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ajudantedecostura.SalvaImagem;
-import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.ActivityDetalhesClienteBinding;
 import com.example.ajudantedecostura.home.cliente.adapter.ListaPedidosClienteAdapter;
 import com.example.ajudantedecostura.socket.InformacoesApp;
@@ -34,6 +32,8 @@ public class DetalhesClienteActivity extends AppCompatActivity {
     private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
     private InformacoesApp informacoesApp;
 
+    private DetalhesClienteViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,26 +48,10 @@ public class DetalhesClienteActivity extends AppCompatActivity {
 //            startActivity(intent);
 //        };
 
-
         int posicao = (Integer) getIntent().getIntExtra("posicao", 0);
         cliente = informacoesApp.getClientes().get(posicao);
+        viewModel = new DetalhesClienteViewModel(informacoesApp, cliente);
         if (cliente != null) {
-            Thread thread = new Thread((Runnable) () -> {
-                ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                pedidos = conexaoSocket.carregaListaPedidoCliente(cliente);
-                Log.i("Detalhes", "onCreate: " + pedidos.size());
-                runOnUiThread((Runnable) () -> {
-                    if (pedidos.isEmpty()) {
-                        Toast.makeText(informacoesApp, "Cliente não tem Pedidos.", Toast.LENGTH_SHORT).show();
-                    } else {
-
-                        adapter = new ListaPedidosClienteAdapter(pedidos, pedidoClickListener);
-                        binding.activityDetalhesClienteRecyclerPedido.setAdapter(adapter);
-
-                    }
-                });
-            });
-            thread.start();
 
 
             TextView txtNome = binding.activityDetalhesTxtNome;
@@ -149,22 +133,29 @@ public class DetalhesClienteActivity extends AppCompatActivity {
             }
         }
 
+        viewModel.carregaPedidosCliente();
+
+        atualizaLista();
+
+
         binding.activityHomeFabVoltar.setOnClickListener(v -> {
             finish();
         });
 
         binding.activityDetalhesClienteBtnDeletar.setOnClickListener(v -> {
-            Thread threadDeletar = new Thread((Runnable) () -> {
-                ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                ArrayList<Cliente> clientes = new ArrayList<>();
-                clientes.add(cliente);
-                conexaoSocket.deletaPedidos(pedidos);
-                conexaoSocket.deletaCliente(clientes);
-//                Toast.makeText(informacoesApp, "" + cliente.getNome(), Toast.LENGTH_SHORT).show();
-//                runOnUiThread((Runnable) this::finish);
-            });
-            threadDeletar.start();
+            viewModel.deletaClientes();
+            Toast.makeText(informacoesApp, "Cliente deletado com sucesso!", Toast.LENGTH_SHORT).show();
+            finish();
         });
 
+    }
+
+    private void atualizaLista() {
+        final Observer<ArrayList<Pedido>> pedidosObserver = pedidos -> {
+            adapter = new ListaPedidosClienteAdapter(pedidos, pedidoClickListener);
+            binding.activityDetalhesClienteRecyclerPedido.setAdapter(adapter);
+        };
+
+        viewModel.pegaPedidos().observe(this, pedidosObserver);
     }
 }

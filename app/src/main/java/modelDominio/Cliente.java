@@ -13,12 +13,12 @@ public class Cliente extends Pessoa implements Serializable {
         this.costureira = costureira;
     }
 
-    public Cliente(Costureira costureira, int idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
+    public Cliente(Costureira costureira, String idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
         super(idPessoa, cpf, nome, email, telefone, dataNascimento, imagem, cep, estado, cidade, rua, numero);
         this.costureira = costureira;
     }
 
-    public Cliente(Costureira costureira, int idPessoa) {
+    public Cliente(Costureira costureira, String idPessoa) {
         super(idPessoa);
         this.costureira = costureira;
     }

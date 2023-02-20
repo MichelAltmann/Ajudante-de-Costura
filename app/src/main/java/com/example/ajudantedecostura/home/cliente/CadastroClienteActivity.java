@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.UUID;
 
 import modelDominio.Cliente;
 
@@ -40,6 +41,7 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
     InformacoesApp informacoesApp;
 
+    CadastroClienteViewModel viewmodel;
     Bitmap selectedImageBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
 
 
         informacoesApp = (InformacoesApp) getApplicationContext();
+
+        viewmodel = new CadastroClienteViewModel(informacoesApp);
 
         EditText txtDataNascimento = binding.activityCadastroClienteTxtDataNascimento;
         ImageView addImagem = binding.activityCadastroClienteAdicionaImagem;
@@ -136,18 +140,15 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                     imagem = null;
                 }
 
-                Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(), cpf, nome, email, telefone, dataNascimento, imagem, cep, estado, cidade, rua, numero);
+                String id = UUID.randomUUID().toString();
 
-                Thread thread = new Thread((Runnable) () -> {
-                    ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                    String msg = conexaoSocket.cadastraCliente(cliente);
-                    Log.i("cliente: ", msg);
-                    runOnUiThread((Runnable) () -> {
-                        Toast.makeText(informacoesApp, "Cliente cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    });
-                });
-                thread.start();
+                Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(), id, cpf, nome, email, telefone, dataNascimento, imagem, cep, estado, cidade, rua, numero);
+
+                viewmodel.cadastraCliente(cliente);
+
+                Toast.makeText(informacoesApp, "Cliente Cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
+
+                finish();
             } else {
                 txtNome.requestFocus();
                 txtNome.setError("Erro: Campo obrigatório");

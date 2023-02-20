@@ -76,6 +76,8 @@ public class CriaMedidaDialogFragment extends DialogFragment {
                             listaMedidas.remove(i);
                         }
                     }
+
+
                     listaMedidas.add(medida);
                     medidaListener.onDialogMedidaCriar(listaMedidas);
                     dismiss();

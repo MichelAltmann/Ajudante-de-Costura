@@ -5,7 +5,7 @@ import java.util.Date;
 
 public abstract class Pessoa implements Serializable {
 
-    private int idPessoa;
+    private String idPessoa;
     private String cpf;
     private String nome;
     private String email;
@@ -32,7 +32,7 @@ public abstract class Pessoa implements Serializable {
         this.numero = numero;
     }
 
-    public Pessoa(int idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
+    public Pessoa(String idPessoa, String cpf, String nome, String email, String telefone, Date dataNascimento, byte[] imagem, int cep, String estado, String cidade, String rua, int numero) {
         this.idPessoa = idPessoa;
         this.cpf = cpf;
         this.nome = nome;
@@ -51,15 +51,11 @@ public abstract class Pessoa implements Serializable {
         this.email = email;
     }
 
-    public Pessoa(int idPessoa) {
-        this.idPessoa = idPessoa;
-    }
-
-    public int getIdPessoa() {
+    public String getIdPessoa() {
         return idPessoa;
     }
 
-    public void setIdPessoa(int idPessoa) {
+    public void setIdPessoa(String idPessoa) {
         this.idPessoa = idPessoa;
     }
 

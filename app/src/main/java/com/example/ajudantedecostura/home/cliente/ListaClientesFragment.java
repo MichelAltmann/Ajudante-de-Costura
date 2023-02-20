@@ -48,7 +48,7 @@ public class ListaClientesFragment extends Fragment {
 
         informacoesApp = (InformacoesApp) getActivity().getApplicationContext();
 
-        conexaoSocket = new ConexaoSocketController(informacoesApp);
+        atualizaLista();
 
         onClickListener = (iview, position) -> {
             Intent intent = new Intent(getContext(), DetalhesClienteActivity.class);
@@ -56,29 +56,23 @@ public class ListaClientesFragment extends Fragment {
             startActivity(intent);
         };
 
-        atualizaLista();
+
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
+        viewModel.carregaLista(informacoesApp);
     }
 
     private void atualizaLista(){
-        final Observer<ArrayList<Cliente>> clientesObserver = new Observer<ArrayList<Cliente>>() {
-            @Override
-            public void onChanged(ArrayList<Cliente> clientes) {
-                adapter = new ListaClientesAdapter(listaClientes, onClickListener);
-                binding.fragmentListaClientesRecyclerview.setAdapter(adapter);
-            }
-
+        final Observer<ArrayList<Cliente>> clientesObserver = clientes -> {
+            informacoesApp.setClientes(clientes);
+            adapter = new ListaClientesAdapter(clientes, onClickListener);
+            binding.fragmentListaClientesRecyclerview.setAdapter(adapter);
         };
-        Thread thread = new Thread((Runnable) () -> {
-            viewModel.pegaListaClientes(conexaoSocket).observe(getActivity(), clientesObserver);
-        });
-        thread.start();
+        viewModel.pegaListaClientes().observe(getActivity(), clientesObserver);
     }
 
 }

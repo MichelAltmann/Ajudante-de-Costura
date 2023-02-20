@@ -44,6 +44,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.UUID;
 
 public class CadastroActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -143,7 +144,9 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                                     rua = txtRua.getText().toString();
                                                                     Integer numero = Integer.parseInt(txtNumero.getText().toString());
 
-                                                                    Costureira costureira = new Costureira(senhaHash, 1, cpf, nome, email, telefone, data, imagem, cep, estado, cidade, rua, numero);
+                                                                    String id = UUID.randomUUID().toString();
+
+                                                                    Costureira costureira = new Costureira(senhaHash, 1, id, cpf, nome, email, telefone, data, imagem, cep, estado, cidade, rua, numero);
 
                                                                     Thread thread = new Thread((Runnable) () -> {
 

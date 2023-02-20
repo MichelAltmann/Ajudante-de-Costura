@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,15 +23,12 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ajudantedecostura.R;
-import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.ActivityCadastroPedidoBinding;
+import com.example.ajudantedecostura.home.cliente.CadastroClienteViewModel;
+import com.example.ajudantedecostura.home.cliente.adapter.ListaClientesAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.CustomSpinnerAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MateriaisPedidoAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MedidasPedidoAdapter;
@@ -76,6 +73,10 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
     ArrayList<String> nomesClientes = new ArrayList<>();
     Cliente cliente = null;
 
+    CadastroPedidoViewModel viewModel;
+
+    CadastroClienteViewModel viewModelCliente;
+
 
     MateriaisPedidoAdapter.OnMateriaisItemClickListener onMateriaisItemClick = (view, position) -> {
         Toast.makeText(CadastroPedidoActivity.this, "sheesh", Toast.LENGTH_SHORT).show();
@@ -93,6 +94,10 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
 
         informacoesApp = (InformacoesApp) getApplicationContext();
 
+        viewModel = new CadastroPedidoViewModel(informacoesApp);
+
+        viewModelCliente = new CadastroClienteViewModel(informacoesApp);
+
         binding.activityCadastroPedidoTxtDataCriacao.setText(dataFormatada.format(Calendar.getInstance().getTime()));
 
         adapterMaterial = new MateriaisPedidoAdapter(listaMaterial, onMateriaisItemClick);
@@ -101,7 +106,7 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
         clientes = informacoesApp.getClientes();
 
         nomesClientes.add("Cliente:");
-        for (int i = 0; i < clientes.size(); i++){
+        for (int i = 0; i < clientes.size(); i++) {
             nomesClientes.add(clientes.get(i).getNome());
         }
         nomesClientes.add("Adicionar apenas nome");
@@ -114,9 +119,9 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
         binding.activityCadastroPedidoSpinnerNomeCliente.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i + 1 != nomesClientes.size()){
+                if (i + 1 != nomesClientes.size()) {
                     binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.GONE);
-                    if (i > 0){
+                    if (i > 0) {
                         cliente = clientes.get(i - 1);
                         Toast.makeText(informacoesApp, cliente.getIdPessoa() + "", Toast.LENGTH_SHORT).show();
                     }
@@ -130,7 +135,6 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
 
             }
         });
-
 
         binding.activityCadastroPedidoFabAddMaterial.setOnClickListener(v -> {
             FragmentManager fm = getSupportFragmentManager();
@@ -185,12 +189,14 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
             Integer prioridade;
             byte[] imagem = null;
             Float preco = 0f;
+
             if (binding.activityCadastroPedidoImagem.getDrawable() != null) {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 imagem = stream.toByteArray();
             }
 
+            medidas = TransformaEmMedidas.transformaEmMedidas(listaMedidas);
 
             if (binding.activityCadastroPedidoRbAlta.isChecked()) {
                 prioridade = 2;
@@ -211,38 +217,31 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
                 e.printStackTrace();
             }
 
-            if (!titulo.equals("")){
-                if (cliente == null){
-                    cliente = new Cliente(informacoesApp.getCostureiraLogada(), null, nomeCliente, null, null, dataEntrega, imagem, 0, null, null, null, 0);
+            if (!titulo.equals("")) {
+                if (binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition() > 0) {
+
+
+                    if (cliente == null) {
+                        String id = UUID.randomUUID().toString();
+                        cliente = new Cliente(informacoesApp.getCostureiraLogada(), id, null, nomeCliente, null, null, dataEntrega, imagem, 0, null, null, null, 0);
+                        viewModelCliente.cadastraCliente(cliente);
+                        String idPedido = UUID.randomUUID().toString();
+
+                        Pedido pedido = new Pedido(idPedido, cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
+
+                        viewModel.cadastroPedido(pedido);
+                    }
+
+
+                    finish();
+                } else {
+                    Toast.makeText(informacoesApp, "Selecione um cliente.", Toast.LENGTH_SHORT).show();
                 }
-
-                Toast.makeText(informacoesApp, cliente.getNome(), Toast.LENGTH_SHORT).show();
-
-                String idPedido = UUID.randomUUID().toString();
-
-                Pedido pedido = new Pedido(idPedido,cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
-
-                Log.i("asd", pedido.toString());
-
-                Thread thread = new Thread((Runnable) () -> {
-                    ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-                    String msg = conexaoSocket.cadastraPedido(pedido);
-                    runOnUiThread((Runnable) () -> {
-                        Log.i("asd", "onCreate: " + msg);
-                        Toast.makeText(informacoesApp, msg, Toast.LENGTH_SHORT).show();
-                        finish();
-                    });
-                });
-                thread.start();
-
-                Toast.makeText(informacoesApp, "Pedido criado com sucesso!" + pedido.getListaMateriais().get(0), Toast.LENGTH_SHORT).show();
 
             } else {
                 binding.activityCadastroPedidoTxtTitulo.requestFocus();
                 binding.activityCadastroPedidoTxtTitulo.setError("Erro: Insira um título.");
             }
-
-
         });
     }
 
@@ -323,7 +322,7 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
     }
 
     public void onDialogMedidaCriar(ArrayList<Medida> listaMedida) {
-        medidas = TransformaEmMedidas.transformaEmMedidas(listaMedida);
+        this.listaMedidas = listaMedida;
         adapterMedida = new MedidasPedidoAdapter(listaMedida, onMedidasItemClick);
         binding.activityCadastroPedidoRecyclerMedidas.setAdapter(adapterMedida);
     }

@@ -50,7 +50,9 @@ public class ListaPedidosClienteAdapter extends RecyclerView.Adapter<ListaPedido
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.recyclerMedidasMateriaisItemTxt.setText(pedidos.get(position).getTitulo());
-        holder.binding.recyclerMedidasMateriaisItem2Txt.setText(dataFormatada.format(pedidos.get(position).getDataEntrega()));
+        if (pedidos.get(position).getDataEntrega() != null){
+            holder.binding.recyclerMedidasMateriaisItem2Txt.setText(dataFormatada.format(pedidos.get(position).getDataEntrega()));
+        }
     }
 
 
