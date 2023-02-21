@@ -26,6 +26,7 @@ public class CadastroClienteViewModel extends ViewModel {
     }
 
     public void cadastraCliente(Cliente cliente){
+
         if (threadCadastro != null && threadCadastro.isAlive()){
             threadCadastro.interrupt();
         }

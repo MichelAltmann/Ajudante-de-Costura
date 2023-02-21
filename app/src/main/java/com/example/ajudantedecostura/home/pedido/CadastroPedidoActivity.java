@@ -123,7 +123,8 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
                     binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.GONE);
                     if (i > 0) {
                         cliente = clientes.get(i - 1);
-                        Toast.makeText(informacoesApp, cliente.getIdPessoa() + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(informacoesApp, nomesClientes.size() + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(informacoesApp, binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition() + "", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.VISIBLE);
@@ -181,19 +182,21 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
 
         binding.activityCadastroPedidoBtnCriar.setOnClickListener(v -> {
 
-            Date dataCriacao = null;
-            Date dataEntrega = null;
+            Date dataCriacao;
+            Date dataEntrega;
             String titulo = binding.activityCadastroPedidoTxtTitulo.getText().toString();
             String descricao = binding.activityCadastroPedidoTxtDescricao.getText().toString();
             String nomeCliente = binding.activityCadastroPedidoTxtNomeCliente.getText().toString();
             Integer prioridade;
-            byte[] imagem = null;
-            Float preco = 0f;
+            byte[] imagem;
+            Float preco;
 
             if (binding.activityCadastroPedidoImagem.getDrawable() != null) {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 imagem = stream.toByteArray();
+            } else {
+                imagem = null;
             }
 
             medidas = TransformaEmMedidas.transformaEmMedidas(listaMedidas);
@@ -208,31 +211,62 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
 
             if (!binding.activityCadastroPedidoTxtPreco.getText().toString().equals("")) {
                 preco = Float.parseFloat(binding.activityCadastroPedidoTxtPreco.getText().toString());
+            } else {
+                preco = 0f;
             }
 
-            try {
-                dataCriacao = dataFormatada.parse(binding.activityCadastroPedidoTxtDataCriacao.getText().toString());
-                dataEntrega = dataFormatada.parse(binding.activityCadastroPedidoTxtDataEntrega.getText().toString());
-            } catch (ParseException e) {
-                e.printStackTrace();
+            if (!binding.activityCadastroPedidoTxtDataCriacao.getText().toString().equals("")){
+                try {
+                    dataCriacao = dataFormatada.parse(binding.activityCadastroPedidoTxtDataCriacao.getText().toString());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                dataCriacao = null;
             }
+
+            if (!binding.activityCadastroPedidoTxtDataEntrega.getText().toString().equals("")){
+                try {
+                    dataEntrega = dataFormatada.parse(binding.activityCadastroPedidoTxtDataEntrega.getText().toString());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                dataEntrega = null;
+            }
+
 
             if (!titulo.equals("")) {
-                if (binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition() > 0) {
 
+                if (binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition() > 0 && binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition() + 1 < nomesClientes.size()) {
 
-                    if (cliente == null) {
+                    String idPedido = UUID.randomUUID().toString();
+                    Pedido pedido = new Pedido(idPedido, cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
+                    viewModel.cadastroPedido(pedido);
+                    viewModel.getMsgPedido().observe(this, msg -> {
+                        finish();
+                    });
+
+                } else if (binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition() + 1 == nomesClientes.size()) {
+                    if (!binding.activityCadastroPedidoTxtNomeCliente.getText().toString().equals("")) {
+
                         String id = UUID.randomUUID().toString();
                         cliente = new Cliente(informacoesApp.getCostureiraLogada(), id, null, nomeCliente, null, null, dataEntrega, imagem, 0, null, null, null, 0);
                         viewModelCliente.cadastraCliente(cliente);
+
+                        viewModelCliente.getMsg().observe(this, msg -> {
+                            String idPedido = UUID.randomUUID().toString();
+                            Pedido pedido = new Pedido(idPedido, cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
+                            viewModel.cadastroPedido(pedido);
+                            viewModel.getMsgPedido().observe(this, msgPedido -> {
+                                finish();
+                            });
+                        });
+
+                    } else {
+                        binding.activityCadastroPedidoTxtNomeCliente.requestFocus();
+                        binding.activityCadastroPedidoTxtNomeCliente.setError("Insira o nome do Cliente.");
                     }
-
-                    String idPedido = UUID.randomUUID().toString();
-
-                    Pedido pedido = new Pedido(idPedido, cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
-
-                    viewModel.cadastroPedido(pedido);
-
                 } else {
                     Toast.makeText(informacoesApp, "Selecione um cliente.", Toast.LENGTH_SHORT).show();
                 }
@@ -263,25 +297,23 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
     }
 
 
-    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent data = result.getData();
+    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+        if (result.getResultCode() == Activity.RESULT_OK) {
+            Intent data = result.getData();
 
-                    if (data != null && data.getData() != null) {
-                        Uri selectedImageUri = data.getData();
-                        try {
-                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-                            binding.activityCadastroPedidoImagem.setImageBitmap(selectedImageBitmap);
-                        } catch (FileNotFoundException e) {
-                            throw new RuntimeException(e);
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
+            if (data != null && data.getData() != null) {
+                Uri selectedImageUri = data.getData();
+                try {
+                    selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                    binding.activityCadastroPedidoImagem.setImageBitmap(selectedImageBitmap);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
-    );
+        }
+    });
 
     void imageChooser() {
         Intent i = new Intent();
@@ -292,22 +324,17 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
     }
 
     public static boolean checkAndRequestPermissions(final Activity context) {
-        int WExtstorePermission = ContextCompat.checkSelfPermission(context,
-                WRITE_EXTERNAL_STORAGE);
-        int cameraPermission = ContextCompat.checkSelfPermission(context,
-                CAMERA);
+        int WExtstorePermission = ContextCompat.checkSelfPermission(context, WRITE_EXTERNAL_STORAGE);
+        int cameraPermission = ContextCompat.checkSelfPermission(context, CAMERA);
         List<String> listPermissionsNeeded = new ArrayList<>();
         if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(CAMERA);
         }
         if (WExtstorePermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded
-                    .add(WRITE_EXTERNAL_STORAGE);
+            listPermissionsNeeded.add(WRITE_EXTERNAL_STORAGE);
         }
         if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(context, listPermissionsNeeded
-                            .toArray(new String[listPermissionsNeeded.size()]),
-                    REQUEST_ID_MULTIPLE_PERMISSIONS);
+            ActivityCompat.requestPermissions(context, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
             return false;
         }
         return true;

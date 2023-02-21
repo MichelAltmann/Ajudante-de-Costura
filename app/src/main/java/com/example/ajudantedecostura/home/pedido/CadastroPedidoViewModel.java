@@ -20,11 +20,17 @@ import modelDominio.Pedido;
 public class CadastroPedidoViewModel extends ViewModel {
 
 
-    private MutableLiveData<Cliente> cliente = new MutableLiveData<>();
+    private MutableLiveData<String> msgPedido = new MutableLiveData<>();
+
+
 
     private InformacoesApp informacoesApp;
     public CadastroPedidoViewModel(InformacoesApp informacoesApp) {
         this.informacoesApp = informacoesApp;
+    }
+
+    public MutableLiveData<String> getMsgPedido() {
+        return msgPedido;
     }
 
     private Thread threadCadastroPedido;
@@ -38,7 +44,10 @@ public class CadastroPedidoViewModel extends ViewModel {
 
         ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
         threadCadastroPedido = new Thread((Runnable) () -> {
-            conexaoSocket.cadastraPedido(pedido);
+            String msgPedido = conexaoSocket.cadastraPedido(pedido);
+            new Handler(Looper.getMainLooper()).post((Runnable) () -> {
+               this.msgPedido.setValue(msgPedido);
+            });
         });
         threadCadastroPedido.start();
     }
