@@ -12,9 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.ajudantedecostura.SalvaImagem;
 import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.FragmentListaClientesBinding;
 import com.example.ajudantedecostura.home.cliente.adapter.ListaClientesAdapter;
@@ -48,7 +46,7 @@ public class ListaClientesFragment extends Fragment {
 
         informacoesApp = (InformacoesApp) getActivity().getApplicationContext();
 
-        atualizaLista();
+        conexaoSocket = new ConexaoSocketController(informacoesApp);
 
         onClickListener = (iview, position) -> {
             Intent intent = new Intent(getContext(), DetalhesClienteActivity.class);
@@ -56,19 +54,20 @@ public class ListaClientesFragment extends Fragment {
             startActivity(intent);
         };
 
-
-
+        setObservador();
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
-        viewModel.carregaLista(informacoesApp);
+        viewModel.carregaLista(conexaoSocket);
     }
 
-    private void atualizaLista(){
+    private void setObservador(){
         final Observer<ArrayList<Cliente>> clientesObserver = clientes -> {
             informacoesApp.setClientes(clientes);
+            this.listaClientes = clientes;
             adapter = new ListaClientesAdapter(clientes, onClickListener);
             binding.fragmentListaClientesRecyclerview.setAdapter(adapter);
         };

@@ -31,14 +31,13 @@ public class ListaClientesViewModel extends ViewModel {
         return listaClientes;
     }
 
-    public void carregaLista(InformacoesApp informacoesApp){
+    public void carregaLista(ConexaoSocketController conexaoSocket){
 
 
         if (threadCarregaLista != null && threadCarregaLista.isAlive()){
             threadCarregaLista.interrupt();
         }
 
-        ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
         threadCarregaLista = new Thread((Runnable) () -> {
             ArrayList<Cliente> pegaLista = conexaoSocket.carregaListaCliente();
             new Handler(Looper.getMainLooper()).post((Runnable) () -> {

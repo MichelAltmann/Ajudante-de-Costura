@@ -148,7 +148,6 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
 
                 Toast.makeText(informacoesApp, "Cliente Cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
 
-                finish();
             } else {
                 txtNome.requestFocus();
                 txtNome.setError("Erro: Campo obrigatório");

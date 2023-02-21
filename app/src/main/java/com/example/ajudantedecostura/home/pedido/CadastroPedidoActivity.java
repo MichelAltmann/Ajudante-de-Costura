@@ -225,15 +225,14 @@ public class CadastroPedidoActivity extends AppCompatActivity implements DatePic
                         String id = UUID.randomUUID().toString();
                         cliente = new Cliente(informacoesApp.getCostureiraLogada(), id, null, nomeCliente, null, null, dataEntrega, imagem, 0, null, null, null, 0);
                         viewModelCliente.cadastraCliente(cliente);
-                        String idPedido = UUID.randomUUID().toString();
-
-                        Pedido pedido = new Pedido(idPedido, cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
-
-                        viewModel.cadastroPedido(pedido);
                     }
 
+                    String idPedido = UUID.randomUUID().toString();
 
-                    finish();
+                    Pedido pedido = new Pedido(idPedido, cliente, prioridade, titulo, preco, descricao, dataEntrega, dataCriacao, listaMaterial, imagem, medidas);
+
+                    viewModel.cadastroPedido(pedido);
+
                 } else {
                     Toast.makeText(informacoesApp, "Selecione um cliente.", Toast.LENGTH_SHORT).show();
                 }

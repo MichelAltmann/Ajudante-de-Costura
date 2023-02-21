@@ -43,22 +43,4 @@ public class CadastroPedidoViewModel extends ViewModel {
         threadCadastroPedido.start();
     }
 
-    public MutableLiveData<Cliente> pegaCliente() {
-        return cliente;
-    }
-
-    public void selecionaCliente(String id) {
-        if (threadSelecionaCliente != null && threadSelecionaCliente.isAlive()){
-            threadSelecionaCliente.interrupt();
-        }
-
-        ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-        threadSelecionaCliente = new Thread((Runnable) () -> {
-            Cliente cliente = conexaoSocket.selecionaCliente(id);
-            new Handler(Looper.getMainLooper()).post((Runnable) () -> {
-               this.cliente.setValue(cliente);
-            });
-        });
-        threadSelecionaCliente.start();
-    }
 }

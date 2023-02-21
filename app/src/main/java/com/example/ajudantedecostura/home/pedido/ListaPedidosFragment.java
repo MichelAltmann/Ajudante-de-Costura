@@ -10,15 +10,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.FragmentListaPedidosBinding;
+import com.example.ajudantedecostura.home.cliente.ListaClientesViewModel;
 import com.example.ajudantedecostura.home.cliente.adapter.ListaClientesAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.ListaPedidosAdapter;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.util.ArrayList;
 
+import modelDominio.Cliente;
 import modelDominio.Pedido;
 
 public class ListaPedidosFragment extends Fragment {
@@ -28,6 +33,8 @@ public class ListaPedidosFragment extends Fragment {
     private ListaPedidosAdapter adapter;
     InformacoesApp informacoesApp;
     ConexaoSocketController conexaoSocket;
+
+    ListaPedidoViewModel viewModel;
 
     ListaPedidosAdapter.PedidosOnClickListener onPedidoClick = new ListaPedidosAdapter.PedidosOnClickListener() {
         @Override
@@ -48,25 +55,22 @@ public class ListaPedidosFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         informacoesApp = (InformacoesApp) getActivity().getApplicationContext();
         conexaoSocket = new ConexaoSocketController(informacoesApp);
+        viewModel = new ViewModelProvider(this).get(ListaPedidoViewModel.class);
+        setObservador();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        carregaLista(conexaoSocket);
-
+        viewModel.carregaPedidos(conexaoSocket);
     }
 
-    private void carregaLista(ConexaoSocketController conexaoSocket){
-        Thread thread = new Thread((Runnable) () -> {
-
-            listaPedidos = conexaoSocket.carregaListaPedidos();
-            getActivity().runOnUiThread((Runnable) () -> {
-                adapter = new ListaPedidosAdapter(listaPedidos, onPedidoClick, getContext());
-                binding.fragmentListaPedidosRecyclerview.setAdapter(adapter);
-            });
-
-        });
-        thread.start();
+    private void setObservador(){
+        final Observer<ArrayList<Pedido>> pedidosObserver = pedidos -> {
+            adapter = new ListaPedidosAdapter(pedidos, onPedidoClick, getContext());
+            binding.fragmentListaPedidosRecyclerview.setAdapter(adapter);
+        };
+        viewModel.getPedidos().observe(getActivity(), pedidosObserver);
     }
+
 }

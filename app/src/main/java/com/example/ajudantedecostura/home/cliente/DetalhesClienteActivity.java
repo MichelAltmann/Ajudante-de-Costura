@@ -18,6 +18,7 @@ import com.example.ajudantedecostura.socket.InformacoesApp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Timer;
 
 import modelDominio.Cliente;
 import modelDominio.Pedido;
@@ -145,7 +146,6 @@ public class DetalhesClienteActivity extends AppCompatActivity {
         binding.activityDetalhesClienteBtnDeletar.setOnClickListener(v -> {
             viewModel.deletaClientes();
             Toast.makeText(informacoesApp, "Cliente deletado com sucesso!", Toast.LENGTH_SHORT).show();
-            finish();
         });
 
     }
