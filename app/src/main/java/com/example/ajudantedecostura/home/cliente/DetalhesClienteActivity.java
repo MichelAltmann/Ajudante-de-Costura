@@ -145,7 +145,9 @@ public class DetalhesClienteActivity extends AppCompatActivity {
 
         binding.activityDetalhesClienteBtnDeletar.setOnClickListener(v -> {
             viewModel.deletaClientes();
-            Toast.makeText(informacoesApp, "Cliente deletado com sucesso!", Toast.LENGTH_SHORT).show();
+            viewModel.getDeletaMsg().observe(this, msg -> {
+                finish();
+            });
         });
 
     }

@@ -145,8 +145,20 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                 Cliente cliente = new Cliente(informacoesApp.getCostureiraLogada(), id, cpf, nome, email, telefone, dataNascimento, imagem, cep, estado, cidade, rua, numero);
 
                 viewmodel.cadastraCliente(cliente);
+                viewmodel.getMsg().observe(this, msg -> {
+                    finish();
+                });
 
-                Toast.makeText(informacoesApp, "Cliente Cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
+//                ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
+//                Thread threadCadastro = new Thread((Runnable) () -> {
+//                    conexaoSocket.cadastraCliente(cliente);
+//                    runOnUiThread((Runnable) () -> {
+//                        Toast.makeText(informacoesApp, "Cliente Cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
+//                        finish();
+//                    });
+//                });
+//                threadCadastro.start();
+
 
             } else {
                 txtNome.requestFocus();

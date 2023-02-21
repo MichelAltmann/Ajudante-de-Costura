@@ -22,6 +22,8 @@ public class DetalhesClienteViewModel extends ViewModel {
     private InformacoesApp informacoesApp;
     private ArrayList<Cliente> clientes = new ArrayList<>();
     private MutableLiveData<ArrayList<Pedido>> pedidos = new MutableLiveData<>();
+
+    private MutableLiveData<String> deletaMsg = new MutableLiveData<>();
     private Cliente cliente;
     public DetalhesClienteViewModel(InformacoesApp informacoesApp, Cliente cliente) {
         this.informacoesApp = informacoesApp;
@@ -36,6 +38,10 @@ public class DetalhesClienteViewModel extends ViewModel {
 
     private Thread threadDeletar;
 
+    public MutableLiveData<String> getDeletaMsg() {
+        return deletaMsg;
+    }
+
     public void deletaClientes(){
 
         if (threadDeletar != null && threadDeletar.isAlive()){
@@ -45,15 +51,12 @@ public class DetalhesClienteViewModel extends ViewModel {
         ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
         threadDeletar = new Thread((Runnable) () -> {
             clientes.add(cliente);
+            String msg = conexaoSocket.deletaCliente(cliente.getIdPessoa());
             new Handler(Looper.getMainLooper()).post((Runnable) () -> {
                 deletaPedidos = pedidos.getValue();
+                deletaMsg.setValue(msg);
             });
-//            conexaoSocket.deletaPedidos(deletaPedidos);
-            conexaoSocket.deletaCliente(cliente.getIdPessoa());
-//            clientes = conexaoSocket.carregaListaCliente();
             Log.i("teste", "deletaClientes: " + clientes);
-//                Toast.makeText(informacoesApp, "" + cliente.getNome(), Toast.LENGTH_SHORT).show();
-//                runOnUiThread((Runnable) this::finish);
         });
         threadDeletar.start();
     }

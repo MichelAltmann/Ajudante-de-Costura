@@ -21,6 +21,9 @@
         android:theme="@style/Theme.AjudanteDeCostura"
         tools:targetApi="31">
         <activity
+            android:name=".DetalhesPedidoActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
@@ -29,8 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-            <activity
-                android:name=".home.cliente.DetalhesClienteActivity"
+        <activity
+            android:name=".home.cliente.DetalhesClienteActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -63,8 +66,6 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="false">
-
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

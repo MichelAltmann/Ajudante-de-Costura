@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,13 +67,12 @@ public class ListaClientesFragment extends Fragment {
     }
 
     private void setObservador(){
-        final Observer<ArrayList<Cliente>> clientesObserver = clientes -> {
+        viewModel.pegaListaClientes().observe(getViewLifecycleOwner(), clientes -> {
             informacoesApp.setClientes(clientes);
             this.listaClientes = clientes;
             adapter = new ListaClientesAdapter(clientes, onClickListener);
             binding.fragmentListaClientesRecyclerview.setAdapter(adapter);
-        };
-        viewModel.pegaListaClientes().observe(getActivity(), clientesObserver);
+        });
     }
 
 }
