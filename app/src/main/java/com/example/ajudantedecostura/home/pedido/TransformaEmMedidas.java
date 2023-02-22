@@ -124,4 +124,69 @@ public class TransformaEmMedidas {
         return medidas;
     }
 
+    public static ArrayList<Medida> transformaEmLista(Medidas medidas) {
+        ArrayList<Medida> result = new ArrayList<>();
+        if (medidas.getPescoco() > 0) {
+            result.add(new Medida(1,"Pescoço", medidas.getPescoco()));
+        }
+        if (medidas.getOmbro() > 0) {
+            result.add(new Medida(2,"Ombro", medidas.getOmbro()));
+        }
+        if (medidas.getBusto() > 0) {
+            result.add(new Medida(3,"Busto", medidas.getBusto()));
+        }
+        if (medidas.getBico() > 0) {
+            result.add(new Medida(4,"Bico", medidas.getBico()));
+        }
+        if (medidas.getCintura() > 0) {
+            result.add(new Medida(5,"Cintura", medidas.getCintura()));
+        }
+        if (medidas.getQuadris() > 0) {
+            result.add(new Medida(6,"Quadris", medidas.getQuadris()));
+        }
+        if (medidas.getManga() > 0) {
+            result.add(new Medida(7,"Manga", medidas.getManga()));
+        }
+        if (medidas.getPunho() > 0) {
+            result.add(new Medida(8,"Punho", medidas.getPunho()));
+        }
+        if (medidas.getLarguraBraco() > 0) {
+            result.add(new Medida(9,"largura do Braco", medidas.getLarguraBraco()));
+        }
+        if (medidas.getLarguraCoxa() > 0) {
+            result.add(new Medida(10,"Largura da Coxa", medidas.getLarguraCoxa()));
+        }
+        if (medidas.getLarguraCostas() > 0) {
+            result.add(new Medida(11,"Largura das Costas", medidas.getLarguraCostas()));
+        }
+        if (medidas.getAlturaFrente() > 0) {
+            result.add(new Medida(12,"Altura da Frente", medidas.getAlturaFrente()));
+        }
+        if (medidas.getAlturaCostas() > 0) {
+            result.add(new Medida(13,"Altura das Costas", medidas.getAlturaCostas()));
+        }
+        if (medidas.getAlturaBusto() > 0) {
+            result.add(new Medida(14,"Altura do Busto", medidas.getAlturaBusto()));
+        }
+        if (medidas.getAlturaQuadris() > 0) {
+            result.add(new Medida(15,"Altura dos Quadris", medidas.getAlturaQuadris()));
+        }
+        if (medidas.getAlturaGancho() > 0) {
+            result.add(new Medida(16,"Altura do Gancho", medidas.getAlturaGancho()));
+        }
+        if (medidas.getAlturaJoelho() > 0) {
+            result.add(new Medida(17,"Altura do Joelho", medidas.getAlturaJoelho()));
+        }
+        if (medidas.getComprimentoCalca() > 0) {
+            result.add(new Medida(18,"Comprimento da Calca", medidas.getComprimentoCalca()));
+        }
+        if (medidas.getComprimentoBlusa() > 0) {
+            result.add(new Medida(19,"Comprimento da Blusa", medidas.getComprimentoBlusa()));
+        }
+        if (medidas.getComprimentoSaia() > 0) {
+            result.add(new Medida(20,"Comprimento da Saia", medidas.getComprimentoSaia()));
+        }
+        return result;
+    }
+
 }

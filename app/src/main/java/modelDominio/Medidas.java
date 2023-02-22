@@ -1,6 +1,7 @@
 package modelDominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Medidas implements Serializable {
 
@@ -212,7 +213,5 @@ public class Medidas implements Serializable {
     public String toString() {
         return "Medidas{" + "pescoco=" + pescoco + ", ombro=" + ombro + ", busto=" + busto + ", bico=" + bico + ", cintura=" + cintura + ", quadris=" + quadris + ", manga=" + manga + ", punho=" + punho + ", larguraBraco=" + larguraBraco + ", larguraCoxa=" + larguraCoxa + ", larguraCostas=" + larguraCostas + ", alturaFrente=" + alturaFrente + ", alturaCostas=" + alturaCostas + ", alturaBusto=" + alturaBusto + ", alturaQuadris=" + alturaQuadris + ", alturaGancho=" + alturaGancho + ", alturaJoelho=" + alturaJoelho + ", comprimentoCalca=" + comprimentoCalca + ", comprimentoBlusa=" + comprimentoBlusa + ", comprimentoSaia=" + comprimentoSaia + '}';
     }
-
-
 
 }

@@ -147,6 +147,26 @@ public class Pedido implements Serializable {
         return precoPedido;
     }
 
+    public String prioridadeToString(){
+        String strPrioridade = null;
+
+        switch (getPrioridade()){
+            case 0:
+                strPrioridade = "Baixa";
+                break;
+            case 1:
+                strPrioridade = "Média";
+                break;
+            case 2:
+                strPrioridade = "Alta";
+                break;
+            default:
+                break;
+        }
+
+        return strPrioridade;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" + "idPedido=" + idPedido + ", cliente=" + cliente + ", prioridade=" + prioridade + ", Titulo=" + Titulo + ", descricao=" + descricao + ", dataEntrega=" + dataEntrega + ", dataCriacao=" + dataCriacao + ", listaMateriais=" + listaMateriais + ", imagem=" + imagem + ", medidas=" + medidas + '}';

@@ -5,25 +5,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ajudantedecostura.controller.ConexaoSocketController;
 import com.example.ajudantedecostura.databinding.FragmentListaPedidosBinding;
-import com.example.ajudantedecostura.home.cliente.ListaClientesViewModel;
-import com.example.ajudantedecostura.home.cliente.adapter.ListaClientesAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.ListaPedidosAdapter;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.util.ArrayList;
 
-import modelDominio.Cliente;
 import modelDominio.Pedido;
 
 public class ListaPedidosFragment extends Fragment {
@@ -39,7 +34,11 @@ public class ListaPedidosFragment extends Fragment {
     ListaPedidosAdapter.PedidosOnClickListener onPedidoClick = new ListaPedidosAdapter.PedidosOnClickListener() {
         @Override
         public void onClickPedido(View view, int position) {
-            Intent intent = new Intent(getContext(), CadastroPedidoActivity.class);
+            Intent intent = new Intent(getContext(), DetalhesPedidoActivity.class);
+//            Pedido pedido = listaPedidos.get(position);
+            SalvaPedido.pedido = listaPedidos.get(position);
+//            pedido.setImagem(null);
+//            intent.putExtra("pedido", pedido);
             startActivity(intent);
         }
     };
@@ -57,6 +56,7 @@ public class ListaPedidosFragment extends Fragment {
         conexaoSocket = new ConexaoSocketController(informacoesApp);
         viewModel = new ViewModelProvider(this).get(ListaPedidoViewModel.class);
         setObservador();
+
     }
 
     @Override
@@ -67,7 +67,8 @@ public class ListaPedidosFragment extends Fragment {
 
     private void setObservador(){
         final Observer<ArrayList<Pedido>> pedidosObserver = pedidos -> {
-            adapter = new ListaPedidosAdapter(pedidos, onPedidoClick, getContext());
+            listaPedidos = pedidos;
+            adapter = new ListaPedidosAdapter(listaPedidos, onPedidoClick, getContext());
             binding.fragmentListaPedidosRecyclerview.setAdapter(adapter);
         };
         viewModel.getPedidos().observe(getActivity(), pedidosObserver);

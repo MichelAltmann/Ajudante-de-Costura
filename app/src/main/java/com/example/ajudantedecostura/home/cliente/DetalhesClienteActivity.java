@@ -55,16 +55,16 @@ public class DetalhesClienteActivity extends AppCompatActivity {
         if (cliente != null) {
 
 
-            TextView txtNome = binding.activityDetalhesTxtNome;
-            TextView txtTelefone = binding.activityDetalhesTxtTelefone;
-            TextView txtCpf = binding.activityDetalhesTxtCpf;
-            TextView txtDataNascimento = binding.activityDetalhesTxtDataNascimento;
-            TextView txtEmail = binding.activityDetalhesTxtEmail;
-            TextView txtCep = binding.activityDetalhesTxtCep;
-            TextView txtEstado = binding.activityDetalhesTxtEstado;
-            TextView txtCidade = binding.activityDetalhesTxtCidade;
-            TextView txtRua = binding.activityDetalhesTxtRua;
-            TextView txtNumero = binding.activityDetalhesTxtNumero;
+            TextView txtNome = binding.activityDetalhesClienteTxtNome;
+            TextView txtTelefone = binding.activityDetalhesClienteTxtTelefone;
+            TextView txtCpf = binding.activityDetalhesClienteTxtCpf;
+            TextView txtDataNascimento = binding.activityDetalhesClienteTxtDataNascimento;
+            TextView txtEmail = binding.activityDetalhesClienteTxtEmail;
+            TextView txtCep = binding.activityDetalhesClienteTxtCep;
+            TextView txtEstado = binding.activityDetalhesClienteTxtEstado;
+            TextView txtCidade = binding.activityDetalhesClienteTxtCidade;
+            TextView txtRua = binding.activityDetalhesClienteTxtRua;
+            TextView txtNumero = binding.activityDetalhesClienteTxtNumero;
 
             if (cliente.getNome() != null && !cliente.getNome().equals("")) {
                 txtNome.setText(cliente.getNome());
@@ -130,7 +130,7 @@ public class DetalhesClienteActivity extends AppCompatActivity {
             Log.i("asd", "onCreate: " + imagem);
             if (imagem != null) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(imagem, 0, imagem.length);
-                binding.activityDetalhesImagem.setImageBitmap(bitmap);
+                binding.activityDetalhesClienteImagem.setImageBitmap(bitmap);
             }
         }
 
@@ -139,7 +139,7 @@ public class DetalhesClienteActivity extends AppCompatActivity {
         atualizaLista();
 
 
-        binding.activityHomeFabVoltar.setOnClickListener(v -> {
+        binding.activityDetalhesClienteFabVoltar.setOnClickListener(v -> {
             finish();
         });
 

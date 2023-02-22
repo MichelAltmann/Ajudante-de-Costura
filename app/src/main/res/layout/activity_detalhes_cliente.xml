@@ -6,14 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".home.cliente.DetalhesClienteActivity">
 
-
     <androidx.cardview.widget.CardView
-        android:id="@+id/activity_detalhes_toolbar"
+        android:id="@+id/activity_detalhes_cliente_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/rosa"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@id/activity_detalhes_content"
+        app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,7 +22,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/activity_cadastro_label"
+                android:id="@+id/activity_detalhe_cliente_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -32,12 +31,12 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/activity_detalhes_editar"
-                app:layout_constraintStart_toEndOf="@+id/activity_home_fab_voltar"
+                app:layout_constraintEnd_toStartOf="@+id/activity_detalhes_cliente_editar"
+                app:layout_constraintStart_toEndOf="@+id/activity_detalhes_cliente_fab_voltar"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/activity_detalhes_editar"
+                android:id="@+id/activity_detalhes_cliente_editar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -51,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/activity_home_fab_voltar"
+                android:id="@+id/activity_detalhes_cliente_fab_voltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -72,11 +71,11 @@
     </androidx.cardview.widget.CardView>
 
     <ScrollView
-        android:id="@+id/activity_detalhes_content"
+        android:id="@+id/activity_detalhes_cliente_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_toolbar"
         tools:layout_editor_absoluteX="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +84,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/activity_detalhes_cardview_imagem"
+                android:id="@+id/activity_detalhes_cliente_cardview_imagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -93,8 +92,8 @@
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/rosa_dark"
                 app:cardCornerRadius="4dp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cep"
-                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_txt_nome"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_cep"
+                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_cliente_txt_nome"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -103,7 +102,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/activity_detalhes_imagem"
+                        android:id="@+id/activity_detalhes_cliente_imagem"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
@@ -114,7 +113,8 @@
                         app:layout_constraintHeight_max="270dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_max="200dp" />
+                        app:layout_constraintWidth_max="170dp"
+                        android:scaleType="centerCrop"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -122,7 +122,7 @@
 
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_nome"
+                android:id="@+id/activity_detalhes_cliente_txt_nome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -130,39 +130,39 @@
                 android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_telefone"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_telefone"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cardview_imagem"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_nome"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_cardview_imagem"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_nome"
                 tools:text="Nome" />
 
             <TextView
-                android:id="@+id/activity_detalhes_nome"
+                android:id="@+id/activity_detalhes_cliente_nome"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:paddingStart="8dp"
                 android:text="Nome:"
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_nome"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_nome"
-                app:layout_constraintTop_toTopOf="@id/activity_detalhes_cardview_imagem" />
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_nome"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_nome"
+                app:layout_constraintTop_toTopOf="@id/activity_detalhes_cliente_cardview_imagem" />
 
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_nome"
+                android:id="@+id/activity_detalhes_cliente_linha_nome"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_nome"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_nome"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_nome"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_nome" />
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_nome"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_nome" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_telefone"
+                android:id="@+id/activity_detalhes_cliente_txt_telefone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -170,14 +170,14 @@
                 android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_dataNascimento"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_dataNascimento"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cardview_imagem"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_telefone"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_cardview_imagem"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_telefone"
                 tools:text="Telefone" />
 
             <TextView
-                android:id="@+id/activity_detalhes_telefone"
+                android:id="@+id/activity_detalhes_cliente_telefone"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -185,24 +185,24 @@
                 android:text="Telefone:"
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_telefone"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_telefone"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_txt_nome" />
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_telefone"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_telefone"
+                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_txt_nome" />
 
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_telefone"
+                android:id="@+id/activity_detalhes_cliente_linha_telefone"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_telefone"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_telefone"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_telefone" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_telefone"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_telefone"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_telefone" />
 
             <TextView
-                android:id="@+id/activity_detalhes_dataNascimento"
+                android:id="@+id/activity_detalhes_cliente_dataNascimento"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -210,13 +210,13 @@
                 android:text="Data de Nascimento:"
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_dataNascimento"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_dataNascimento"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_txt_telefone" />
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_dataNascimento"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_dataNascimento"
+                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_txt_telefone" />
 
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_dataNascimento"
+                android:id="@+id/activity_detalhes_cliente_txt_dataNascimento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -224,25 +224,25 @@
                 android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cpf"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_cpf"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cardview_imagem"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_dataNascimento"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_cardview_imagem"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_dataNascimento"
                 tools:text="Data de Nascimento" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_dataNascimento"
+                android:id="@+id/activity_detalhes_cliente_linha_dataNascimento"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
                 android:paddingTop="2dp"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_dataNascimento"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_dataNascimento"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_dataNascimento" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_dataNascimento"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_dataNascimento"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_dataNascimento" />
 
             <TextView
-                android:id="@+id/activity_detalhes_cpf"
+                android:id="@+id/activity_detalhes_cliente_cpf"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -250,13 +250,13 @@
                 android:text="CPF: "
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_cpf"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_cpf"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_txt_dataNascimento"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cpf"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cpf"
+                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_txt_dataNascimento"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_cpf"
+                android:id="@+id/activity_detalhes_cliente_txt_cpf"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -264,27 +264,27 @@
                 android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_cardview_imagem"
+                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_cliente_cardview_imagem"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cardview_imagem"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cpf"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_cardview_imagem"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_cpf"
                 tools:text="Cpf" />
 
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_cpf"
+                android:id="@+id/activity_detalhes_cliente_linha_cpf"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_cpf"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_cpf"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_cpf"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cpf"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_cpf"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_cpf"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_email"
+                android:id="@+id/activity_detalhes_cliente_email"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -292,13 +292,13 @@
                 android:text="Email: "
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_email"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_email"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_email"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_email"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_email"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_email"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_email"
+                android:id="@+id/activity_detalhes_cliente_txt_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -307,24 +307,24 @@
                 android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_txt_cep"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cardview_imagem"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_linha_cpf"
+                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_cliente_txt_cep"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_cardview_imagem"
+                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_linha_cpf"
                 tools:text="Email" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_email"
+                android:id="@+id/activity_detalhes_cliente_linha_email"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_email"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_email"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_email" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_email"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_email"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_email" />
 
             <TextView
-                android:id="@+id/activity_detalhes_cep"
+                android:id="@+id/activity_detalhes_cliente_cep"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -332,13 +332,13 @@
                 android:text="CEP: "
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_cep"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_cep"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_cep"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cep"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cep"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cep"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_cep"
+                android:id="@+id/activity_detalhes_cliente_txt_cep"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -346,22 +346,22 @@
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/activity_detalhes_txt_email"
+                app:layout_constraintTop_toTopOf="@+id/activity_detalhes_cliente_txt_email"
                 tools:text="CEP" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_cep"
+                android:id="@+id/activity_detalhes_cliente_linha_cep"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_cep"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_cep"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_cep" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cep"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_cep"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_cep" />
 
             <TextView
-                android:id="@+id/activity_detalhes_estado"
+                android:id="@+id/activity_detalhes_cliente_estado"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -369,40 +369,40 @@
                 android:text="Estado: "
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_estado"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_estado"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_estado"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_estado"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_estado"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_estado"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_estado"
+                android:id="@+id/activity_detalhes_cliente_txt_estado"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:gravity="start"
                 android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_txt_cidade"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cardview_imagem"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_linha_cep"
+                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_cliente_txt_cidade"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_cardview_imagem"
+                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_linha_cep"
                 tools:text="Estado" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_estado"
+                android:id="@+id/activity_detalhes_cliente_linha_estado"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_estado"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_estado"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_estado" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_estado"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_estado"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_estado" />
 
             <TextView
-                android:id="@+id/activity_detalhes_cidade"
+                android:id="@+id/activity_detalhes_cliente_cidade"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -410,39 +410,38 @@
                 android:text="Cidade: "
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_cidade"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_cidade"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_cidade"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cidade"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cidade"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cidade"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_cidade"
+                android:id="@+id/activity_detalhes_cliente_txt_cidade"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="20dp"
                 android:gravity="end"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_detalhes_cliente_txt_estado"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_txt_estado"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_linha_cep"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_txt_estado"
                 tools:text="Cidade" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_cidade"
+                android:id="@+id/activity_detalhes_cliente_linha_cidade"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_cidade"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_cidade"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_cidade" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cidade"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_cidade"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_cidade" />
 
             <TextView
-                android:id="@+id/activity_detalhes_rua"
+                android:id="@+id/activity_detalhes_cliente_rua"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -450,40 +449,40 @@
                 android:text="Rua:"
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_rua"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_rua"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_rua"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_rua"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_rua"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_rua"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_rua"
+                android:id="@+id/activity_detalhes_cliente_txt_rua"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="20dp"
                 android:gravity="start"
                 android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_txt_numero"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cardview_imagem"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_linha_estado"
+                app:layout_constraintEnd_toStartOf="@id/activity_detalhes_cliente_txt_numero"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_cardview_imagem"
+                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_linha_estado"
                 tools:text="Rua" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_rua"
+                android:id="@+id/activity_detalhes_cliente_linha_rua"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_rua"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_rua"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_rua" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_rua"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_rua"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_rua" />
 
             <TextView
-                android:id="@+id/activity_detalhes_numero"
+                android:id="@+id/activity_detalhes_cliente_numero"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:layout_marginTop="16dp"
@@ -491,63 +490,61 @@
                 android:text="Numero:"
                 android:textColor="@color/azul"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_txt_numero"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_txt_numero"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_numero"
+                app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_numero"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_numero"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_numero"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/activity_detalhes_txt_numero"
+                android:id="@+id/activity_detalhes_cliente_txt_numero"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:paddingStart="8dp"
-                android:layout_marginTop="20dp"
                 android:gravity="center"
+                android:paddingStart="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_detalhes_cliente_txt_rua"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_linha_cidade"
                 tools:text="Número" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_linha_numero"
+                android:id="@+id/activity_detalhes_cliente_linha_numero"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_txt_numero"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_txt_numero"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_txt_numero" />
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_numero"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_txt_numero"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_txt_numero" />
 
             <TextView
-                android:id="@+id/activity_detalhes_cliente_pedido"
+                android:id="@+id/activity_detalhes_cliente_material"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginTop="16dp"
                 android:textColor="@color/rosa_dark"
                 android:text="Pedidos do Cliente"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_linha_rua" />
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_rua" />
 
             <ImageButton
-                android:id="@+id/activity_detalhes_cliente_fab_add_pedido"
+                android:id="@+id/activity_detalhes_cliente_material_fab_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_add"
-                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_cliente_pedido"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_pedido"
-                app:layout_constraintTop_toTopOf="@id/activity_detalhes_cliente_pedido" />
+                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_cliente_material"
+                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_material"
+                app:layout_constraintTop_toTopOf="@id/activity_detalhes_cliente_material" />
 
             <RelativeLayout
-                android:id="@+id/activity_detalhes_cliente_linha_pedidos"
+                android:id="@+id/activity_detalhes_cliente_linha_material"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="8dp"
@@ -556,7 +553,7 @@
                 android:background="@drawable/linha_separacao"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_recycler_pedido"
                 app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_recycler_pedido"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_pedido" />
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_material" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/activity_detalhes_cliente_recycler_pedido"
@@ -570,20 +567,8 @@
                 app:spanCount="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_pedidos"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_material"
                 tools:listitem="@layout/recycler_medidas_materiais_item" />
-
-            <RelativeLayout
-                android:id="@+id/activity_detalhes_cliente_linha_deletar"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:foregroundTint="@color/azul"
-                android:backgroundTint="@color/azul_dark"
-                android:background="@drawable/linha_separacao"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_recycler_pedido"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_recycler_pedido"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_recycler_pedido" />
 
             <Button
                 android:id="@+id/activity_detalhes_cliente_btn_deletar"
@@ -597,14 +582,13 @@
                 android:textColor="@color/black"
                 app:cornerRadius="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_linha_deletar"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_linha_deletar"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_deletar"
+                app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_recycler_pedido"
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_recycler_pedido"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_recycler_pedido"
                 app:strokeWidth="1dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

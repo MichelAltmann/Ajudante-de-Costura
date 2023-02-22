@@ -47,6 +47,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".home.pedido.DetalhesPedidoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".home.pedido.CadastroPedidoActivity"
             android:exported="false">
             <meta-data
