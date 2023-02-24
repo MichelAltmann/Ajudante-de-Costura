@@ -437,9 +437,9 @@
                 android:id="@+id/activity_detalhes_pedido_recycler_materiais"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -479,16 +479,16 @@
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
                 android:foregroundTint="@color/azul"
-                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_medidas"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_pedido_recycler_medidas"
-                app:layout_constraintStart_toStartOf="@id/activity_detalhes_pedido_recycler_medidas"/>
+                app:layout_constraintStart_toStartOf="@id/activity_detalhes_pedido_recycler_medidas"
+                app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_medidas" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/activity_detalhes_pedido_recycler_medidas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"

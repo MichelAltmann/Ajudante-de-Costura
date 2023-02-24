@@ -95,9 +95,9 @@
                 android:id="@+id/activity_cadastro_pedido_spinner_nome_cliente"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/background_spinner"
                 android:dropDownVerticalOffset="40dp"
-                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:popupBackground="@color/amarelo_light"
                 app:layout_constraintBottom_toTopOf="@id/activity_cadastro_pedido_txt_nome_cliente"
@@ -110,13 +110,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="78dp"
-                android:layout_marginEnd="78dp"
                 android:layout_marginTop="8dp"
-                android:hint="Nome do Cliente"
+                android:layout_marginEnd="78dp"
                 android:background="@drawable/text_cadastro_background"
+                android:hint="Nome do Cliente"
                 android:inputType="textCapWords"
-                android:visibility="gone"
                 android:paddingStart="8dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_spinner_nome_cliente" />
@@ -158,9 +158,9 @@
                 android:id="@+id/activity_cadastro_pedido_recycler_materiais"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="36dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -205,9 +205,9 @@
                 android:id="@+id/activity_cadastro_pedido_recycler_medidas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="36dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -238,34 +238,34 @@
                 app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_prioridade" />
 
             <RadioGroup
+                android:id="@+id/activity_cadastro_pedido_rg_prioridade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/activity_cadastro_pedido_rg_prioridade"
-                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_linha_prioridade"
-                app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:orientation="horizontal">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/activity_cadastro_pedido_linha_prioridade">
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:id="@+id/activity_cadastro_pedido_rb_baixo"
-                    android:text="Baixa"/>
-
-                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:id="@+id/activity_cadastro_pedido_rb_media"
-                    android:text="Média"/>
+                    android:text="Baixa" />
 
                 <RadioButton
+                    android:id="@+id/activity_cadastro_pedido_rb_media"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="Média" />
+
+                <RadioButton
                     android:id="@+id/activity_cadastro_pedido_rb_alta"
-                    android:text="Alta"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alta" />
 
             </RadioGroup>
 

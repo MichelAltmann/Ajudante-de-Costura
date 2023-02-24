@@ -92,5 +92,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        binding.activityHomeFabPerfil.setOnClickListener(v -> {
+            Intent intent = new Intent(this, PerfilCostureiraActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

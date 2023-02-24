@@ -107,14 +107,14 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/splash_screen"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_max="270dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintWidth_max="170dp"
-                        android:scaleType="centerCrop"/>
+                        app:layout_constraintWidth_max="170dp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -293,8 +293,8 @@
                 android:textColor="@color/azul"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_email"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_email"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_email"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_email"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -333,8 +333,8 @@
                 android:textColor="@color/azul"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cep"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cep"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cep"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cep"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -370,8 +370,8 @@
                 android:textColor="@color/azul"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_estado"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_estado"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_estado"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_estado"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -411,8 +411,8 @@
                 android:textColor="@color/azul"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cidade"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cidade"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cidade"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cidade"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -450,8 +450,8 @@
                 android:textColor="@color/azul"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_rua"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_rua"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_rua"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_rua"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -491,8 +491,8 @@
                 android:textColor="@color/azul"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_numero"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_numero"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_numero"
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_numero"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -524,8 +524,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/rosa_dark"
                 android:text="Pedidos do Cliente"
+                android:textColor="@color/rosa_dark"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -548,9 +548,9 @@
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="8dp"
-                android:foregroundTint="@color/azul"
-                android:backgroundTint="@color/azul_dark"
                 android:background="@drawable/linha_separacao"
+                android:backgroundTint="@color/azul_dark"
+                android:foregroundTint="@color/azul"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_recycler_pedido"
                 app:layout_constraintStart_toStartOf="@id/activity_detalhes_cliente_recycler_pedido"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_material" />
@@ -559,15 +559,15 @@
                 android:id="@+id/activity_detalhes_cliente_recycler_pedido"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:foregroundGravity="center"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_material"
+                app:spanCount="2"
                 tools:listitem="@layout/recycler_medidas_materiais_item" />
 
             <Button
