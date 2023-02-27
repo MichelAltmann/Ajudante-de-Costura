@@ -22,11 +22,8 @@ public class DatePickerFragment extends DialogFragment {
         int mes = c.get(Calendar.MONTH);
         int dia = c.get(Calendar.DAY_OF_MONTH);
 
-        int tema = 2;
-
         return new DatePickerDialog(getActivity(), R.style.datepicker,
                 (DatePickerDialog.OnDateSetListener)
                         getActivity(), ano, mes, dia);
-
     }
 }

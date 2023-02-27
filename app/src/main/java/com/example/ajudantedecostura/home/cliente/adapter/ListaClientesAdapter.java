@@ -10,8 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ajudantedecostura.databinding.RecyclerClientesItemBinding;
-import com.example.ajudantedecostura.home.pedido.adapter.ListaPedidosAdapter;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import modelDominio.Cliente;
@@ -20,7 +21,7 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
 
     private ArrayList<Cliente> lista;
     private ClientesOnClickListener itemClickListener;
-
+    final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private RecyclerClientesItemBinding binding;
 
@@ -49,7 +50,11 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.clientesItemNomeCliente.setText(lista.get(position).getNome());
-        holder.binding.clientesItemNumeroCelular.setText(lista.get(position).getTelefone());
+        holder.binding.clientesItemNumeroCelular.setText("Telefone: " + lista.get(position).getTelefone());
+
+        if (lista.get(position).getDataNascimento() != null){
+            holder.binding.clientesItemDataNascimento.setText("Nasceu em " + dataFormatada.format(lista.get(position).getDataNascimento()));
+        }
 
         byte[] imagem = lista.get(position).getImagem();
         if (imagem != null){

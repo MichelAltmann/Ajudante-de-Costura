@@ -54,7 +54,10 @@ import modelDominio.Medida;
 import modelDominio.Medidas;
 import modelDominio.Pedido;
 
-public class CadastroPedidoActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, CriaMaterialDialogFragment.CriaMaterialDialogListener, CriaMedidaDialogFragment.CriaMedidaDialogListener {
+public class CadastroPedidoActivity extends AppCompatActivity implements
+        DatePickerDialog.OnDateSetListener,
+        CriaMaterialDialogFragment.CriaMaterialDialogListener,
+        CriaMedidaDialogFragment.CriaMedidaDialogListener {
 
 
     private ActivityCadastroPedidoBinding binding;

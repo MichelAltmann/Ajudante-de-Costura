@@ -143,7 +143,7 @@
                 android:paddingStart="8dp"
                 android:text="Nome:"
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_nome"
                 app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_nome"
                 app:layout_constraintTop_toTopOf="@id/activity_detalhes_cliente_cardview_imagem" />
@@ -184,7 +184,7 @@
                 android:paddingStart="8dp"
                 android:text="Telefone:"
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_telefone"
                 app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_telefone"
                 app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_txt_nome" />
@@ -209,7 +209,7 @@
                 android:paddingStart="8dp"
                 android:text="Data de Nascimento:"
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_dataNascimento"
                 app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_dataNascimento"
                 app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_txt_telefone" />
@@ -249,7 +249,7 @@
                 android:paddingStart="8dp"
                 android:text="CPF: "
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cpf"
                 app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cpf"
                 app:layout_constraintTop_toBottomOf="@+id/activity_detalhes_cliente_txt_dataNascimento"
@@ -287,15 +287,13 @@
                 android:id="@+id/activity_detalhes_cliente_email"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
-                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="Email: "
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_email"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_email"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_email"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_email" />
 
             <TextView
                 android:id="@+id/activity_detalhes_cliente_txt_email"
@@ -327,15 +325,13 @@
                 android:id="@+id/activity_detalhes_cliente_cep"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
-                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="CEP: "
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cep"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cep"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cep"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cep" />
 
             <TextView
                 android:id="@+id/activity_detalhes_cliente_txt_cep"
@@ -364,15 +360,13 @@
                 android:id="@+id/activity_detalhes_cliente_estado"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
-                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="Estado: "
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_estado"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_estado"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_estado"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_estado" />
 
             <TextView
                 android:id="@+id/activity_detalhes_cliente_txt_estado"
@@ -405,15 +399,13 @@
                 android:id="@+id/activity_detalhes_cliente_cidade"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
-                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="Cidade: "
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_cidade"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_cidade"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cidade"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_cidade" />
 
             <TextView
                 android:id="@+id/activity_detalhes_cliente_txt_cidade"
@@ -444,15 +436,13 @@
                 android:id="@+id/activity_detalhes_cliente_rua"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
-                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="Rua:"
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_rua"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_rua"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_rua"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_rua" />
 
             <TextView
                 android:id="@+id/activity_detalhes_cliente_txt_rua"
@@ -485,15 +475,13 @@
                 android:id="@+id/activity_detalhes_cliente_numero"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
-                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="Numero:"
                 android:textColor="@color/azul"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_numero"
                 app:layout_constraintEnd_toEndOf="@id/activity_detalhes_cliente_txt_numero"
-                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_numero"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="@+id/activity_detalhes_cliente_txt_numero" />
 
             <TextView
                 android:id="@+id/activity_detalhes_cliente_txt_numero"

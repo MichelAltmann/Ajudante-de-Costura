@@ -51,11 +51,11 @@ public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapte
     public void onBindViewHolder(@NonNull ListaPedidosAdapter.ViewHolder holder, int position) {
         Pedido pedido = listaPedidos.get(position);
         holder.binding.pedidosItemTitulo.setText(String.valueOf(pedido.getTitulo()));
-        holder.binding.pedidosItemNomeCliente.setText(pedido.getCliente().getNome());
+        holder.binding.pedidosItemNomeCliente.setText("Pedido feito por " + pedido.getCliente().getNome());
         if (pedido.getDataEntrega() != null){
-            holder.binding.pedidosItemPrazoEntrega.setText(dataFormatada.format(pedido.getDataEntrega()));
+            holder.binding.pedidosItemPrazoEntrega.setText("Entrega: " + dataFormatada.format(pedido.getDataEntrega()));
         }
-        holder.binding.pedidosItemPreco.setText(pedido.getPreco().toString());
+        holder.binding.pedidosItemPreco.setText("R$:" + pedido.getPreco().toString());
 
         byte[] imagem = pedido.getImagem();
         Bitmap bitmap = null;

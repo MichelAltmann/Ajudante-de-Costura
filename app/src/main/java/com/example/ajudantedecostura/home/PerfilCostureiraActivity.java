@@ -9,6 +9,9 @@ import android.os.Bundle;
 import com.example.ajudantedecostura.databinding.ActivityPerfilCostureiraBinding;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import modelDominio.Costureira;
 
 public class PerfilCostureiraActivity extends AppCompatActivity {
@@ -16,6 +19,8 @@ public class PerfilCostureiraActivity extends AppCompatActivity {
     ActivityPerfilCostureiraBinding binding;
 
     InformacoesApp informacoesApp;
+
+    final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +37,17 @@ public class PerfilCostureiraActivity extends AppCompatActivity {
         binding.activityPerfilCostureiraTxtNome.setText(costureira.getNome());
         binding.activityPerfilCostureiraTxtEmail.setText(costureira.getEmail());
         binding.activityPerfilCostureiraTxtTelefone.setText(costureira.getTelefone());
+        binding.activityPerfilCostureiraTxtDataNascimento.setText(dataFormatada.format(costureira.getDataNascimento()));
         binding.activityPerfilCostureiraTxtCpf.setText(costureira.getCpf());
         binding.activityPerfilCostureiraTxtCep.setText(String.valueOf(costureira.getCep()));
         binding.activityPerfilCostureiraTxtEstado.setText(costureira.getEstado());
         binding.activityPerfilCostureiraTxtCidade.setText(costureira.getCidade());
         binding.activityPerfilCostureiraTxtRua.setText(costureira.getRua());
         binding.activityPerfilCostureiraTxtNumero.setText(String.valueOf(costureira.getNumero()));
+
+        binding.activityPerfilCostureiraFabVoltar.setOnClickListener(v -> {
+            finish();
+        });
 
     }
 }

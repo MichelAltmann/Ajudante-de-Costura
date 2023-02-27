@@ -3,6 +3,7 @@ package com.example.ajudantedecostura.home.cliente;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -40,9 +41,9 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
     ActivityCadastroClienteBinding binding;
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
     InformacoesApp informacoesApp;
-
     CadastroClienteViewModel viewmodel;
     Bitmap selectedImageBitmap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
         informacoesApp = (InformacoesApp) getApplicationContext();
 
         viewmodel = new CadastroClienteViewModel(informacoesApp);
+
 
         EditText txtDataNascimento = binding.activityCadastroClienteTxtDataNascimento;
         ImageView addImagem = binding.activityCadastroClienteAdicionaImagem;
@@ -78,7 +80,7 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
         });
 
         binding.activityCadastroClienteBtnCadastrar.setOnClickListener(v -> {
-            if (!txtNome.getText().toString().equals("")){
+            if (!txtNome.getText().toString().equals("")) {
 
                 String nome = binding.activityCadastroClienteTxtNome.getText().toString();
                 byte[] imagem = null;
@@ -92,27 +94,27 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                 Date dataNascimento = null;
 
                 Integer cep = 0, numero = 0;
-                if (!txtEmail.getText().toString().equals("")){
+                if (!txtEmail.getText().toString().equals("")) {
                     email = txtEmail.getText().toString();
                 }
 
-                if (!txtEstado.getText().toString().equals("")){
+                if (!txtEstado.getText().toString().equals("")) {
                     estado = txtEstado.getText().toString();
                 }
 
-                if (!txtCidade.getText().toString().equals("")){
+                if (!txtCidade.getText().toString().equals("")) {
                     cidade = txtCidade.getText().toString();
                 }
 
-                if (!txtRua.getText().toString().equals("")){
+                if (!txtRua.getText().toString().equals("")) {
                     rua = txtRua.getText().toString();
                 }
 
-                if (!txtCpf.getText().toString().equals("")){
+                if (!txtCpf.getText().toString().equals("")) {
                     cpf = txtCpf.getText().toString();
                 }
 
-                if (!txtDataNascimento.getText().toString().equals("")){
+                if (!txtDataNascimento.getText().toString().equals("")) {
                     try {
                         dataNascimento = dataFormatada.parse(txtDataNascimento.getText().toString());
                     } catch (ParseException e) {
@@ -120,19 +122,19 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                     }
                 }
 
-                if (!txtTelefone.getText().toString().equals("")){
+                if (!txtTelefone.getText().toString().equals("")) {
                     telefone = txtTelefone.getText().toString();
                 }
 
-                if (!txtCep.getText().toString().equals("")){
+                if (!txtCep.getText().toString().equals("")) {
                     cep = Integer.parseInt(txtCep.getText().toString());
                 }
 
-                if (!txtNumero.getText().toString().equals("")){
+                if (!txtNumero.getText().toString().equals("")) {
                     numero = Integer.parseInt(txtNumero.getText().toString());
                 }
 
-                if (binding.activityCadastroClienteAdicionaImagem.getDrawable() != null){
+                if (binding.activityCadastroClienteAdicionaImagem.getDrawable() != null) {
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     selectedImageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     imagem = stream.toByteArray();
@@ -149,17 +151,6 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
                     finish();
                 });
 
-//                ConexaoSocketController conexaoSocket = new ConexaoSocketController(informacoesApp);
-//                Thread threadCadastro = new Thread((Runnable) () -> {
-//                    conexaoSocket.cadastraCliente(cliente);
-//                    runOnUiThread((Runnable) () -> {
-//                        Toast.makeText(informacoesApp, "Cliente Cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
-//                        finish();
-//                    });
-//                });
-//                threadCadastro.start();
-
-
             } else {
                 txtNome.requestFocus();
                 txtNome.setError("Erro: Campo obrigatório");
@@ -170,17 +161,17 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
             finish();
         });
 
-}
+    }
 
     ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
 
-                    if (data != null && data.getData() != null){
+                    if (data != null && data.getData() != null) {
                         Uri selectedImageUri = data.getData();
                         try {
-                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),selectedImageUri);
+                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                             binding.activityCadastroClienteAdicionaImagem.setImageBitmap(selectedImageBitmap);
                         } catch (FileNotFoundException e) {
                             throw new RuntimeException(e);
@@ -199,6 +190,7 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
 
         launchSomeActivity.launch(i);
     }
+
 
     @Override
     public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {

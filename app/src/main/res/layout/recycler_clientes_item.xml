@@ -58,7 +58,7 @@
                 tools:text="Número do Celular" />
 
             <TextView
-                android:id="@+id/clientes_item_pedidos_realizados"
+                android:id="@+id/clientes_item_data_nascimento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
