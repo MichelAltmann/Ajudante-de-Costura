@@ -154,7 +154,7 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                                                                         msgRecebida = conexaoController.cadastraCostureira(costureira);
 
                                                                         runOnUiThread((Runnable) () -> {
-                                                                            Toast.makeText(informacoesApp, msgRecebida, Toast.LENGTH_SHORT).show();
+                                                                            finish();
                                                                         });
 
                                                                     });

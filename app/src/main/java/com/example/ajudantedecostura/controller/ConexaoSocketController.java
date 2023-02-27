@@ -27,7 +27,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("10.0.2.2", 12345);
+            informacoesApp.socket = new Socket("192.168.31.101", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
@@ -128,8 +128,10 @@ public class ConexaoSocketController {
         try {
             informacoesApp.out.writeObject("PedidoCarregarListaCostureira");
             String msgRecebida = (String) informacoesApp.in.readObject();
-            informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
-            listaPedidos = (ArrayList<Pedido>) informacoesApp.in.readObject();
+            if (msgRecebida.equals("Ok")){
+                informacoesApp.out.writeObject(informacoesApp.getCostureiraLogada());
+                listaPedidos = (ArrayList<Pedido>) informacoesApp.in.readObject();
+            }
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
@@ -182,16 +184,21 @@ public class ConexaoSocketController {
         return cliente;
     }
 
-    public String deletaPedido(Pedido pedido) {
-        String msg = null;
+    public String deletaPedido(String idPedido){
+        String msgRecebida = null;
         try {
             informacoesApp.out.writeObject("PedidoDeletar");
-            informacoesApp.out.writeObject(pedido);
-            msg = (String) informacoesApp.in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+            msgRecebida = (String) informacoesApp.in.readObject();
+            if (msgRecebida.equals("Ok")){
+                informacoesApp.out.writeObject(idPedido);
+                msgRecebida = (String) informacoesApp.in.readObject();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return msg;
+        return msgRecebida;
     }
 
     public ArrayList<Material> carregaMateriaisPedido(String idPedido){

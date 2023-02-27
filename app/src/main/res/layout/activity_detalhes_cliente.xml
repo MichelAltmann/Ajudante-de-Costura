@@ -31,23 +31,23 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/activity_detalhes_cliente_editar"
-                app:layout_constraintStart_toEndOf="@+id/activity_detalhes_cliente_fab_voltar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/activity_detalhes_cliente_editar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:backgroundTint="@color/rosa_light"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
-                android:src="@drawable/lapis_edicao"
-                app:borderWidth="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/activity_detalhes_cliente_editar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:backgroundTint="@color/rosa_light"-->
+<!--                android:scaleX="0.7"-->
+<!--                android:scaleY="0.7"-->
+<!--                android:src="@drawable/lapis_edicao"-->
+<!--                app:borderWidth="0dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/activity_detalhes_cliente_fab_voltar"
@@ -520,16 +520,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_cliente_linha_rua" />
 
-            <ImageButton
-                android:id="@+id/activity_detalhes_cliente_material_fab_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_add"
-                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_cliente_material"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_material"
-                app:layout_constraintTop_toTopOf="@id/activity_detalhes_cliente_material" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/activity_detalhes_cliente_material_fab_add"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/ic_add"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_cliente_material"-->
+<!--                app:layout_constraintStart_toEndOf="@id/activity_detalhes_cliente_material"-->
+<!--                app:layout_constraintTop_toTopOf="@id/activity_detalhes_cliente_material" />-->
 
             <RelativeLayout
                 android:id="@+id/activity_detalhes_cliente_linha_material"

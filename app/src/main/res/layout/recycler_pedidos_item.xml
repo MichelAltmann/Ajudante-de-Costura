@@ -5,16 +5,17 @@
     android:layout_height="wrap_content"
     tools:context=".home.pedido.adapter.ListaPedidosAdapter">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/roxo"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
-        app:cardBackgroundColor="#99ffffc3"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,21 +25,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/pedidos_item_image"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_margin="16dp"
-                android:background="@drawable/image_frame"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/recycler_pedidos_item_cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:strokeWidth="4dp"
+                app:strokeColor="@color/rosa"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/rosa_light"
+                app:cardCornerRadius="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/pedidos_item_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_clientes"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_max="100dp"
+                        app:layout_constraintWidth_max="100dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/pedidos_item_titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:textColor="@color/rosa_dark"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/pedidos_item_nome_cliente"
                 app:layout_constraintStart_toStartOf="@id/pedidos_item_nome_cliente"
                 tools:text="Titulo do pedido" />
@@ -48,9 +79,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintBottom_toBottomOf="@id/pedidos_item_image"
-                app:layout_constraintStart_toEndOf="@id/pedidos_item_image"
-                app:layout_constraintTop_toTopOf="@id/pedidos_item_image"
+                android:textColor="@color/rosa_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/recycler_pedidos_item_cardView"
+                app:layout_constraintStart_toEndOf="@id/recycler_pedidos_item_cardView"
+                app:layout_constraintTop_toTopOf="@id/recycler_pedidos_item_cardView"
                 tools:text="Nome do cliente" />
 
             <TextView
@@ -58,6 +91,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/rosa_dark"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@id/pedidos_item_nome_cliente"
                 app:layout_constraintTop_toBottomOf="@id/pedidos_item_nome_cliente"
                 tools:text="Prazo de entrega" />
@@ -67,12 +102,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:id="@+id/pedidos_item_preco"
+                android:textColor="@color/verde_dark"
+                android:textSize="16sp"
                 android:text="R$0,00"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

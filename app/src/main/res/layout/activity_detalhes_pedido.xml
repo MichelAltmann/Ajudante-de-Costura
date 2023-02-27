@@ -32,23 +32,23 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/activity_detalhes_pedido_editar"
-                app:layout_constraintStart_toEndOf="@+id/activity_detalhes_pedido_fab_voltar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/activity_detalhes_pedido_editar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:backgroundTint="@color/rosa_light"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
-                android:src="@drawable/lapis_edicao"
-                app:borderWidth="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/activity_detalhes_pedido_editar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="4dp"-->
+<!--                android:backgroundTint="@color/rosa_light"-->
+<!--                android:scaleX="0.7"-->
+<!--                android:scaleY="0.7"-->
+<!--                android:src="@drawable/lapis_edicao"-->
+<!--                app:borderWidth="0dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/activity_detalhes_pedido_fab_voltar"
@@ -410,16 +410,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_linha_preco" />
 
-            <ImageButton
-                android:id="@+id/activity_detalhes_pedido_fab_add_material"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_add"
-                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_materiais"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_materiais"
-                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_materiais" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/activity_detalhes_pedido_fab_add_material"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/ic_add"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_materiais"-->
+<!--                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_materiais"-->
+<!--                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_materiais" />-->
 
             <RelativeLayout
                 android:id="@+id/activity_detalhes_pedido_linha_materiais"
@@ -460,16 +460,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/activity_detalhes_pedido_recycler_materiais" />
 
-            <ImageButton
-                android:id="@+id/activity_detalhes_pedido_fab_add_medida"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_add"
-                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_medidas"
-                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_medidas"
-                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_medidas" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/activity_detalhes_pedido_fab_add_medida"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:src="@drawable/ic_add"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/activity_detalhes_pedido_medidas"-->
+<!--                app:layout_constraintStart_toEndOf="@id/activity_detalhes_pedido_medidas"-->
+<!--                app:layout_constraintTop_toTopOf="@id/activity_detalhes_pedido_medidas" />-->
 
             <RelativeLayout
                 android:id="@+id/activity_detalhes_pedido_linha_recycler_medidas"
@@ -518,7 +518,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="#E89D9D"
                 android:padding="12dp"

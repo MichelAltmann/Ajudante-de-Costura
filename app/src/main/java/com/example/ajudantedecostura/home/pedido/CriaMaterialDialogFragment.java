@@ -22,6 +22,7 @@ public class CriaMaterialDialogFragment extends DialogFragment {
 
     private DialogCriaMaterialBinding binding;
     ArrayList<Material> listaMaterial;
+
     public CriaMaterialDialogFragment(ArrayList<Material> listaMaterial) {
         this.listaMaterial = listaMaterial;
     }
@@ -56,43 +57,38 @@ public class CriaMaterialDialogFragment extends DialogFragment {
         EditText etLargura = binding.dialogCriaMaterialLargura;
         EditText etPreco = binding.dialogCriaMaterialPreco;
 
+
         getDialog().setTitle("Adicionar Medida");
 
         listener = (CriaMaterialDialogListener) getContext();
 
         binding.dialogCriaMaterialBtnCriar.setOnClickListener(v -> {
-
+            Float preco = 0f;
+            Float largura = 0f;
+            Float comprimento = 0f;
             if (!etNome.getText().toString().equals("")) {
+                String nome = etNome.getText().toString();
+
                 if (!etComprimento.getText().toString().equals("")) {
-                    if (!etLargura.getText().toString().equals("")) {
-                        if (!etPreco.getText().toString().equals("")) {
-
-                            String nome = etNome.getText().toString();
-
-                            Float comprimento = Float.parseFloat(etComprimento.getText().toString()),
-                                    largura = Float.parseFloat(etLargura.getText().toString()),
-                                    preco = Float.parseFloat(etPreco.getText().toString());
-
-                            String idMaterial = UUID.randomUUID().toString();
-
-                            Material material = new Material(idMaterial, nome, comprimento, largura, preco);
-                            listaMaterial.add(material);
-
-                            listener.onDialogMaterialCriar(listaMaterial);
-
-                            dismiss();
-                        } else {
-                            etPreco.requestFocus();
-                            etPreco.setError("Erro: campo obrigatório.");
-                        }
-                    } else {
-                        etLargura.requestFocus();
-                        etLargura.setError("Erro: Campo obrigatório.");
-                    }
-                } else {
-                    etComprimento.requestFocus();
-                    etComprimento.setError("Erro: Campo obrigatório.");
+                    comprimento = Float.parseFloat(etComprimento.getText().toString());
                 }
+
+                if (!etLargura.getText().toString().equals("")) {
+                    largura = Float.parseFloat(etLargura.getText().toString());
+                }
+
+                if (!etPreco.getText().toString().equals("")) {
+                    preco = Float.parseFloat(etPreco.getText().toString());
+                }
+
+                String idMaterial = UUID.randomUUID().toString();
+
+                Material material = new Material(idMaterial, nome, comprimento, largura, preco);
+                listaMaterial.add(material);
+
+                listener.onDialogMaterialCriar(listaMaterial);
+
+                dismiss();
             } else {
                 etNome.requestFocus();
                 etNome.setError("Erro: Campo obrigatório.");

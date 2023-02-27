@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -67,6 +68,8 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
         EditText txtTelefone = binding.activityCadastroClienteTxtTelefone;
         EditText txtCep = binding.activityCadastroClienteTxtCep;
         EditText txtNumero = binding.activityCadastroClienteTxtNumero;
+
+        txtDataNascimento.setInputType(InputType.TYPE_NULL);
 
         txtDataNascimento.setOnClickListener(v -> {
             // date picker dialog
@@ -158,6 +161,10 @@ public class CadastroClienteActivity extends AppCompatActivity implements DatePi
         });
 
         binding.activityCadastroClienteBtnCancelar.setOnClickListener(v -> {
+            finish();
+        });
+
+        binding.activityCadastroClienteFabVoltar.setOnClickListener(v -> {
             finish();
         });
 

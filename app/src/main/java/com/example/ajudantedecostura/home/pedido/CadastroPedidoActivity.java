@@ -71,22 +71,20 @@ public class CadastroPedidoActivity extends AppCompatActivity implements
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
     public static final String CAMERA = "android.permission.CAMERA";
     private Bitmap selectedImageBitmap;
-    InformacoesApp informacoesApp;
-    ArrayList<Cliente> clientes;
-    ArrayList<String> nomesClientes = new ArrayList<>();
-    Cliente cliente = null;
+    private InformacoesApp informacoesApp;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<String> nomesClientes = new ArrayList<>();
+    private Cliente cliente = null;
 
-    CadastroPedidoViewModel viewModel;
+    private CadastroPedidoViewModel viewModel;
 
-    CadastroClienteViewModel viewModelCliente;
+    private CadastroClienteViewModel viewModelCliente;
 
 
     MateriaisPedidoAdapter.OnMateriaisItemClickListener onMateriaisItemClick = (view, position) -> {
-        Toast.makeText(CadastroPedidoActivity.this, "sheesh", Toast.LENGTH_SHORT).show();
     };
 
     MedidasPedidoAdapter.OnMedidaItemClickListener onMedidasItemClick = (view, position) -> {
-        Toast.makeText(this, "Sheesh", Toast.LENGTH_SHORT).show();
     };
 
     @Override
@@ -126,8 +124,6 @@ public class CadastroPedidoActivity extends AppCompatActivity implements
                     binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.GONE);
                     if (i > 0) {
                         cliente = clientes.get(i - 1);
-                        Toast.makeText(informacoesApp, nomesClientes.size() + "", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(informacoesApp, binding.activityCadastroPedidoSpinnerNomeCliente.getSelectedItemPosition() + "", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     binding.activityCadastroPedidoTxtNomeCliente.setVisibility(View.VISIBLE);
@@ -279,6 +275,11 @@ public class CadastroPedidoActivity extends AppCompatActivity implements
                 binding.activityCadastroPedidoTxtTitulo.setError("Erro: Insira um título.");
             }
         });
+
+        binding.activityCadastroPedidoFabVoltar.setOnClickListener(v -> {
+            finish();
+        });
+
     }
 
 
@@ -325,24 +326,6 @@ public class CadastroPedidoActivity extends AppCompatActivity implements
 
         launchSomeActivity.launch(i);
     }
-
-    public static boolean checkAndRequestPermissions(final Activity context) {
-        int WExtstorePermission = ContextCompat.checkSelfPermission(context, WRITE_EXTERNAL_STORAGE);
-        int cameraPermission = ContextCompat.checkSelfPermission(context, CAMERA);
-        List<String> listPermissionsNeeded = new ArrayList<>();
-        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(CAMERA);
-        }
-        if (WExtstorePermission != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(WRITE_EXTERNAL_STORAGE);
-        }
-        if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(context, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
-            return false;
-        }
-        return true;
-    }
-
 
     @Override
     public void onDialogMaterialCriar(ArrayList<Material> materiais) {

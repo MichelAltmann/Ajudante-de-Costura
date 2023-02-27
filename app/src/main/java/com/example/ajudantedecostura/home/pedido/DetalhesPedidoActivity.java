@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.databinding.ActivityDetalhesPedidoBinding;
+import com.example.ajudantedecostura.home.cliente.DetalhesClienteViewModel;
 import com.example.ajudantedecostura.home.pedido.adapter.MateriaisPedidoAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MedidasPedidoAdapter;
 import com.example.ajudantedecostura.socket.InformacoesApp;
@@ -32,6 +33,7 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
     private ImageView imagem;
 
     private DetalhesPedidoViewModel viewModel;
+    private DetalhesClienteViewModel viewModelCliente;
     private InformacoesApp informacoesApp;
     private MedidasPedidoAdapter adapterMedida;
     private MateriaisPedidoAdapter adapterMaterial;
@@ -45,7 +47,7 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
 
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-        viewModel = new DetalhesPedidoViewModel(informacoesApp);
+
 
         txtTitulo = binding.activityDetalhesPedidoTxtTitulo;
         txtCliente = binding.activityDetalhesPedidoTxtCliente;
@@ -57,17 +59,15 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
         imagem = binding.activityDetalhesPedidoImagem;
 
         MateriaisPedidoAdapter.OnMateriaisItemClickListener onMateriaisItemClick = (view, position) -> {
-            Toast.makeText(DetalhesPedidoActivity.this, "sheesh", Toast.LENGTH_SHORT).show();
         };
 
         MedidasPedidoAdapter.OnMedidaItemClickListener onMedidasItemClick = (view, position) -> {
-            Toast.makeText(this, "Sheesh", Toast.LENGTH_SHORT).show();
         };
 
-        Intent intent = getIntent();
         if (SalvaPedido.pedido != null) {
-//            Pedido pedido = (Pedido) intent.getSerializableExtra("pedido");
             this.pedido = SalvaPedido.pedido;
+            viewModel = new DetalhesPedidoViewModel(informacoesApp, pedido);
+            viewModelCliente = new DetalhesClienteViewModel(informacoesApp, pedido.getCliente());
             Bitmap bmp = null;
             if (pedido.getImagem() != null) {
                  bmp = BitmapFactory.decodeByteArray(pedido.getImagem(), 0, pedido.getImagem().length);
@@ -111,14 +111,23 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
             });
 
             binding.activityDetalhesPedidoBtnDeletar.setOnClickListener(v -> {
-                viewModel.deletaPedido(pedido);
-                viewModel.getMsg().observe(this, msg -> {
-                    Toast.makeText(informacoesApp, "Pedido deletado com sucesso!", Toast.LENGTH_SHORT).show();
-//                    finish();
-                });
+                deletaPedido();
+                Toast.makeText(informacoesApp, "Pedido deletado com sucesso!", Toast.LENGTH_SHORT).show();
+            });
+
+            binding.activityDetalhesPedidoBtnFinalizar.setOnClickListener(v -> {
+                deletaPedido();
+                Toast.makeText(informacoesApp, "Pedido finalizado com sucesso!", Toast.LENGTH_SHORT).show();
             });
 
         }
 
+    }
+
+    private void deletaPedido() {
+        viewModel.deletaPedido();
+        viewModel.getMsg().observe(this, msg -> {
+            finish();
+        });
     }
 }

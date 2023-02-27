@@ -13,6 +13,7 @@ import com.example.ajudantedecostura.databinding.ActivityHomeBinding;
 import com.example.ajudantedecostura.home.adapter.ViewPagerAdapter;
 import com.example.ajudantedecostura.home.cliente.CadastroClienteActivity;
 import com.example.ajudantedecostura.home.pedido.CadastroPedidoActivity;
+import com.example.ajudantedecostura.login.LoginActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -33,10 +34,6 @@ public class HomeActivity extends AppCompatActivity {
         TabLayout tabLayout = binding.tabLayout;
         ViewPager2 viewPager2 = binding.viewpager;
 
-        // coloca nome da costureira na appBar
-        if (!getIntent().getExtras().isEmpty()){
-            binding.activityHomeNomeCostureira.setText(getIntent().getStringExtra("nome"));
-        }
 
         // configura adapter responsável por mostrar as páginas do tablayout
         binding.viewpager.setAdapter(adapter);
@@ -45,11 +42,11 @@ public class HomeActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager2, ((tab, position) -> {
             if (position == 0){
                 tab.setIcon(R.drawable.ic_clientes);
-                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.selected_tab_color);
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.roxo_dark);
                 tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
             } else if (position == 1){
                 tab.setIcon(R.drawable.ic_pedidos);
-                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.unselected_tab_color);
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.rosa);
                 tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
             }
         })).attach();
@@ -60,16 +57,19 @@ public class HomeActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition() == 0){
                         binding.fragmentHomeFabAdiciona.setImageDrawable(getResources().getDrawable(R.drawable.ic_clientes));
+                        binding.activityHomeLabel.setText("Clientes");
                 } else {
                     binding.fragmentHomeFabAdiciona.setImageDrawable(getResources().getDrawable(R.drawable.ic_pedidos));
+                    binding.activityHomeLabel.setText("Pedidos");
+
                 }
-                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.selected_tab_color);
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.roxo_dark);
                 tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.unselected_tab_color);
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(), R.color.rosa);
                 tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
             }
 
@@ -93,6 +93,12 @@ public class HomeActivity extends AppCompatActivity {
         binding.activityHomeFabPerfil.setOnClickListener(v -> {
             Intent intent = new Intent(this, PerfilCostureiraActivity.class);
             startActivity(intent);
+        });
+
+        binding.activityHomeFabLogout.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
     }
