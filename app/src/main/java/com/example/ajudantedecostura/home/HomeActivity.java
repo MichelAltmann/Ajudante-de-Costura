@@ -5,14 +5,12 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.databinding.ActivityHomeBinding;
-import com.example.ajudantedecostura.home.adapters.ViewPagerAdapter;
+import com.example.ajudantedecostura.home.adapter.ViewPagerAdapter;
 import com.example.ajudantedecostura.home.cliente.CadastroClienteActivity;
 import com.example.ajudantedecostura.home.pedido.CadastroPedidoActivity;
 import com.google.android.material.tabs.TabLayout;

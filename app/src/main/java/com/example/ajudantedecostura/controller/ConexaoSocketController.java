@@ -27,7 +27,7 @@ public class ConexaoSocketController {
     public boolean criaConexao(){
         boolean resultado;
         try {
-            informacoesApp.socket = new Socket("192.168.31.101", 12345);
+            informacoesApp.socket = new Socket("10.0.2.2", 12345);
             informacoesApp.out = new ObjectOutputStream(informacoesApp.socket.getOutputStream());
             informacoesApp.in = new ObjectInputStream(informacoesApp.socket.getInputStream());
 
@@ -182,13 +182,16 @@ public class ConexaoSocketController {
         return cliente;
     }
 
-    public void deletaPedidos(ArrayList<Pedido> pedidos) {
+    public String deletaPedido(Pedido pedido) {
+        String msg = null;
         try {
             informacoesApp.out.writeObject("PedidoDeletar");
-            informacoesApp.out.writeObject(pedidos);
-        } catch (IOException e) {
+            informacoesApp.out.writeObject(pedido);
+            msg = (String) informacoesApp.in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return msg;
     }
 
     public ArrayList<Material> carregaMateriaisPedido(String idPedido){
@@ -197,16 +200,11 @@ public class ConexaoSocketController {
             informacoesApp.out.writeObject("MaterialCarregarListaPedido");
             informacoesApp.out.writeObject(idPedido);
             materiais = (ArrayList<Material>) informacoesApp.in.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
         return materiais;
     }
 
-    public void deletaMateriais(ArrayList<Material> materiais){
-
-    }
 }

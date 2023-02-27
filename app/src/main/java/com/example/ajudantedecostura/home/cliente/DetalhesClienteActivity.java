@@ -3,6 +3,7 @@ package com.example.ajudantedecostura.home.cliente;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.ajudantedecostura.databinding.ActivityDetalhesClienteBinding;
 import com.example.ajudantedecostura.home.cliente.adapter.ListaPedidosClienteAdapter;
+import com.example.ajudantedecostura.home.pedido.DetalhesPedidoActivity;
+import com.example.ajudantedecostura.home.pedido.SalvaPedido;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.text.DateFormat;
@@ -42,12 +45,11 @@ public class DetalhesClienteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-//        pedidoClickListener = (view, position) -> {
-//            Intent intent = new Intent(this, DetalhesPedidoActivity.class);
-//            Pedido pedido = pedidos.get(position);
-//            intent.putExtra("pedido", pedido);
-//            startActivity(intent);
-//        };
+        pedidoClickListener = (view, position) -> {
+            Intent intent = new Intent(this, DetalhesPedidoActivity.class);
+            SalvaPedido.pedido = pedidos.get(position);
+            startActivity(intent);
+        };
 
         int posicao = (Integer) getIntent().getIntExtra("posicao", 0);
         cliente = informacoesApp.getClientes().get(posicao);
@@ -154,6 +156,7 @@ public class DetalhesClienteActivity extends AppCompatActivity {
 
     private void atualizaLista() {
         final Observer<ArrayList<Pedido>> pedidosObserver = pedidos -> {
+            this.pedidos = pedidos;
             adapter = new ListaPedidosClienteAdapter(pedidos, pedidoClickListener);
             binding.activityDetalhesClienteRecyclerPedido.setAdapter(adapter);
         };

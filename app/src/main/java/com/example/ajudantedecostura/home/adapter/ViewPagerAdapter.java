@@ -1,4 +1,4 @@
-package com.example.ajudantedecostura.home.adapters;
+package com.example.ajudantedecostura.home.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

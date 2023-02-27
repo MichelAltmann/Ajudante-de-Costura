@@ -24,6 +24,10 @@ public class ListaPedidoViewModel extends ViewModel {
     }
 
     public void carregaPedidos(ConexaoSocketController conexaoSocket){
+        if(threadCarregaPedidos != null && threadCarregaPedidos.isAlive()){
+            threadCarregaPedidos.interrupt();
+        }
+
         threadCarregaPedidos = new Thread((Runnable) () -> {
             ArrayList<Pedido> pedidos = conexaoSocket.carregaListaPedidos();
             new Handler(Looper.getMainLooper()).post((Runnable) () -> {

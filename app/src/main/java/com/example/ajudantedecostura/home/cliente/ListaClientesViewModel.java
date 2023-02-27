@@ -25,14 +25,13 @@ public class ListaClientesViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<Cliente>> listaClientes = new MutableLiveData<>();
 
-    private Thread threadCarregaLista;
+    private Thread threadCarregaLista = null;
 
     public MutableLiveData<ArrayList<Cliente>> pegaListaClientes() {
         return listaClientes;
     }
 
     public void carregaLista(ConexaoSocketController conexaoSocket){
-
 
         if (threadCarregaLista != null && threadCarregaLista.isAlive()){
             threadCarregaLista.interrupt();

@@ -53,6 +53,10 @@ public class ListaPedidosClienteAdapter extends RecyclerView.Adapter<ListaPedido
         if (pedidos.get(position).getDataEntrega() != null){
             holder.binding.recyclerMedidasMateriaisItem2Txt.setText(dataFormatada.format(pedidos.get(position).getDataEntrega()));
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            pedidoItemClickListener.onClickPedido(holder.itemView, holder.getAdapterPosition());
+        });
     }
 
 

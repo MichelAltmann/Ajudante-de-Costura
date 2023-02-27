@@ -15,6 +15,7 @@ import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.databinding.ActivityDetalhesPedidoBinding;
 import com.example.ajudantedecostura.home.pedido.adapter.MateriaisPedidoAdapter;
 import com.example.ajudantedecostura.home.pedido.adapter.MedidasPedidoAdapter;
+import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,6 +31,8 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
     private TextView txtTitulo, txtCliente, txtDataCriacao, txtDataEntrega, txtPrioridade, txtPreco, txtDescricao;
     private ImageView imagem;
 
+    private DetalhesPedidoViewModel viewModel;
+    private InformacoesApp informacoesApp;
     private MedidasPedidoAdapter adapterMedida;
     private MateriaisPedidoAdapter adapterMaterial;
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
@@ -39,6 +42,10 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDetalhesPedidoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        informacoesApp = (InformacoesApp) getApplicationContext();
+
+        viewModel = new DetalhesPedidoViewModel(informacoesApp);
 
         txtTitulo = binding.activityDetalhesPedidoTxtTitulo;
         txtCliente = binding.activityDetalhesPedidoTxtCliente;
@@ -101,6 +108,14 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
 
             binding.activityDetalhesPedidoFabVoltar.setOnClickListener(v -> {
                 finish();
+            });
+
+            binding.activityDetalhesPedidoBtnDeletar.setOnClickListener(v -> {
+                viewModel.deletaPedido(pedido);
+                viewModel.getMsg().observe(this, msg -> {
+                    Toast.makeText(informacoesApp, "Pedido deletado com sucesso!", Toast.LENGTH_SHORT).show();
+//                    finish();
+                });
             });
 
         }

@@ -70,7 +70,7 @@ public class CadastroPedidoActivity extends AppCompatActivity implements
     private int dataClicada = 0; // 1 == dataCriada 2 == dataEntrega
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
     public static final String CAMERA = "android.permission.CAMERA";
-    Bitmap selectedImageBitmap;
+    private Bitmap selectedImageBitmap;
     InformacoesApp informacoesApp;
     ArrayList<Cliente> clientes;
     ArrayList<String> nomesClientes = new ArrayList<>();
