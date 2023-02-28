@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,11 @@ import com.example.ajudantedecostura.home.pedido.adapter.MedidasPedidoAdapter;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Currency;
+import java.util.Locale;
 
 import modelDominio.Pedido;
 
@@ -32,6 +37,7 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
     private TextView txtTitulo, txtCliente, txtDataCriacao, txtDataEntrega, txtPrioridade, txtPreco, txtDescricao;
     private ImageView imagem;
 
+    private NumberFormat formataPreco = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
     private DetalhesPedidoViewModel viewModel;
     private DetalhesClienteViewModel viewModelCliente;
     private InformacoesApp informacoesApp;
@@ -47,7 +53,7 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
 
         informacoesApp = (InformacoesApp) getApplicationContext();
 
-
+        formataPreco.setCurrency(Currency.getInstance("BRL"));
 
         txtTitulo = binding.activityDetalhesPedidoTxtTitulo;
         txtCliente = binding.activityDetalhesPedidoTxtCliente;
@@ -92,12 +98,15 @@ public class DetalhesPedidoActivity extends AppCompatActivity {
 
             if (pedido.getDescricao() != null && !pedido.getDescricao().equals("")) {
                 txtDescricao.setText(pedido.getDescricao());
+            } else {
+                binding.activityDetalhesPedidoDescricao.setVisibility(View.GONE);
+                binding.activityDetalhesPedidoCardviewDescricao.setVisibility(View.GONE);
             }
 
             txtPrioridade.setText(pedido.prioridadeToString());
 
             if (pedido.getPreco() != null && !pedido.getPreco().toString().equals("")) {
-                txtPreco.setText(pedido.getPreco().toString());
+                txtPreco.setText(formataPreco.format(pedido.getPreco()));
             }
 
             adapterMaterial = new MateriaisPedidoAdapter(pedido.getListaMateriais(), onMateriaisItemClick);

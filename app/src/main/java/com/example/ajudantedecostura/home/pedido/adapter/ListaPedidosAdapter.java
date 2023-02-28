@@ -15,8 +15,12 @@ import com.example.ajudantedecostura.R;
 import com.example.ajudantedecostura.databinding.RecyclerPedidosItemBinding;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Currency;
+import java.util.Locale;
 
 import modelDominio.Pedido;
 
@@ -26,6 +30,8 @@ public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapte
     private PedidosOnClickListener itemClickListener;
     private Context context;
     final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+    private NumberFormat formataPreco = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private RecyclerPedidosItemBinding binding;
@@ -49,13 +55,14 @@ public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ListaPedidosAdapter.ViewHolder holder, int position) {
+        formataPreco.setCurrency(Currency.getInstance("BRL"));
         Pedido pedido = listaPedidos.get(position);
         holder.binding.pedidosItemTitulo.setText(String.valueOf(pedido.getTitulo()));
         holder.binding.pedidosItemNomeCliente.setText("Pedido feito por " + pedido.getCliente().getNome());
         if (pedido.getDataEntrega() != null){
             holder.binding.pedidosItemPrazoEntrega.setText("Entrega: " + dataFormatada.format(pedido.getDataEntrega()));
         }
-        holder.binding.pedidosItemPreco.setText("R$:" + pedido.getPreco().toString());
+        holder.binding.pedidosItemPreco.setText(formataPreco.format(pedido.getPreco()));
 
         byte[] imagem = pedido.getImagem();
         Bitmap bitmap = null;

@@ -50,7 +50,10 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.clientesItemNomeCliente.setText(lista.get(position).getNome());
-        holder.binding.clientesItemNumeroCelular.setText("Telefone: " + lista.get(position).getTelefone());
+
+        if (lista.get(position).getTelefone() != null){
+            holder.binding.clientesItemNumeroCelular.setText("Telefone: " + lista.get(position).getTelefone());
+        }
 
         if (lista.get(position).getDataNascimento() != null){
             holder.binding.clientesItemDataNascimento.setText("Nasceu em " + dataFormatada.format(lista.get(position).getDataNascimento()));

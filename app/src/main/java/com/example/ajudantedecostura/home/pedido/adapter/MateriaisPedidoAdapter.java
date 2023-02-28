@@ -9,7 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ajudantedecostura.databinding.RecyclerMedidasMateriaisItemBinding;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
+import java.util.Locale;
 
 import modelDominio.Material;
 
@@ -17,6 +21,8 @@ public class MateriaisPedidoAdapter extends RecyclerView.Adapter<MateriaisPedido
 
     private ArrayList<Material> lista;
     private OnMateriaisItemClickListener itemClickListener;
+    private NumberFormat formataPreco = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+
 
     // cria o ItemClickListener
     public interface OnMateriaisItemClickListener {
@@ -29,6 +35,7 @@ public class MateriaisPedidoAdapter extends RecyclerView.Adapter<MateriaisPedido
         public ViewHolder(RecyclerMedidasMateriaisItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
         }
     }
 
@@ -46,9 +53,10 @@ public class MateriaisPedidoAdapter extends RecyclerView.Adapter<MateriaisPedido
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        formataPreco.setCurrency(Currency.getInstance("BRL"));
         // faz o bind do nome dependendo do tipo, se é material ou medida
-            holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista.get(position).getTipo()));
-            holder.binding.recyclerMedidasMateriaisItem2Txt.setText(String.valueOf("R$" + lista.get(position).getPreco()));
+        holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista.get(position).getTipo()));
+        holder.binding.recyclerMedidasMateriaisItem2Txt.setText(String.valueOf(formataPreco.format(lista.get(position).getPreco())));
         // check se existe um clickListener ativo
         if (itemClickListener != null) {
             // caso exista, o click vai volta para a activity com os dados de onde foi

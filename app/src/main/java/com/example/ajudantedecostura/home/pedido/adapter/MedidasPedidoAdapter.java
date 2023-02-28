@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ajudantedecostura.databinding.RecyclerMedidasMateriaisItemBinding;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import modelDominio.Material;
 import modelDominio.Medida;
@@ -17,10 +20,11 @@ import modelDominio.Medidas;
 
 public class MedidasPedidoAdapter extends RecyclerView.Adapter<MedidasPedidoAdapter.ViewHolder> {
 
-    ArrayList<Medida> lista;
+    private ArrayList<Medida> lista;
 
     private OnMedidaItemClickListener itemClickListener;
 
+    private DecimalFormat formataFloat = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(new Locale("pt", "BR")));
     public interface OnMedidaItemClickListener {
         public void onMedidaItemClick(View view, int position);
     }
@@ -49,7 +53,7 @@ public class MedidasPedidoAdapter extends RecyclerView.Adapter<MedidasPedidoAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.binding.recyclerMedidasMateriaisItemTxt.setText(String.valueOf(lista.get(position).getNome()));
-        holder.binding.recyclerMedidasMateriaisItem2Txt.setText(String.valueOf(lista.get(position).getMedida() + " cm"));
+        holder.binding.recyclerMedidasMateriaisItem2Txt.setText(formataFloat.format(lista.get(position).getMedida()) + "cm");
 
         holder.itemView.setOnClickListener( v -> {
             itemClickListener.onMedidaItemClick(holder.itemView, holder.getAdapterPosition());

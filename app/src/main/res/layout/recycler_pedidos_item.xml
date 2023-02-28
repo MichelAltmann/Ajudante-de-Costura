@@ -8,18 +8,18 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:strokeWidth="2dp"
-        app:strokeColor="@color/roxo"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/white"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/roxo"
+        app:strokeWidth="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,14 +31,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:strokeWidth="4dp"
-                app:strokeColor="@color/rosa"
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/rosa_light"
                 app:cardCornerRadius="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/rosa"
+                app:strokeWidth="4dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -55,9 +55,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_max="100dp"
-                        app:layout_constraintWidth_max="100dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_max="100dp" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -65,46 +65,52 @@
 
             <TextView
                 android:id="@+id/pedidos_item_titulo"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/pedidos_item_nome_cliente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/pedidos_item_nome_cliente"
                 tools:text="Titulo do pedido" />
 
             <TextView
                 android:id="@+id/pedidos_item_nome_cliente"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/recycler_pedidos_item_cardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@id/recycler_pedidos_item_cardView"
                 app:layout_constraintTop_toTopOf="@id/recycler_pedidos_item_cardView"
                 tools:text="Nome do cliente" />
 
             <TextView
                 android:id="@+id/pedidos_item_prazo_entrega"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/rosa_dark"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/pedidos_item_preco"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/pedidos_item_nome_cliente"
                 app:layout_constraintTop_toBottomOf="@id/pedidos_item_nome_cliente"
                 tools:text="Prazo de entrega" />
 
             <TextView
+                android:id="@+id/pedidos_item_preco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:id="@+id/pedidos_item_preco"
+                android:text="R$0,00"
                 android:textColor="@color/verde_dark"
                 android:textSize="16sp"
-                android:text="R$0,00"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
