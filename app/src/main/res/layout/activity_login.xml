@@ -65,6 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lembrar de mim"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/activity_login_txt_senha"
         app:layout_constraintTop_toBottomOf="@id/activity_login_txt_senha" />
 
@@ -73,6 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="36dp"
         android:backgroundTint="@color/verde"
         android:padding="12dp"
@@ -119,6 +121,7 @@
         app:layout_constraintEnd_toEndOf="@id/activity_login_btn_cadastrar"
         app:layout_constraintStart_toStartOf="@id/activity_login_btn_cadastrar"
         android:layout_marginTop="16dp"
+        android:visibility="gone"
         android:text="Esqueceu sua senha?"
         android:textStyle="bold"/>
 

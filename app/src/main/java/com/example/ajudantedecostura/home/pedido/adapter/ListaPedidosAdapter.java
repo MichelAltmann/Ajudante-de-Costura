@@ -68,12 +68,9 @@ public class ListaPedidosAdapter extends RecyclerView.Adapter<ListaPedidosAdapte
         Bitmap bitmap = null;
         if (imagem != null){
             bitmap = BitmapFactory.decodeByteArray(imagem, 0, imagem.length);
+            holder.binding.pedidosItemImage.setImageBitmap(bitmap);
         }
 
-        Glide.with(context)
-                .load(bitmap)
-                .placeholder(R.drawable.splash_screen_loading)
-                .into(holder.binding.pedidosItemImage);
         if (itemClickListener != null) {
             holder.itemView.setOnClickListener(v -> {
                     itemClickListener.onClickPedido(holder.itemView, holder.getAdapterPosition());

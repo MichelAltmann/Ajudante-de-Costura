@@ -51,7 +51,7 @@
                         android:layout_margin="4dp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_clientes"
+                        android:src="@drawable/ic_pedidos"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHeight_max="100dp"

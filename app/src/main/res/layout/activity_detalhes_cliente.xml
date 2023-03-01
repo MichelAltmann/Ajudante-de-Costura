@@ -473,10 +473,11 @@
 
             <TextView
                 android:id="@+id/activity_detalhes_cliente_numero"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="14dp"
                 android:paddingStart="8dp"
                 android:text="Numero:"
+                android:paddingEnd="8dp"
                 android:textColor="@color/azul"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/activity_detalhes_cliente_txt_numero"
