@@ -67,9 +67,12 @@ public class ListaPedidosFragment extends Fragment {
 
     private void setObservador(){
         final Observer<ArrayList<Pedido>> pedidosObserver = pedidos -> {
-            listaPedidos = pedidos;
-            adapter = new ListaPedidosAdapter(listaPedidos, onPedidoClick, getContext());
-            binding.fragmentListaPedidosRecyclerview.setAdapter(adapter);
+            if (!listaPedidos.equals(pedidos)){
+                listaPedidos = pedidos;
+                adapter = new ListaPedidosAdapter(listaPedidos, onPedidoClick, getContext());
+                binding.fragmentListaPedidosRecyclerview.setAdapter(adapter);
+            }
+
         };
         viewModel.getPedidos().observe(getActivity(), pedidosObserver);
     }

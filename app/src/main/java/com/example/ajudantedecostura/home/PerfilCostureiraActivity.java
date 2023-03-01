@@ -3,10 +3,12 @@ package com.example.ajudantedecostura.home;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.example.ajudantedecostura.databinding.ActivityPerfilCostureiraBinding;
+import com.example.ajudantedecostura.login.LoginActivity;
 import com.example.ajudantedecostura.socket.InformacoesApp;
 
 import java.text.DateFormat;
@@ -46,6 +48,12 @@ public class PerfilCostureiraActivity extends AppCompatActivity {
         binding.activityPerfilCostureiraTxtNumero.setText(String.valueOf(costureira.getNumero()));
 
         binding.activityPerfilCostureiraFabVoltar.setOnClickListener(v -> {
+            finish();
+        });
+
+        binding.activityPerfilCostureiraFabLogout.setOnClickListener(v -> {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
             finish();
         });
 

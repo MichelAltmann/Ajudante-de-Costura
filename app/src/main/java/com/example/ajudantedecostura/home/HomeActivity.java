@@ -95,11 +95,5 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        binding.activityHomeFabLogout.setOnClickListener(v -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
     }
 }

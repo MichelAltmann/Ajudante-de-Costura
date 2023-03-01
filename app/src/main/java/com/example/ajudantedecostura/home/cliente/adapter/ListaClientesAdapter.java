@@ -21,7 +21,6 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
 
     private ArrayList<Cliente> lista;
     private ClientesOnClickListener itemClickListener;
-    final DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private RecyclerClientesItemBinding binding;
 
@@ -56,7 +55,7 @@ public class ListaClientesAdapter extends RecyclerView.Adapter<ListaClientesAdap
         }
 
         if (lista.get(position).getDataNascimento() != null){
-            holder.binding.clientesItemDataNascimento.setText("Nasceu em " + dataFormatada.format(lista.get(position).getDataNascimento()));
+            holder.binding.clientesItemEmail.setText(lista.get(position).getEmail());
         }
 
         byte[] imagem = lista.get(position).getImagem();

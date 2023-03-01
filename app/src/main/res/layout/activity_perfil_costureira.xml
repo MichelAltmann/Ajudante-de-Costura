@@ -49,6 +49,22 @@
 <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/activity_perfil_costureira_fab_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:backgroundTint="@color/white"
+                android:outlineAmbientShadowColor="@color/rosa"
+                android:outlineSpotShadowColor="@color/rosa"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:src="@drawable/ic_logout"
+                app:borderWidth="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/activity_perfil_costureira_fab_voltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -417,11 +433,11 @@
                 android:id="@+id/activity_perfil_costureira_linha_rua"
                 android:layout_width="0dp"
                 android:layout_height="0.8dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
                 android:foregroundTint="@color/azul"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/activity_perfil_costureira_linha_numero"
                 app:layout_constraintStart_toStartOf="@+id/activity_perfil_costureira_txt_rua"
                 app:layout_constraintTop_toBottomOf="@+id/activity_perfil_costureira_txt_rua" />
 
@@ -429,18 +445,18 @@
                 android:id="@+id/activity_perfil_costureira_numero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Prioridade:"
+                android:layout_marginEnd="36dp"
+                android:text="Número"
                 android:textColor="@color/azul"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/activity_perfil_costureira_txt_rua"
-                app:layout_constraintTop_toBottomOf="@+id/activity_perfil_costureira_txt_rua" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/activity_perfil_costureira_rua" />
 
             <TextView
                 android:id="@+id/activity_perfil_costureira_txt_numero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="8dp"
+                android:paddingStart="4dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="2dp"
                 android:text="TextView"
@@ -455,9 +471,8 @@
                 android:layout_height="0.8dp"
                 android:background="@drawable/linha_separacao"
                 android:backgroundTint="@color/azul_dark"
-                android:layout_marginEnd="24dp"
                 android:foregroundTint="@color/azul"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/activity_perfil_costureira_linha_cep"
                 app:layout_constraintStart_toStartOf="@+id/activity_perfil_costureira_txt_numero"
                 app:layout_constraintTop_toBottomOf="@+id/activity_perfil_costureira_txt_numero" />
 
