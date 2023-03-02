@@ -25,13 +25,9 @@ public class Costureira extends Pessoa implements Serializable {
         this.senha = senha;
     }
 
-
-
     public Costureira(String idPessoa) {
         super(idPessoa);
     }
-
-
 
     public String getSenha() {
         return senha;
@@ -51,9 +47,18 @@ public class Costureira extends Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return super.toString()+"Costureira{" + "senha=" + senha + ", autorizacao=" + autorizacao + '}';
+        return super.toString() + "Costureira{" + "senha=" + senha + ", autorizacao=" + autorizacao + '}';
     }
 
+    public String getAutorizacaoLiteral() {
+        String autorizacaoLiteral = "";
 
+        if (this.getAutorizacao() == 0) {
+            autorizacaoLiteral = "Não autorizada";
+        } else if (this.getAutorizacao() == 1) {
+            autorizacaoLiteral = "Autorizada";
+        }
+        return autorizacaoLiteral;
+    }
 
 }

@@ -136,8 +136,6 @@ public class DetalhesClienteActivity extends AppCompatActivity {
             }
         }
 
-        viewModel.carregaPedidosCliente();
-
         atualizaLista();
 
 
@@ -152,6 +150,12 @@ public class DetalhesClienteActivity extends AppCompatActivity {
             });
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.carregaPedidosCliente();
     }
 
     private void atualizaLista() {
